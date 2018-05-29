@@ -7,6 +7,8 @@ import Typography from 'material-ui/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import FormatQuote from '@material-ui/icons/FormatQuote';
+
 const styles = theme => ({
   card: {
     maxWidth: '100%',
@@ -46,14 +48,15 @@ const styles = theme => ({
     fontSize: "1.05rem"
   },
   quoteText: {
-    fontFamily: "\"palanquin\", Verdana, Tahoma",
-    fontWeight: "100",
-    fontSize: "1.675rem"
+    fontFamily: "\"muli\", Verdana, Tahoma",
+    fontSize: "1.675rem",
+    opacity: "0.8"
   },
   quoteAuthor: {
-    fontFamily: "\"palanquin\", Verdana, Tahoma",
+    fontFamily: "\"oneday\", Verdana, Tahoma",
     fontSize: "1.0675rem",
-    paddingLeft: "30%"
+    paddingLeft: "30%",
+    opacity: "0.4"
   },
   divider:{
     marginLeft: '25%',
@@ -94,9 +97,14 @@ function MainContent(props) {
       <Divider className={classes.divider}/>
       </Grid>
       <Grid item xs={12} lg={12}>
+      <Paper className={classes.quotes} elevation={2}>
+        <Typography component="p" className={classes.quoteText}>
+          <FormatQuote />
+        </Typography>
+      </Paper>
         <Paper className={classes.quotes} elevation={2}>
           <Typography component="p" className={classes.quoteText}>
-            “Those who dare to fail miserably can achieve greatly.”
+            Those who dare to fail miserably can achieve greatly.
           </Typography>
         </Paper>
       </Grid>

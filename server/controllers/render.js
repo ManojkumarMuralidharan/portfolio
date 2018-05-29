@@ -55,11 +55,21 @@ function renderFullPage(html, css) {
         body{
           margin : 0;
         }
+        <!-- TODO: load fonts optimally and using webpack 4 -->
         @font-face {
             font-family: "palanquin";
-            src: url(/fonts/palanquin/palanquin-extralight.ttf) format("truetype");
+            src: url(/fonts/palanquin/palanquin-thin.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: "muli";
+            src: url(/fonts/muli/Muli-ExtraLight.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: "oneday";
+            src: url(/fonts/oneday/oneday.ttf) format("truetype");
         }
         </style>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
       </head>
       <body>
         <div id="root">${html}</div>
