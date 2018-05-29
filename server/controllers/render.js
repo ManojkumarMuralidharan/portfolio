@@ -56,9 +56,11 @@ function renderFullPage(html, css) {
           margin : 0;
         }
         <!-- TODO: load fonts optimally and using webpack 4 -->
+        <!--font-family: 'Poiret One', cursive; -->
+        <!--font-family: 'Roboto', sans-serif; -->
         @font-face {
             font-family: "palanquin";
-            src: url(/fonts/palanquin/palanquin-thin.ttf) format("truetype");
+            src: url(/fonts/palanquin/palanquin-ExtraLight-git.ttf) format("truetype");
         }
         @font-face {
             font-family: "muli";
@@ -69,7 +71,7 @@ function renderFullPage(html, css) {
             src: url(/fonts/oneday/oneday.ttf) format("truetype");
         }
         </style>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100" rel="stylesheet">
       </head>
       <body>
         <div id="root">${html}</div>

@@ -82,6 +82,7 @@ const styles = theme => ({
     zIndex: '30',
     marginTop: '14px',
     minWidth: '130px',
+    placeContent: 'flex-end'
   },
   siteTitle: {
     color: 'white',
@@ -100,7 +101,10 @@ const styles = theme => ({
     },
     flexContainer: {
       placeContent: 'flex-end'
-    }
+    },
+    appBar: {
+      placeContent: 'flex-end'
+    },
   }
 });
 

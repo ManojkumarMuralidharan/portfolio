@@ -22,12 +22,12 @@ const styles = theme => ({
     textAlign: 'center',
   },
   quotes: {
-    height: theme.spacing.unit * 6,
+    height: theme.spacing.unit * 7,
     background: '#ffffff',
     boxShadow: 'none'
   },
   bio: {
-    height: theme.spacing.unit * 15,
+    height: theme.spacing.unit * 25,
     background: '#ffffff',
     boxShadow: 'none',
     paddingLeft: '30%',
@@ -44,19 +44,21 @@ const styles = theme => ({
     fontFamily: "\"palanquin\", Verdana, Tahoma",
   },
   selfText:{
-    fontFamily: "\"palanquin\", Verdana, Tahoma",
-    fontSize: "1.05rem"
+    fontFamily: "'Roboto', sans-serif;",
+    fontSize: "1.355rem",
+    lineHeight: "1.56429em",
   },
   quoteText: {
     fontFamily: "\"muli\", Verdana, Tahoma",
     fontSize: "1.675rem",
-    opacity: "0.8"
+    opacity: "0.8",
+    paddingLeft: '30%',
+    paddingRight: '30%',
   },
   quoteAuthor: {
-    fontFamily: "\"oneday\", Verdana, Tahoma",
+    fontFamily: "'Poiret One', cursive",
     fontSize: "1.0675rem",
     paddingLeft: "30%",
-    opacity: "0.4"
   },
   divider:{
     marginLeft: '25%',
@@ -76,6 +78,16 @@ const styles = theme => ({
     top: '-1%',
     left: '50%',
     transform: 'translate(-50%, -55%)'
+  },
+  [`${theme.breakpoints.down('md')}`]: {
+    bio: {
+      paddingLeft: '20%',
+      paddingRight: '20%',
+    },
+    quoteText: {
+      paddingLeft: '20%',
+      paddingRight: '20%',
+    }
   }
 });
 
