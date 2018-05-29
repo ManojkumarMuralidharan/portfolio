@@ -4,50 +4,45 @@ import { SheetsRegistry, JssProvider } from 'react-jss';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import React from 'react';
-import {createMuiTheme}  from 'material-ui/styles';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
-import {green100, green500, green700} from 'material-ui/colors';
+// import {createMuiTheme}  from 'material-ui/styles';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+// import {green100, green500, green700} from 'material-ui/colors';
 import App from '../../public/js/templates/app';
 
 export function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
-  const sheetsRegistry = new SheetsRegistry();
-  console.log('sheets',sheetsRegistry);
-
-  // Create a theme instance.
-  const theme =  createMuiTheme({
-	  palette: {
-	    primary1Color: green500,
-	    primary2Color: green700,
-	    primary3Color: green100,
-	  },
-	}, {
-	  avatar: {
-	    borderColor: null,
-	  },
-	  userAgent: req.headers['user-agent'],
-  });
- 
- const generateClassName = createGenerateClassName();
+ //  // Create a sheetsRegistry instance.
+ //  const sheetsRegistry = new SheetsRegistry();
+ //  console.log('sheets',sheetsRegistry);
+ //
+ //  // Create a theme instance.
+ //  const theme =  createMuiTheme({
+	//   palette: {
+	//     primary1Color: green500,
+	//     primary2Color: green700,
+	//     primary3Color: green100,
+	//   },
+	// }, {
+	//   avatar: {
+	//     borderColor: null,
+	//   },
+	//   userAgent: req.headers['user-agent'],
+ //  });
+ //
+ // const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
-	  <JssProvider registry={sheetsRegistry} generateClassName={generateClassName} >
-      <MuiThemeProvider muiTheme={theme} sheetsManager={new Map()}>
-       <button>I can access {theme.primary1Color}</button>
-        <App />
-      </MuiThemeProvider>
-      </JssProvider>
+	  <App />
   );
 
 
-  // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
-  console.log('css',css);
+  // // Grab the CSS from our sheetsRegistry.
+  // const css = sheetsRegistry.toString()
+  // console.log('css',css);
 
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css))
+  res.send(renderFullPage(html))
 }
 
 function renderFullPage(html, css) {
@@ -56,6 +51,15 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style>
+        body{
+          margin : 0;
+        }
+        @font-face {
+            font-family: "palanquin";
+            src: url(/fonts/palanquin/palanquin-extralight.ttf) format("truetype");
+        }
+        </style>
       </head>
       <body>
         <div id="root">${html}</div>

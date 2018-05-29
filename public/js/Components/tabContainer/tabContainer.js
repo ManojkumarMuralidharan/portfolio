@@ -8,7 +8,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableTemporaryDrawer from '../menuDrawer/component.jsx';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 function TabContainer({ children, dir }) {
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
@@ -23,11 +24,15 @@ TabContainer.propTypes = {
 };
 
 const styles = theme => ({
+  override: {
+    MuiTabs: {
+      scroller: {
+          backgroundColor: '#ffffff',
+      }
+    }
+  },
   root: {
     background: 'transparent',
-    zIndex: '30',
-    marginTop: '14px',
-    minWidth: '130px',
   },
   selected:{
     color: 'white'
@@ -42,10 +47,17 @@ const styles = theme => ({
   icon: {
     color: 'white'
   },
+  scroller: {
+    color: 'white',
+    background: 'white'
+  },
   tabMenu:{
     color: 'white',
     '&:hover': {
       animation: 'navfadein 1.0s 1 0s forwards'
+    },
+    '&:selected': {
+      color: 'white'
     },
   },
   '@keyframes navfadein': {
@@ -59,16 +71,29 @@ const styles = theme => ({
     background: 'rgba(255,255,255,0.5)',
     }
   },
+  indicator: {
+    backgroundColor: 'white',
+  },
   flexContainer: {
     placeContent: 'flex-end'
   },
   appBar: {
     backgroundColor: 'transparent',
+    zIndex: '30',
+    marginTop: '14px',
+    minWidth: '130px',
+  },
+  siteTitle: {
+    color: 'white',
+    display: 'block',
+    position: 'relative',
+    marginLeft: '20%',
+    marginTop: '6%',
   },
   [`${theme.breakpoints.down('md')}`]: {
     menuDrawer: {
       display: 'block',
-      color: 'red'
+      color: 'white'
     },
     tabMenu: {
       display: 'none'
@@ -102,27 +127,35 @@ class FullWidthTabs extends React.Component {
   render() {
     const { classes, theme } = this.props;
     return (
-      <div className={classes.root}>
-        <AppBar className={classes.appBar} position="static" color="default">
-          <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="secondary"
-            textColor="primary"
-            classes={{
-              root: classes.root, // class name, e.g. `classes-nesting-root-x`
-              flexContainer: classes.flexContainer
-            }}
-            >
-            <Tab label="test" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
-            <Tab label="Home" variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
-            <Tab label="Blog" className={classes.tabMenu} />
-            <Tab label="Hobbies" className={classes.tabMenu} />
-            <Tab label="Contact" className={classes.tabMenu} />
-          </Tabs>
-        </AppBar>
-        <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}/>
-      </div>
+      <Grid container className={classes.appBar}>
+        <Grid item lg={2} >
+            <Typography className={classes.siteTitle}>
+              SITE TITLE
+            </Typography>
+        </Grid>
+        <Grid item lg={10} >
+            <AppBar className={classes.appBar} position="static" color="default">
+              <Tabs
+                selected={classes.selected}
+                value={this.state.value}
+                onChange={this.handleChange}
+                classes={{
+                  root: classes.root, // class name, e.g. `classes-nesting-root-x`
+                  flexContainer: classes.flexContainer,
+                  indicator: classes.indicator
+                }}
+                >
+                <Tab label="test"  icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab label="Home"  variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
+                <Tab label="Blog"  className={classes.tabMenu} />
+                <Tab label="Hobbies"  className={classes.tabMenu} />
+                <Tab label="Contact"  className={classes.tabMenu} />
+              </Tabs>
+            </AppBar>
+            <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}/>
+        </Grid>
+      </Grid>
+
     );
   }
 }

@@ -35,6 +35,11 @@ const styles = theme => ({
   divider: {
     margin: `${theme.spacing.unit * 2}px 0`,
   },
+  [`${theme.breakpoints.down('md')}`]: {
+    backgroundGrid: {
+      marginBottom: '0'
+    },
+  }
 });
 
 function CSSGrid(props) {

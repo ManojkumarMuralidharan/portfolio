@@ -9,6 +9,7 @@ console.log(handleRender);
 
 const app = express();
 app.use(express.static('dist'));
+app.use(express.static('public'));
 // This is fired every time the server side receives a request.
 app.use(handleRender);
 
