@@ -28,6 +28,9 @@ const styles = theme => ({
     MuiTabs: {
       scroller: {
           backgroundColor: '#ffffff',
+      },
+      button: {
+        opacity : '1'
       }
     }
   },
@@ -53,8 +56,10 @@ const styles = theme => ({
   },
   tabMenu:{
     color: 'white',
+    fontFamily: "'Roboto', sans-serif;",
     '&:hover': {
-      animation: 'navfadein 1.0s 1 0s forwards'
+      animation: 'navfadein 1.0s 1 0s forwards',
+      background: 'transparent',
     },
     '&:selected': {
       color: 'white'
@@ -62,13 +67,14 @@ const styles = theme => ({
   },
   '@keyframes navfadein': {
     from: {
-
+    border: '2px solid rgba(255,255,255,0.8)',
+    opacity: '1',
     },
     to: {
-    border: '0px solid rgba(255,255,255,0.3)',
+    border: '2px solid rgba(255,255,255,1)',
     boxShadow: '0 10px 6px -6px #777',
     borderRadius: '4%',
-    background: 'rgba(255,255,255,0.5)',
+    opacity: '0.7',
     }
   },
   indicator: {
@@ -78,18 +84,20 @@ const styles = theme => ({
     placeContent: 'flex-end'
   },
   appBar: {
+    marginTop: theme.spacing.unit * 4,
     backgroundColor: 'transparent',
-    zIndex: '30',
-    marginTop: '14px',
-    minWidth: '130px',
-    placeContent: 'flex-end'
+    boxShadow: 'none',
+    position: 'absolute',
+  },
+  appBarGrid: {
+    position: 'absolute',
+    width: '100%'
   },
   siteTitle: {
     color: 'white',
     display: 'block',
     position: 'relative',
     marginLeft: '20%',
-    marginTop: '6%',
   },
   [`${theme.breakpoints.down('md')}`]: {
     menuDrawer: {
@@ -102,8 +110,9 @@ const styles = theme => ({
     flexContainer: {
       placeContent: 'flex-end'
     },
-    appBar: {
-      placeContent: 'flex-end'
+    siteTitle: {
+      position: 'relative',
+      marginLeft: '85%',
     },
   }
 });
@@ -137,8 +146,8 @@ class FullWidthTabs extends React.Component {
               SITE TITLE
             </Typography>
         </Grid>
-        <Grid item lg={10} >
-            <AppBar className={classes.appBar} position="static" color="default">
+        <Grid item lg={10}>
+            <AppBar color="default" position="absolute" style={{background:"transparent", boxShadow:"none"}}>
               <Tabs
                 selected={classes.selected}
                 value={this.state.value}

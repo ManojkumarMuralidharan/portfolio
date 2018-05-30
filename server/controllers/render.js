@@ -50,6 +50,15 @@ function renderFullPage(html, css) {
     <!doctype html>
     <html>
       <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38147306-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-38147306-2');
+        </script>
         <title>Material-UI</title>
         <style>
         body{
@@ -71,7 +80,7 @@ function renderFullPage(html, css) {
             src: url(/fonts/oneday/oneday.ttf) format("truetype");
         }
         </style>
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500" rel="stylesheet">
       </head>
       <body>
         <div id="root">${html}</div>

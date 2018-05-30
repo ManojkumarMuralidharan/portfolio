@@ -22,12 +22,11 @@ const styles = theme => ({
     textAlign: 'center',
   },
   quotes: {
-    height: theme.spacing.unit * 7,
+
     background: '#ffffff',
     boxShadow: 'none'
   },
   bio: {
-    height: theme.spacing.unit * 25,
     background: '#ffffff',
     boxShadow: 'none',
     paddingLeft: '30%',
@@ -62,7 +61,25 @@ const styles = theme => ({
   },
   divider:{
     marginLeft: '25%',
-    marginRight: '25%'
+    marginRight: '25%',
+    marginBottom: '4%',
+    marginTop: '1%',
+  },
+  backgroundQuotes: {
+    backgroundImage: "url('/images/backgroundquotes.jpg')",
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    height: '250px'
+  },
+  backgroundProjects: {
+    backgroundImage: "url('/images/coffee-projects-menu.png')",
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    height: '350px'
   },
   selfImage: {
     borderRadius: '50%',
@@ -108,6 +125,7 @@ function MainContent(props) {
       </Paper>
       <Divider className={classes.divider}/>
       </Grid>
+
       <Grid item xs={12} lg={12}>
       <Paper className={classes.quotes} elevation={2}>
         <Typography component="p" className={classes.quoteText}>
@@ -128,6 +146,9 @@ function MainContent(props) {
         </Paper>
         <Divider className={classes.divider}/>
       </Grid>
+      <Grid item xs={12} className={classes.backgroundProjects}>
+      </Grid>
+
     </Grid>
   );
 }

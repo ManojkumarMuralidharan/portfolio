@@ -20,10 +20,6 @@ const styles = theme => ({
   backgroundPaper:{
     width: '100%'
   },
-  backgroundGrid: {
-    marginTop: '-147px',
-    marginBottom: '-337px'
-  },
   paper: {
     padding: theme.spacing.unit,
     textAlign: 'center',
@@ -32,6 +28,14 @@ const styles = theme => ({
     marginBottom: `${theme.spacing.unit * 0}px`,
     boxShadow: "none",
   },
+  backgroundPaperDiv: {
+    backgroundImage: "url('/images/background.jpg')",
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '550px'
+  },
   divider: {
     margin: `${theme.spacing.unit * 2}px 0`,
   },
@@ -39,6 +43,10 @@ const styles = theme => ({
     backgroundGrid: {
       marginBottom: '0'
     },
+    backgroundPaperDiv:{
+      backgroundSize: 'contain',
+      backgroundPosition: 'inherit',
+    }
   }
 });
 
@@ -48,12 +56,11 @@ function CSSGrid(props) {
   return (
     <div>
       <Grid container spacing={0}>
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <TabContainer />
         </Grid>
-        <Grid item xs={12} className={classes.backgroundGrid}>
-        <Paper>
-          <img className={classes.backgroundPaper} id='image' src='/images/background.jpg' />
+        <Grid item xs={12}>
+        <Paper className={classes.backgroundPaperDiv}>
         </Paper>
         </Grid>
         <Grid item xs={12}>
