@@ -43,6 +43,7 @@ const styles = theme => ({
 function Footer(props) {
   const { classes } = props;
   return (
+      <footer>
         <Grid container className={classes.grid} alignContent='center' alignItems='center'>
           <Grid item xs={12} lg={12} className={classes.iconsContainer}>
           <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
@@ -76,6 +77,7 @@ function Footer(props) {
             </Paper>
           </Grid>
         </Grid>
+        </footer>
   );
 }
 

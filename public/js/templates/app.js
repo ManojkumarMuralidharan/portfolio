@@ -1,5 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { white, red } from 'material-ui/colors';
 import CSSGrid from '../Components/layout/masterLayout.js';
 
 export default class App extends React.Component {
@@ -9,6 +11,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <CSSGrid />
+    return   (<CSSGrid />);
   }
 }

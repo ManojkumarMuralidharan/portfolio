@@ -8,7 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import FormatQuote from '@material-ui/icons/FormatQuote';
-
+import SingleLineGridList from '../GridListInline/component.jsx';
+import GoogleApiWrapper from '../googleMaps/component.jsx';
 const styles = theme => ({
   card: {
     maxWidth: '100%',
@@ -16,6 +17,12 @@ const styles = theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  projectContainer:{
+
+  },
+  projectList: {
+    paddingLeft: '20%',
   },
   grid: {
     paddingBottom : theme.spacing.unit * 6,
@@ -42,8 +49,12 @@ const styles = theme => ({
     background: '#ffffff',
     fontFamily: "\"palanquin\", Verdana, Tahoma",
   },
+  mapsContainer: {
+    height: theme.spacing.unit * 51,
+    position: 'relative'
+  },
   selfText:{
-    fontFamily: "'Roboto', sans-serif;",
+    fontFamily: "'roboto-thin', sans-serif;",
     fontSize: "1.355rem",
     lineHeight: "1.56429em",
   },
@@ -81,11 +92,49 @@ const styles = theme => ({
     backgroundSize: 'contain',
     height: '350px'
   },
+  backgroundHobby: {
+    backgroundImage: "url('/images/Hobby.png')",
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '350px'
+  },
   selfImage: {
     borderRadius: '50%',
     width: '240px',
     height: '240px',
     backgroundImage:'url(/images/self.jpg)',
+    backgroundSize: 'cover',
+    borderRadius: '50%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    margin: '0',
+    position: 'absolute',
+    top: '-1%',
+    left: '50%',
+    transform: 'translate(-50%, -55%)'
+  },
+  projectImage: {
+    borderRadius: '50%',
+    width: '240px',
+    height: '240px',
+    backgroundImage:'url(/images/projects.jpg)',
+    backgroundSize: 'cover',
+    borderRadius: '50%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    margin: '0',
+    position: 'absolute',
+    top: '-1%',
+    left: '50%',
+    transform: 'translate(-50%, -55%)'
+  },
+  selfCamping: {
+    borderRadius: '50%',
+    width: '240px',
+    height: '240px',
+    backgroundImage:'url(/images/self-camping.jpg)',
     backgroundSize: 'cover',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',
@@ -148,7 +197,29 @@ function MainContent(props) {
       </Grid>
       <Grid item xs={12} className={classes.backgroundProjects}>
       </Grid>
+      <Grid item xs={12} lg={12} className={classes.identity} >
+        <Paper  className={classes.selfPaper} elevation={2}>
+          <Paper className={classes.projectImage}></Paper>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} lg={12} >
+        <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',}}/>
+        <Divider className={classes.divider}/>
+      </Grid>
+      <Grid item xs={12} className={classes.backgroundHobby}>
+      </Grid>
+      <Grid item xs={12} lg={12} className={classes.identity} >
+        <Paper  className={classes.selfPaper} elevation={2}>
+          <Paper className={classes.selfCamping}></Paper>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} lg={12} className={classes.mapsContainer}>
+        <GoogleApiWrapper/>
+      </Grid>
 
+      <Grid item xs={12} lg={12}>
+        <Divider className={classes.divider}/>
+      </Grid>
     </Grid>
   );
 }
@@ -158,3 +229,5 @@ MainContent.propTypes = {
 };
 
 export default withStyles(styles)(MainContent);
+
+//<SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',}}/>

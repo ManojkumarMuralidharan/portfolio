@@ -6,7 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 //import tileData from '../tileData/component.jsx';
-
+import MediaCard from '../cards/component.jsx';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -14,11 +14,18 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    paddingLeft: '20%',
+    paddingRight: '20%',
   },
   gridList: {
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+  },
+  gridListTile: {
+    width: '30%',
+    height: '100%',
+    padding: '2px'
   },
   title: {
     color: theme.palette.primary.light,
@@ -27,6 +34,11 @@ const styles = theme => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  [`${theme.breakpoints.down('md')}`]: {
+    gridListTile: {
+      width: '50%',
+    },
+  }
 });
 
 /**
@@ -38,36 +50,36 @@ const styles = theme => ({
   const tileData = [
     {
       img: '/images/1.jpeg',
-      title: 'Image',
+      title: 'Project_1',
       author: 'author',
     },
     {
       img: '/images/2.jpeg',
-      title: 'Image',
+      title: 'Project_2',
       author: 'author',
     },
 
     {
       img: '/images/3.jpeg',
-      title: 'Image',
+      title: 'Project_3',
       author: 'author',
     },
 
     {
       img: '/images/4.jpeg',
-      title: 'Image',
+      title: 'Project_4',
       author: 'author',
     },
 
     {
       img: '/images/5.jpeg',
-      title: 'Image',
+      title: 'Project_5',
       author: 'author',
     },
 
     {
       img: '/images/6.jpeg',
-      title: 'Image',
+      title: 'Project_6',
       author: 'author',
     }
   ];
@@ -79,20 +91,8 @@ function SingleLineGridList(props) {
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-              }}
-              actionIcon={
-                <IconButton>
-
-                </IconButton>
-              }
-            />
+          <GridListTile key={tile.img}  classes={{root: classes.gridListTile }} >
+          <MediaCard titleFromProps={tile.title} />
           </GridListTile>
         ))}
       </GridList>
@@ -105,3 +105,20 @@ SingleLineGridList.propTypes = {
 };
 
 export default withStyles(styles)(SingleLineGridList);
+
+//
+// <GridListTile key={tile.img}>
+//   <img src={tile.img} alt={tile.title} />
+//   <GridListTileBar
+//     title={tile.title}
+//     classes={{
+//       root: classes.titleBar,
+//       title: classes.title,
+//     }}
+//     actionIcon={
+//       <IconButton>
+//
+//       </IconButton>
+//     }
+//   />
+// </GridListTile>

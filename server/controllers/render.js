@@ -1,20 +1,29 @@
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry, JssProvider } from 'react-jss';
-//import JssProvider from 'react-jss/lib/JssProvider';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import React from 'react';
-// import {createMuiTheme}  from 'material-ui/styles';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import {createMuiTheme}  from 'material-ui/styles';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 // import {green100, green500, green700} from 'material-ui/colors';
 import App from '../../public/js/templates/app';
+import { white, red } from 'material-ui/colors';
 
 export function handleRender(req, res) {
  //  // Create a sheetsRegistry instance.
- //  const sheetsRegistry = new SheetsRegistry();
- //  console.log('sheets',sheetsRegistry);
+  const sheetsRegistry = new SheetsRegistry();
+  console.log('sheets',sheetsRegistry);
  //
+ // Create a theme instance.
+ const muiTheme = createMuiTheme({
+   palette: {
+     primary: white,
+     secondary: white,
+     accent: white,
+     type: 'light',
+   },
+ });
  //  // Create a theme instance.
  //  const theme =  createMuiTheme({
 	//   palette: {
@@ -29,20 +38,24 @@ export function handleRender(req, res) {
 	//   userAgent: req.headers['user-agent'],
  //  });
  //
- // const generateClassName = createGenerateClassName();
+  const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
-	  <App />
+    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+    <MuiThemeProvider theme={muiTheme}>
+     <App />
+   </MuiThemeProvider>
+   </JssProvider>
   );
 
 
   // // Grab the CSS from our sheetsRegistry.
-  // const css = sheetsRegistry.toString()
+  const css = sheetsRegistry.toString()
   // console.log('css',css);
 
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html))
+  res.send(renderFullPage(html, css))
 }
 
 function renderFullPage(html, css) {
@@ -63,7 +76,9 @@ function renderFullPage(html, css) {
         <style>
         body{
           margin : 0;
+          min-height: 100%;
         }
+        html { height: 100%; }
         <!-- TODO: load fonts optimally and using webpack 4 -->
         <!--font-family: 'Poiret One', cursive; -->
         <!--font-family: 'Roboto', sans-serif; -->
@@ -78,6 +93,10 @@ function renderFullPage(html, css) {
         @font-face {
             font-family: "oneday";
             src: url(/fonts/oneday/oneday.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: "roboto-thin";
+            src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
         }
         </style>
         <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500" rel="stylesheet">

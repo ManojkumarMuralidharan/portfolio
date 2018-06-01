@@ -4,6 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia, CardHeader, CardTitle } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import red from '@material-ui/core/colors/red';
 
 const styles = {
   card: {
@@ -13,30 +15,38 @@ const styles = {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  typography: {
+    fontFamily: '"roboto-thin", "Helvetica", "Arial", sans-serif;'
+  },
+  orangeAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: red[500],
+  },
 };
 
 function MediaCard(props) {
-  const { classes } = props;
+  const { classes, titleFromProps } = props;
   return (
     <div>
       <Card className={classes.card}>
       <CardHeader
-        title='URL Avatar'
+        title= {titleFromProps || 'URL Avatar'}
         subtitle='Subtitle'
-        avatar='images/xx.jpg'
+        avatar={<Avatar style={{backgroundColor : red[500]}}>JS</Avatar>}
       >
       </CardHeader>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          
+          image="/images/contemplative-reptile.jpg"
+
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
+          <Typography className={classes.typography} gutterBottom variant="headline" component="h2">
             Lizard
           </Typography>
-          <Typography component="p">
+          <Typography className={classes.typography} component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
             across all continents except Antarctica
           </Typography>
