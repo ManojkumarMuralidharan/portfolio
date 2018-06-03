@@ -46,28 +46,28 @@ function Footer(props) {
       <footer>
         <Grid container className={classes.grid} alignContent='center' alignItems='center'>
           <Grid item xs={12} lg={12} className={classes.iconsContainer}>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
            <img src="/images/linkedin.png" width="25" height="25" alt="facebook" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="http://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
            <img src="/images/github.png" width="25" height="25" alt="github" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
            <img src="/images/instagram.png" width="25" height="25" alt="instagram" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
            <img src="/images/paypal.png" width="25" height="25" alt="paypal" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="http://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
            <img src="/images/amazon.png" width="25" height="25" alt="amazon" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
            <img src="/images/gmail.png" width="25" height="25" alt="gmail" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
            <img src="/images/slack.png" width="25" height="25" alt="slack" />
           </IconButton>
-          <IconButton variant="fab" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
            <img src="/images/twitter.png" width="25" height="25" alt="twitter" />
           </IconButton>
           </Grid>
