@@ -10,6 +10,15 @@ import SwipeableTemporaryDrawer from '../menuDrawer/component.jsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+
+
 function TabContainer({ children, dir }) {
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
@@ -29,10 +38,33 @@ const styles = theme => ({
       scroller: {
           backgroundColor: '#ffffff',
       },
-      button: {
-        opacity : '1'
-      }
     }
+  },
+  button:{
+     margin: theme.spacing.unit,
+     color: '#fff',
+     backgroundColor: '#2196f3',
+     '&:hover':{
+       backgroundColor: 'green'
+     }
+  },
+  dialogOpeningText:{
+    lineHeight: '1.8em',
+    padding: '10px 0px 10px 0px'
+  },
+  dialogTitle:{
+    textAlign: 'center',
+  },
+  contactPaperDiv: {
+    backgroundImage: "url('/images/contact.png')",
+    backgroundAttachment: 'inherit',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    maxWidth: '93%',
+    borderRadius: '2em',
+    height: '174px',
+    boxShadow: 'none',
+    marginLeft: '3%'
   },
   root: {
     background: 'transparent',
@@ -83,6 +115,9 @@ const styles = theme => ({
   flexContainer: {
     placeContent: 'flex-end'
   },
+  dialogButton:{
+    justifyContent: 'center'
+  },
   appBar: {
     marginTop: theme.spacing.unit * 4,
     backgroundColor: 'transparent',
@@ -121,6 +156,7 @@ class FullWidthTabs extends React.Component {
   state = {
     value: 0,
     drawerState : false,
+    dialogOpen: false
   };
 
   toggleDrawer =  (open) => () => {
@@ -135,6 +171,14 @@ class FullWidthTabs extends React.Component {
 
   handleChangeIndex = index => {
     this.setState({ value: index });
+  };
+
+  handleDialogClickOpen = () => {
+   this.setState({ dialogOpen: true });
+  };
+
+  handleDialogClose = () => {
+   this.setState({ dialogOpen: false });
   };
 
   render() {
@@ -162,10 +206,109 @@ class FullWidthTabs extends React.Component {
                 <Tab label="Home"  variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
                 <Tab label="Blog"  className={classes.tabMenu} />
                 <Tab label="Hobbies"  className={classes.tabMenu} />
-                <Tab label="Contact"  className={classes.tabMenu} />
+                <Tab label="Contact"  onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
               </Tabs>
             </AppBar>
             <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}/>
+        </Grid>
+        <Grid item lg={12} xs={12}>
+            <Dialog
+              open={this.state.dialogOpen}
+              onClose={this.handleDialogClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
+                How to get in touch 👋🏼
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText className={classes.dialogOpeningText}>
+                 Like my work / Want to get a cuppa coffee / Want me to speak at your event ?
+                 Fill out the following info , and I’ll do my best to get back to you.
+                 <br/>
+                 Thank you!
+                </DialogContentText>
+                <Grid container>
+                <Grid item lg={12} xs={12}>
+                <Paper className={classes.contactPaperDiv}>
+                </Paper>
+                </Grid>
+
+                <Grid item lg={6} xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="firstName"
+                  label="First Name"
+                  type="text"
+                  required
+                />
+                </Grid>
+                <Grid item lg={6} xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="lastName"
+                  label="Last Name"
+                  type="text"
+                  required
+                />
+                </Grid>
+                <Grid item lg={6} xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Email Address"
+                  type="email"
+                  required
+                />
+                </Grid>
+                <Grid item lg={6} xs={6}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="phone"
+                  label="Phone Number"
+                  type="phone"
+
+                />
+                </Grid>
+                <Grid item lg={12} xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="subject"
+                  label="Subject"
+                  type="text"
+                  fullWidth
+                  required
+                />
+                </Grid>
+                <Grid item lg={12} xs={12}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="message"
+                  label="Message"
+                  type="text"
+                  multiline
+                  fullWidth
+                  rowsMax="5"
+                  rows="5"
+                  required
+                />
+                </Grid>
+                </Grid>
+              </DialogContent>
+              <DialogActions className={classes.dialogButton}>
+                <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
+                  Naah !
+                </Button>
+                <Button onClick={this.handleDialogClose} variant="raised" color="secondary"  className={classes.button}>
+                  Yea !
+                </Button>
+              </DialogActions>
+            </Dialog>
         </Grid>
       </Grid>
 

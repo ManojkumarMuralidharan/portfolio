@@ -12,8 +12,8 @@ const styles = {
     maxWidth: '100%',
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: '45vh',
+    backgroundImage: 'url("/images/contemplative-reptile.jpg")',
   },
   typography: {
     fontFamily: '"roboto-thin", "Helvetica", "Arial", sans-serif;'
@@ -39,8 +39,8 @@ function MediaCard(props) {
         <CardMedia
           className={classes.media}
           image="/images/contemplative-reptile.jpg"
-
           title="Contemplative Reptile"
+          style={{backgroundImage:'url("/images/contemplative-reptile.jpg")', height: '22vh'}}
         />
         <CardContent>
           <Typography className={classes.typography} gutterBottom variant="headline" component="h2">

@@ -89,7 +89,7 @@ const styles = theme => ({
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     height: '350px'
   },
   backgroundHobby: {

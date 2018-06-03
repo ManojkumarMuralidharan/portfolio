@@ -15,9 +15,12 @@ module.exports = {
   			uglifyOptions: {
   				compress : true,
   				ecma: 6,
-  				mangle: true
+  				mangle: false,
+          console: true,
+          debugger: true,
+          debug: true,
   			},
-  			sourceMap : false
+  			sourceMap : true
   		})
   	]
   },

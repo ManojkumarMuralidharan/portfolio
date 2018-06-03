@@ -8,6 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 //import tileData from '../tileData/component.jsx';
 import MediaCard from '../cards/component.jsx';
 const styles = theme => ({
+  override: {
+    GridListTile: {
+          backgroundColor: 'red',
+    }
+  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -23,9 +28,9 @@ const styles = theme => ({
     transform: 'translateZ(0)',
   },
   gridListTile: {
-    width: '30%',
+    padding: '2px',
+    width: '90%',
     height: '100%',
-    padding: '2px'
   },
   title: {
     color: theme.palette.primary.light,
@@ -36,7 +41,7 @@ const styles = theme => ({
   },
   [`${theme.breakpoints.down('md')}`]: {
     gridListTile: {
-      width: '50%',
+
     },
   }
 });
@@ -91,7 +96,7 @@ function SingleLineGridList(props) {
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img}  classes={{root: classes.gridListTile }} >
+          <GridListTile key={tile.img} rows={2.8} classes={{tile: classes.gridListTile }} >
           <MediaCard titleFromProps={tile.title} />
           </GridListTile>
         ))}
