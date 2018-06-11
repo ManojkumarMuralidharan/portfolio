@@ -3,12 +3,12 @@ import { SheetsRegistry, JssProvider } from 'react-jss';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import React from 'react';
-import {createMuiTheme}  from 'material-ui/styles';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import {createMuiTheme}  from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName';
 // import {green100, green500, green700} from 'material-ui/colors';
 import App from '../../public/js/templates/app';
-import { white, red } from 'material-ui/colors';
+import { white, red } from '@material-ui/core/colors';
 
 export function handleRender(req, res) {
  //  // Create a sheetsRegistry instance.
@@ -41,13 +41,14 @@ export function handleRender(req, res) {
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
-  const html = renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-    <MuiThemeProvider theme={muiTheme}>
-     <App />
-   </MuiThemeProvider>
-   </JssProvider>
-  );
+  // const html = renderToString(
+  //   <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+  //   <MuiThemeProvider theme={muiTheme}>
+  //    <App />
+  //  </MuiThemeProvider>
+  //  </JssProvider>
+  // );
+  const html ='<div></div>';
 
 
   // // Grab the CSS from our sheetsRegistry.
@@ -99,7 +100,7 @@ function renderFullPage(html, css) {
             src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
         }
         </style>
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300" rel="stylesheet">
       </head>
       <body>
         <div id="root">${html}</div>

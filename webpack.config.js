@@ -16,9 +16,9 @@ module.exports = {
   				compress : true,
   				ecma: 6,
   				mangle: false,
-          console: true,
-          debugger: true,
-          debug: true,
+          console: false,
+          debugger: false,
+          debug: false,
   			},
   			sourceMap : true
   		})

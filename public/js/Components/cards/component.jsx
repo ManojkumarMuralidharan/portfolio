@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardMedia, CardHeader, CardTitle } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/Card';
+import CardHeader  from '@material-ui/core/Card';
+import CardTitle from '@material-ui/core/Card';
+
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import red from '@material-ui/core/colors/red';
 
@@ -26,12 +32,12 @@ const styles = {
 };
 
 function MediaCard(props) {
-  const { classes, titleFromProps } = props;
+  const { classes, title, description, url } = props;
   return (
     <div>
       <Card className={classes.card}>
       <CardHeader
-        title= {titleFromProps || 'URL Avatar'}
+        title= {title || 'URL Avatar'}
         subtitle='Subtitle'
         avatar={<Avatar style={{backgroundColor : red[500]}}>JS</Avatar>}
       >
@@ -44,18 +50,17 @@ function MediaCard(props) {
         />
         <CardContent>
           <Typography className={classes.typography} gutterBottom variant="headline" component="h2">
-            Lizard
+            {title}
           </Typography>
           <Typography className={classes.typography} component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {description}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" href="{url}">
             Share
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" href="{url}">
             Learn More
           </Button>
         </CardActions>

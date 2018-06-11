@@ -1,8 +1,8 @@
 import React from 'react';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import { typography } from 'material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { typography } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -113,7 +113,7 @@ class GoogleMapsContainer extends React.Component {
             </Typography>
           </Paper>
         </InfoWindow>
-        
+
         <Marker
           onClick = { this.onMarkerClick }
           title = { 'Mare Island Preserve' }

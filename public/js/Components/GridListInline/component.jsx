@@ -7,6 +7,9 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 //import tileData from '../tileData/component.jsx';
 import MediaCard from '../cards/component.jsx';
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 const styles = theme => ({
   override: {
     GridListTile: {
@@ -46,6 +49,57 @@ const styles = theme => ({
   }
 });
 
+function getRepos(classes) {
+  console.log('coming inside: client');
+  return (<Query
+  query={gql`
+    {
+      search(query: "user:manojkumarmuralidharan topic:public-manoj", type: REPOSITORY, first: 30) {
+        edges {
+          node {
+              ... on Repository{
+                    name
+                    url
+                    description
+                    repositoryTopics(first: 30 ){
+                      edges{
+                        node {
+                          topic {
+                            name
+                          }
+                        }
+                      }
+
+                    }
+
+                  }
+                }
+              }
+            }
+          }`
+    }
+    >
+      {({loading, error, data}) => {
+
+        console.log('data',JSON.stringify(data));
+        if(!data.search) return (<div><p>Test</p></div>);
+        const tileData=data.search.edges;
+        return (<div className={classes.root}>
+          <GridList className={classes.gridList} cols={2.5}>
+          {
+          Array.prototype.map.call(tileData,((edge, index) => {
+              const tile = edge.node;
+              console.log(tile);
+            return(<GridListTile key={index} rows={2.8} classes={{tile: classes.gridListTile }} >
+            <MediaCard title={tile.name}  description={tile.description} url={tile.url}  />
+            </GridListTile>);
+          }))}
+          </GridList>
+        </div>);
+      }}
+    </Query>);
+}
+
 /**
  * The example data is structured as follows:
  *
@@ -53,56 +107,12 @@ const styles = theme => ({
  * [etc...]
  */
   const tileData = [
-    {
-      img: '/images/1.jpeg',
-      title: 'Project_1',
-      author: 'author',
-    },
-    {
-      img: '/images/2.jpeg',
-      title: 'Project_2',
-      author: 'author',
-    },
 
-    {
-      img: '/images/3.jpeg',
-      title: 'Project_3',
-      author: 'author',
-    },
-
-    {
-      img: '/images/4.jpeg',
-      title: 'Project_4',
-      author: 'author',
-    },
-
-    {
-      img: '/images/5.jpeg',
-      title: 'Project_5',
-      author: 'author',
-    },
-
-    {
-      img: '/images/6.jpeg',
-      title: 'Project_6',
-      author: 'author',
-    }
   ];
 
 function SingleLineGridList(props) {
   const { classes } = props;
-
-  return (
-    <div className={classes.root}>
-      <GridList className={classes.gridList} cols={2.5}>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img} rows={2.8} classes={{tile: classes.gridListTile }} >
-          <MediaCard titleFromProps={tile.title} />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
-  );
+  return getRepos(classes);
 }
 
 SingleLineGridList.propTypes = {
@@ -110,20 +120,3 @@ SingleLineGridList.propTypes = {
 };
 
 export default withStyles(styles)(SingleLineGridList);
-
-//
-// <GridListTile key={tile.img}>
-//   <img src={tile.img} alt={tile.title} />
-//   <GridListTileBar
-//     title={tile.title}
-//     classes={{
-//       root: classes.titleBar,
-//       title: classes.title,
-//     }}
-//     actionIcon={
-//       <IconButton>
-//
-//       </IconButton>
-//     }
-//   />
-// </GridListTile>

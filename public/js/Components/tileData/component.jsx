@@ -1,6 +1,8 @@
 import React from 'react';
-import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Icon from 'material-ui/Icon';
+import ListItem from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText  from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 // import DraftsIcon from '@material-ui/icons/Drafts';
 // import StarIcon from '@material-ui/icons/Star';
