@@ -25,7 +25,7 @@ const authLink = setContext((_, { headers }) => {
   // return the headers to the context so httpLink can read them
   return {
     headers: {
-      authorization: 'Bearer d299b8218ac85783e61610155ca567e2f6433944'
+      authorization: 'Bearer 464c824f83cf6bde46bd5eb40607c55da3148937'
     }
   }
 });
@@ -35,7 +35,7 @@ const client = new ApolloClient({
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: 'Bearer d299b8218ac85783e61610155ca567e2f6433944'
+        authorization: 'Bearer 464c824f83cf6bde46bd5eb40607c55da3148937'
       }
     });
   }

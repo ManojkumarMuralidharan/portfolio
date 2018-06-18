@@ -10,6 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import FormatQuote from '@material-ui/icons/FormatQuote';
 import SingleLineGridList from '../GridListInline/component.jsx';
 import GoogleApiWrapper from '../googleMaps/component.jsx';
+import MediumArticles from '../mediumArticles/component.jsx';
+
 const styles = theme => ({
   card: {
     maxWidth: '100%',
@@ -100,11 +102,34 @@ const styles = theme => ({
     backgroundSize: 'cover',
     height: '350px'
   },
+  backgroundPosts:{
+    backgroundImage: "url('/images/book-business-coffee.jpg')",
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    height: '350px'
+  },
   selfImage: {
     borderRadius: '50%',
     width: '240px',
     height: '240px',
     backgroundImage:'url(/images/self.jpg)',
+    backgroundSize: 'cover',
+    borderRadius: '50%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    margin: '0',
+    position: 'absolute',
+    top: '-1%',
+    left: '50%',
+    transform: 'translate(-50%, -55%)'
+  },
+  selfBlogImage: {
+    borderRadius: '50%',
+    width: '240px',
+    height: '240px',
+    backgroundImage:'url(/images/talks.jpg)',
     backgroundSize: 'cover',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',
@@ -146,6 +171,16 @@ const styles = theme => ({
     transform: 'translate(-50%, -55%)'
   },
   [`${theme.breakpoints.down('md')}`]: {
+    backgroundHobby:{
+      backgroundAttachment: 'unset'
+    },
+    backgroundPosts:{
+      backgroundAttachment: 'unset',
+      backgroundSize: 'cover'
+    },
+    backgroundProjects:{
+      backgroundAttachment: 'unset'
+    },
     bio: {
       paddingLeft: '20%',
       paddingRight: '20%',
@@ -160,7 +195,7 @@ const styles = theme => ({
 function MainContent(props) {
   const { classes, theme } = props;
   return (
-    <Grid container className={classes.grid} alignContent='center' alignItems='center'>
+    <Grid container className={classes.grid} alignContent='center' alignItems='center' id="home" name="home">
       <Grid item xs={12} lg={12} className={classes.identity} >
         <Paper  className={classes.selfPaper} elevation={2}>
           <Paper className={classes.selfImage}></Paper>
@@ -193,7 +228,7 @@ function MainContent(props) {
             -John F. Kennedy
           </Typography>
         </Paper>
-        <Divider className={classes.divider}/>
+        <Divider className={classes.divider} id="projects" name="projects" />
       </Grid>
       <Grid item xs={12} className={classes.backgroundProjects}>
       </Grid>
@@ -202,10 +237,27 @@ function MainContent(props) {
           <Paper className={classes.projectImage}></Paper>
         </Paper>
       </Grid>
+
       <Grid item xs={12} lg={12} >
-        <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',}}/>
-        <Divider className={classes.divider}/>
+        <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',overflowY: 'hidden'}}/>
+        <Divider className={classes.divider} id="blog" name="blog" />
       </Grid>
+
+
+      <Grid item xs={12} className={classes.backgroundPosts}>
+      </Grid>
+
+      <Grid item xs={12} lg={12} className={classes.identity} >
+        <Paper  className={classes.selfPaper} elevation={2}>
+          <Paper className={classes.selfBlogImage}></Paper>
+        </Paper>
+      </Grid>
+
+      <Grid item xs={12} lg={12} >
+        <MediumArticles style={{paddingLeft: '20%', paddingRight: '20%',}}/>
+        <Divider className={classes.divider} id="hobby" name="hobby"/>
+      </Grid>
+
       <Grid item xs={12} className={classes.backgroundHobby}>
       </Grid>
       <Grid item xs={12} lg={12} className={classes.identity} >

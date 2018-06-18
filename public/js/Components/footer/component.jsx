@@ -49,7 +49,7 @@ function Footer(props) {
           <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
            <img src="/images/linkedin.png" width="25" height="25" alt="facebook" />
           </IconButton>
-          <IconButton variant="fab" href="http://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
            <img src="/images/github.png" width="25" height="25" alt="github" />
           </IconButton>
           <IconButton variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
@@ -58,7 +58,7 @@ function Footer(props) {
           <IconButton variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
            <img src="/images/paypal.png" width="25" height="25" alt="paypal" />
           </IconButton>
-          <IconButton variant="fab" href="http://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
+          <IconButton variant="fab" href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
            <img src="/images/amazon.png" width="25" height="25" alt="amazon" />
           </IconButton>
           <IconButton variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>

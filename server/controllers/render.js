@@ -100,7 +100,7 @@ function renderFullPage(html, css) {
             src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
         }
         </style>
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat" rel="stylesheet">
       </head>
       <body>
         <div id="root">${html}</div>

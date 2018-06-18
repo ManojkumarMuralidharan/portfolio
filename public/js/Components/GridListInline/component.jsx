@@ -13,7 +13,8 @@ import gql from "graphql-tag";
 const styles = theme => ({
   override: {
     GridListTile: {
-          backgroundColor: 'red',
+      backgroundColor: 'red',
+      height: 'auto'
     }
   },
   root: {
@@ -24,6 +25,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     paddingLeft: '20%',
     paddingRight: '20%',
+    height: 'auto'
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -32,8 +34,6 @@ const styles = theme => ({
   },
   gridListTile: {
     padding: '2px',
-    width: '90%',
-    height: '100%',
   },
   title: {
     color: theme.palette.primary.light,
@@ -80,8 +80,6 @@ function getRepos(classes) {
     }
     >
       {({loading, error, data}) => {
-
-        console.log('data',JSON.stringify(data));
         if(!data.search) return (<div><p>Test</p></div>);
         const tileData=data.search.edges;
         return (<div className={classes.root}>
@@ -90,7 +88,7 @@ function getRepos(classes) {
           Array.prototype.map.call(tileData,((edge, index) => {
               const tile = edge.node;
               console.log(tile);
-            return(<GridListTile key={index} rows={2.8} classes={{tile: classes.gridListTile }} >
+            return(<GridListTile key={index} style={{height:'auto', overflowY: 'hidden'}} classes={{tile: classes.gridListTile }} >
             <MediaCard title={tile.name}  description={tile.description} url={tile.url}  />
             </GridListTile>);
           }))}

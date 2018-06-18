@@ -28,7 +28,7 @@ class SwipeableTemporaryDrawer extends React.Component {
   // };
 
   render() {
-    const { classes } = this.props;
+    const { classes, children } = this.props;
     const { drawerState, toggleDrawer } = this.props;
 
     const sideList = (
@@ -44,6 +44,8 @@ class SwipeableTemporaryDrawer extends React.Component {
     return (
       <div>
         <SwipeableDrawer
+          disableBackdropTransition
+          disableRestoreFocus
           open={drawerState}
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
@@ -51,11 +53,10 @@ class SwipeableTemporaryDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
           >
-            {sideList}
+            {children}
           </div>
+
         </SwipeableDrawer>
 
       </div>

@@ -1,3 +1,4 @@
 dist/
 html.html
 node_modules/
+.env

@@ -17,8 +17,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-
-
+import Avatar from '@material-ui/core/Avatar';
+import red from '@material-ui/core/colors/red';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import HomeIcon from '@material-ui/icons/Home';
+import ListItemText from '@material-ui/core/ListItemText';
+import ContactMail from '@material-ui/icons/ContactMail';
+import Work from '@material-ui/icons/Work';
+import ArtTrack from '@material-ui/icons/ArtTrack';
+import Toys from '@material-ui/icons/Toys';
 function TabContainer({ children, dir }) {
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
@@ -42,11 +51,21 @@ const styles = theme => ({
   },
   button:{
      margin: theme.spacing.unit,
-     color: '#fff',
-     backgroundColor: '#2196f3',
+     color: '#3f51b5',
+     border: '1px solid rgba(63, 81, 181, 0.5)',
+     backgroundColor: 'transparent',
      '&:hover':{
-       backgroundColor: 'green'
+       backgroundColor: 'rgba(63, 81, 181, 0.08)'
      }
+  },
+  buttonNo:{
+    margin: theme.spacing.unit,
+    color: '#3f51b5',
+    border: '1px solid rgba(63, 81, 181, 0.5)',
+    backgroundColor: 'transparent',
+    '&:hover':{
+      backgroundColor: 'rgba(63, 81, 181, 0.08)'
+    }
   },
   dialogOpeningText:{
     lineHeight: '1.8em',
@@ -134,7 +153,16 @@ const styles = theme => ({
     position: 'relative',
     marginLeft: '20%',
   },
+  avatar:{
+    backgroundColor : '#2b2525d9',
+    marginLeft: '20%',
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+    fontSize:'1.75rem'
+  },
   [`${theme.breakpoints.down('md')}`]: {
+    avatar:{
+      marginLeft: '100%',
+    },
     menuDrawer: {
       display: 'block',
       color: 'white'
@@ -175,6 +203,7 @@ class FullWidthTabs extends React.Component {
 
   handleDialogClickOpen = () => {
    this.setState({ dialogOpen: true });
+   this.toggleDrawer(false);
   };
 
   handleDialogClose = () => {
@@ -186,9 +215,7 @@ class FullWidthTabs extends React.Component {
     return (
       <Grid container className={classes.appBar}>
         <Grid item lg={2} >
-            <Typography className={classes.siteTitle}>
-              SITE TITLE
-            </Typography>
+          <Avatar className={classes.avatar}>MJ</Avatar>
         </Grid>
         <Grid item lg={10}>
             <AppBar color="default" position="absolute" style={{background:"transparent", boxShadow:"none"}}>
@@ -202,14 +229,52 @@ class FullWidthTabs extends React.Component {
                   indicator: classes.indicator
                 }}
                 >
-                <Tab label="test"  icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab label="Menu"  icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
                 <Tab label="Home"  variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
-                <Tab label="Blog"  className={classes.tabMenu} />
-                <Tab label="Hobbies"  className={classes.tabMenu} />
+                <Tab label="Blog" href="#blog" className={classes.tabMenu} />
+                <Tab label="Projects" href="#projects" className={classes.tabMenu} />
+                <Tab label="Hobbies" href="#hobby" className={classes.tabMenu} />
                 <Tab label="Contact"  onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
               </Tabs>
             </AppBar>
-            <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}/>
+            <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}>
+            <div className={classes.list}>
+              <List>
+              <div>
+                  <ListItem button  component="a" href="#home">
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Home" onClick={this.toggleDrawer(false)}/>
+                  </ListItem>
+                  <ListItem button  component="a" href="#blog" onClick={this.toggleDrawer(false)}>
+                    <ListItemIcon>
+                      <ArtTrack />
+                    </ListItemIcon>
+                    <ListItemText primary="Blog"/>
+                  </ListItem>
+                  <ListItem button  component="a" href="#projects" onClick={this.toggleDrawer(false)} >
+                    <ListItemIcon>
+                      <Work/>
+                    </ListItemIcon>
+                    <ListItemText primary="Projects"/>
+                  </ListItem>
+                  <ListItem button  component="a" href="#hobby" onClick={this.toggleDrawer(false)} >
+                    <ListItemIcon>
+                      <Toys/>
+                    </ListItemIcon>
+                    <ListItemText primary="Hobbies"  />
+                  </ListItem>
+                  <ListItem button  component="a" onClick={this.handleDialogClickOpen}>
+                    <ListItemIcon>
+                      <ContactMail />
+                    </ListItemIcon>
+                    <ListItemText primary="Contact" />
+                  </ListItem>
+                </div>
+              </List>
+            </div>
+            </SwipeableTemporaryDrawer>
         </Grid>
         <Grid item lg={12} xs={12}>
             <Dialog
@@ -301,7 +366,7 @@ class FullWidthTabs extends React.Component {
                 </Grid>
               </DialogContent>
               <DialogActions className={classes.dialogButton}>
-                <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
+                <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.buttonNo}>
                   Naah !
                 </Button>
                 <Button onClick={this.handleDialogClose} variant="raised" color="secondary"  className={classes.button}>

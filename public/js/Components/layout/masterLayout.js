@@ -45,6 +45,7 @@ const styles = theme => ({
     backgroundPaperDiv:{
       backgroundSize: 'contain',
       backgroundPosition: 'inherit',
+      backgroundAttachment: 'unset'
     }
   }
 });

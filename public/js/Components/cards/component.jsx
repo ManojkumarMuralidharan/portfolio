@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/Card';
-import CardHeader  from '@material-ui/core/Card';
-import CardTitle from '@material-ui/core/Card';
-
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader  from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,13 +14,28 @@ import red from '@material-ui/core/colors/red';
 const styles = {
   card: {
     maxWidth: '100%',
+    height: '99%'
   },
   media: {
     height: '45vh',
     backgroundImage: 'url("/images/contemplative-reptile.jpg")',
   },
-  typography: {
-    fontFamily: '"roboto-thin", "Helvetica", "Arial", sans-serif;'
+  typographyDescription:{
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;'
+  },
+  actionButton:{
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;',
+    border: '1px solid rgba(63, 81, 181, 0.5);'
+  },
+  cardContent:{
+    minHeight: '56px'
+  },
+  cardActions:{
+    display: 'block'
+  },
+  subHeader:{
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+    fontSize:'1.15rem'
   },
   orangeAvatar: {
     margin: 10,
@@ -34,12 +47,16 @@ const styles = {
 function MediaCard(props) {
   const { classes, title, description, url } = props;
   return (
-    <div>
+    <div className={classes.card}>
       <Card className={classes.card}>
       <CardHeader
         title= {title || 'URL Avatar'}
         subtitle='Subtitle'
-        avatar={<Avatar style={{backgroundColor : red[500]}}>JS</Avatar>}
+        classes={{
+          title: classes.typographyDescription,
+          subheader: classes.subHeader,
+        }}
+        avatar={<Avatar style={{backgroundColor : red[500], fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif', fontSize:'0.75rem'}}>JS</Avatar>}
       >
       </CardHeader>
         <CardMedia
@@ -48,19 +65,16 @@ function MediaCard(props) {
           title="Contemplative Reptile"
           style={{backgroundImage:'url("/images/contemplative-reptile.jpg")', height: '22vh'}}
         />
-        <CardContent>
-          <Typography className={classes.typography} gutterBottom variant="headline" component="h2">
-            {title}
-          </Typography>
-          <Typography className={classes.typography} component="p">
+        <CardContent className={classes.cardContent}>
+          <Typography className={classes.typographyDescription} component="p">
             {description}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" href="{url}">
+        <CardActions className={classes.cardActions}>
+          <Button size="small" className={classes.actionButton} color="primary" href="{url}">
             Share
           </Button>
-          <Button size="small" color="primary" href="{url}">
+          <Button size="small" className={classes.actionButton} color="primary" href="{url}">
             Learn More
           </Button>
         </CardActions>
