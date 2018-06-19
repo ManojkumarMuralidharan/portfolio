@@ -6,6 +6,9 @@ import App from './app';
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import { graphql } from 'react-apollo'
+import initStore from '../redux/store/store.js';
+import combinedReducers from '../redux/reducers/index.js';
+import { Provider } from "react-redux";
 // const client = new ApolloClient({
 //   uri: "https://api.github.com/graphql"
 // });
@@ -19,23 +22,24 @@ const httpLink = createHttpLink({
   uri: 'https://api.github.com/graphql',
 });
 
+
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem('token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
-      authorization: 'Bearer 464c824f83cf6bde46bd5eb40607c55da3148937'
+      authorization: 'Bearer 4efdadf7a68c103e9c0239f4e56b6abfbfeb448a'
     }
   }
 });
-console.log('authLink.concat(httpLink)',authLink.concat(httpLink));
+
 const client = new ApolloClient({
   uri: "https://api.github.com/graphql",
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: 'Bearer 464c824f83cf6bde46bd5eb40607c55da3148937'
+        authorization: 'Bearer 4efdadf7a68c103e9c0239f4e56b6abfbfeb448a'
       }
     });
   }
@@ -54,8 +58,16 @@ export default class Main extends React.Component {
 
   }
 
+  componentWillMount(){
+    this.setState({
+        appStore: initStore(combinedReducers, { fieldState: {}, appState: {} })
+    });
+  }
+
   render() {
-    return <App {...this.props} />
+    return (<Provider store={this.state.appStore}>
+      <App {...this.props} />
+    </Provider>);
   }
 }
 //
