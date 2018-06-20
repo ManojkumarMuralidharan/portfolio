@@ -9,6 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MediaCard from '../cards/component.jsx';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { connect } from 'react-redux';
+import {fetchGitRepositories} from '../../redux/modules/reducerHandlers';
+import _ from 'lodash';
 
 const styles = theme => ({
   override: {
@@ -49,72 +52,52 @@ const styles = theme => ({
   }
 });
 
-function getRepos(classes) {
-  console.log('coming inside: client');
-  return (<Query
-  query={gql`
-    {
-      search(query: "user:manojkumarmuralidharan topic:public-manoj", type: REPOSITORY, first: 30) {
-        edges {
-          node {
-              ... on Repository{
-                    name
-                    url
-                    description
-                    repositoryTopics(first: 30 ){
-                      edges{
-                        node {
-                          topic {
-                            name
-                          }
-                        }
-                      }
+class SingleLineGridList extends React.Component {
 
-                    }
+  componentDidMount() {
+    this.props.getRepositories();
+  }
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    const { classes } = this.props;
+    const edges = _.get(this.props,['fieldState','github','data','search','edges']);
 
-                  }
-                }
-              }
-            }
-          }`
-    }
-    >
-      {({loading, error, data}) => {
-        if(!data.search) return (<div><p>Test</p></div>);
-        const tileData=data.search.edges;
-        return (<div className={classes.root}>
-          <GridList className={classes.gridList} cols={2.5}>
-          {
-          Array.prototype.map.call(tileData,((edge, index) => {
-              const tile = edge.node;
-              console.log(tile);
+    return edges ? (
+      <div className={classes.root}>
+        <GridList className={classes.gridList} cols={2.5}>
+        {
+          Array.prototype.map.call(edges,((edge, index) => {
+            const tile = edge.node;
             return(<GridListTile key={index} style={{height:'auto', overflowY: 'hidden'}} classes={{tile: classes.gridListTile }} >
             <MediaCard title={tile.name}  description={tile.description} url={tile.url}  />
             </GridListTile>);
-          }))}
-          </GridList>
-        </div>);
-      }}
-    </Query>);
-}
-
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- */
-  const tileData = [
-
-  ];
-
-function SingleLineGridList(props) {
-  const { classes } = props;
-  return getRepos(classes);
+          }))
+        }
+        </GridList>
+      </div>
+    ) : (<div><p>Test</p></div>);
+  }
 }
 
 SingleLineGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SingleLineGridList);
+const mapStateToProps = (state, ownProps) => {
+  return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getRepositories : () => {
+      return fetchGitRepositories(dispatch);
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((withStyles(styles)(SingleLineGridList)));

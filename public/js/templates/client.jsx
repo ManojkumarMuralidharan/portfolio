@@ -9,6 +9,9 @@ import { graphql } from 'react-apollo'
 import initStore from '../redux/store/store.js';
 import combinedReducers from '../redux/reducers/index.js';
 import { Provider } from "react-redux";
+import _ from 'lodash';
+import Spinner from 'react-spinkit';
+import Typography from '@material-ui/core/Typography';
 // const client = new ApolloClient({
 //   uri: "https://api.github.com/graphql"
 // });
@@ -17,29 +20,29 @@ import { Provider } from "react-redux";
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-
-const httpLink = createHttpLink({
-  uri: 'https://api.github.com/graphql',
-});
-
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      authorization: 'Bearer 4efdadf7a68c103e9c0239f4e56b6abfbfeb448a'
-    }
-  }
-});
+//
+// const httpLink = createHttpLink({
+//   uri: 'https://api.github.com/graphql',
+// });
+//
+//
+// const authLink = setContext((_, { headers }) => {
+//   // get the authentication token from local storage if it exists
+//   const token = localStorage.getItem('token');
+//   // return the headers to the context so httpLink can read them
+//   return {
+//     headers: {
+//       authorization: 'Bearer 48c9fcedf75eaad04b6837a7792d2097e453413a'
+//     }
+//   }
+// });
 
 const client = new ApolloClient({
   uri: "https://api.github.com/graphql",
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: 'Bearer 4efdadf7a68c103e9c0239f4e56b6abfbfeb448a'
+        authorization: 'Bearer 48c9fcedf75eaad04b6837a7792d2097e453413a'
       }
     });
   }
@@ -55,19 +58,26 @@ export default class Main extends React.Component {
     // if (jssStyles && jssStyles.parentNode) {
     //   jssStyles.parentNode.removeChild(jssStyles);
     // }
-
-  }
-
-  componentWillMount(){
     this.setState({
         appStore: initStore(combinedReducers, { fieldState: {}, appState: {} })
     });
   }
 
+
+
+  componentWillMount(){
+
+  }
+
   render() {
-    return (<Provider store={this.state.appStore}>
+    return _.get(this.state,'appStore',false) ? (<Provider store={this.state.appStore} firebase={this.state.firebase}>
       <App {...this.props} />
-    </Provider>);
+    </Provider>) : (<div >
+    <Spinner name="pacman" style={{position: 'absolute', top: '50%', left: '50%'}}/>
+    <Typography style={{position: 'absolute', top: '60%', left: '50%'}}>
+      Loading
+    </Typography>
+    </div>);
   }
 }
 //

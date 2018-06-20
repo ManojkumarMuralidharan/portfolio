@@ -10,6 +10,8 @@ const query = `
       node {
           ... on Repository{
                 name
+                url
+                description
                 repositoryTopics(first: 30 ){
                   edges{
                     node {
@@ -25,7 +27,7 @@ const query = `
             }
           }
         }
-      }
+}
 `;
 
 
@@ -36,7 +38,7 @@ export function handleGitApi(req, res) {
     method: 'POST',
     body: JSON.stringify({query}),
     headers: {
-      'Authorization': `Bearer ${accessToken}`,
+      'Authorization': `Bearer ${process.env.gitApiKey}`,
     },
   }).then(res => res.text())
   .then(result =>  res.send(result));

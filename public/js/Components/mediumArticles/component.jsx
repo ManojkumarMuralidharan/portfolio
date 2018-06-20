@@ -10,6 +10,8 @@ import MediaCard from '../cards/component.jsx';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import {fetchMediumArticles} from '../../redux/modules/reducerHandlers';
 
 const styles = theme => ({
   override: {
@@ -55,54 +57,30 @@ const styles = theme => ({
   }
 });
 
-
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- */
-  const tileData = [
-
-  ];
-
 class MediumArticles extends React.Component {
   constructor(props) {
 		super(props);
-		this.state = {
-			data: [],
-      url: 'https://medium.com/@thebrianemory/latest?format=json'
-		}
 	}
+
   componentDidMount() {
-		fetch('/medium')
-      .then(r => r.json())
-			.then(data => this.setState({ data : _.values(data.payload.references.Post)}))
-			.catch(error => console.log(error))
+    this.props.getMediumArticles();
 	}
   render(){
     const { classes } = this.props;
-    const { data } = this.state;
-    // if(!_.isEmpty(data)){
-    //   console.log('data'+JSON.stringify(data));
-    // }else{
-    //   console.log('no data yet');
-    // }
-    //return getPosts(classes);
-    if(_.isEmpty(data)) return (<div><p>Test</p></div>);
+    const posts = _.values(_.get(this.props,['fieldState','medium'],{}));
 
-    return (<div className={classes.root}>
+    return posts ? (<div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
       {
-      Array.prototype.map.call(data,((edge, index) => {
+        Array.prototype.map.call(posts,((edge, index) => {
           const tile = edge;
-          console.log('tile:',tile);
-        return(<GridListTile key={index} style={{height:'auto', maxWidth: '100%', overflowY: 'hidden'}} classes={{tile: classes.gridListTile }} >
-        <MediaCard title={tile.slug}  description={tile.content.subtitle} url={tile.url}  />
-        </GridListTile>);
-      }))}
+          return(<GridListTile key={index} style={{height:'auto', maxWidth: '100%', overflowY: 'hidden'}} classes={{tile: classes.gridListTile }} >
+          <MediaCard title={tile.slug}  description={tile.content.subtitle} url={tile.url}  />
+          </GridListTile>);
+        }))
+      }
       </GridList>
-    </div>);
+    </div>) : (<div><p>Test</p></div>) ;
   }
 }
 
@@ -110,4 +88,19 @@ MediumArticles.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MediumArticles);
+const mapStateToProps = (state, ownProps) => {
+  return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getMediumArticles : () => {
+      return fetchMediumArticles(dispatch);
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((withStyles(styles)(MediumArticles)));
