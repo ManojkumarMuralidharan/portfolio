@@ -41,11 +41,20 @@ jobs:
           path: ~/repo/output.tar
           destination: deploy_build
   deploy:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.0.0
+    machine:
+      enabled: true
     working_directory: ~/repo
     steps:
       - run:
         name: "Deploy npm tar"
-        command: scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
+        command: |
+          scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
