@@ -35,11 +35,8 @@ jobs:
 
       # run tests!
       - run: npm test
-      - run: tar -cvf output.tar ~/repo
+      - run: tar -cvf deploy_build.tar ~/repo
 
-      - store_artifacts:
-          path: ~/repo/output.tar
-          destination: ~/repo/deploy_build.tar
       - persist_to_workspace:
           root: .
           paths:
