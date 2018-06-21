@@ -47,7 +47,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - attach_workspace:
-        at: /tmp/repo
+          at: /tmp/repo
       - run:
           name: "Deploy npm tar"
           command: |
