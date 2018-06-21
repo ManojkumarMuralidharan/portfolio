@@ -41,8 +41,7 @@ jobs:
           path: ~/repo/output.tar
           destination: ~/repo/deploy_build.tar
       - persist_to_workspace:
-          root: ~/repo
-          # Must be relative path from root
+          root: ./
           paths:
             - deploy_build.tar
   deploy:
@@ -51,7 +50,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - attach_workspace:
-          at: /tmp/repo
+        at: /tmp/repo
       - run:
           name: "Deploy npm tar"
           command: |
