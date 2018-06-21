@@ -35,3 +35,8 @@ jobs:
 
       # run tests!
       - run: npm test
+      - run: tar -cvf output.tar ~/repo
+
+      - store_artifacts:
+          path: ~/repo/output.tar
+          destination: deploy_build
