@@ -39,7 +39,7 @@ jobs:
 
       - store_artifacts:
           path: ~/repo/output.tar
-          destination: deploy_build
+          destination: deploy_build.tar
   deploy:
     machine:
       enabled: true
@@ -48,7 +48,7 @@ jobs:
       - run:
           name: "Deploy npm tar"
           command: |
-            scp -P $SSH_PORT -r circle-pushing/* $SSH_UNAME@$SSH_HOST:$REMOTE_PATH
+            scp -P $SSH_PORT -r deploy_build.tar $SSH_UNAME@$SSH_HOST:$REMOTE_PATH
 
 workflows:
   version: 2
