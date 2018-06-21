@@ -40,15 +40,25 @@ jobs:
       - store_artifacts:
           path: ~/repo/output.tar
           destination: ~/repo/deploy_build.tar
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+	  # taken to be the root directory of the workspace.
+          root: ~/repo
+          # Must be relative path from root
+          paths:
+            - deploy_build.tar
   deploy:
     machine:
       enabled: true
     working_directory: ~/repo
     steps:
+      - attach_workspace:
+        # Must be absolute path or relative path from working_directory
+        at: /tmp/repo
       - run:
           name: "Deploy npm tar"
           command: |
-            scp -P $SSH_PORT -r ~/repo/deploy_build.tar $SSH_UNAME@$SSH_HOST:$REMOTE_PATH
+            scp -P $SSH_PORT -r /tmp/repo/deploy_build.tar $SSH_UNAME@$SSH_HOST:$REMOTE_PATH
 
 workflows:
   version: 2
