@@ -41,7 +41,7 @@ jobs:
           path: ~/repo/output.tar
           destination: deploy_build
   deployment:
-    production:
-      branch: master
+    dev:
+      branch: develop
       commands:
         - scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
