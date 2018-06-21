@@ -46,9 +46,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - run:
-        name: "Deploy npm tar"
-        command: |
-          scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
+          name: "Deploy npm tar"
+          command: |
+            scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
 
 workflows:
   version: 2
