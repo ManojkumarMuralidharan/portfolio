@@ -41,7 +41,7 @@ jobs:
           path: ~/repo/output.tar
           destination: ~/repo/deploy_build.tar
       - persist_to_workspace:
-          root: ./
+          root: .
           paths:
             - deploy_build.tar
   deploy:
