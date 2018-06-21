@@ -40,8 +40,9 @@ jobs:
       - store_artifacts:
           path: ~/repo/output.tar
           destination: deploy_build
-  deployment:
-    dev:
-      branch: develop
-      commands:
-        - scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
+  deploy:
+    working_directory: ~/repo
+    steps:
+      - run:
+        name: "Deploy npm tar"
+        command: scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
