@@ -40,3 +40,8 @@ jobs:
       - store_artifacts:
           path: ~/repo/output.tar
           destination: deploy_build
+  deployment:
+    production:
+      branch: master
+      commands:
+        - scp -r circle-pushing/* ${SSH_UNAME}@{SSH_HOST}:{REMOTE_PATH}
