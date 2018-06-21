@@ -41,6 +41,9 @@ jobs:
           path: ~/repo/output.tar
           destination: deploy_build
   deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.0.0
     working_directory: ~/repo
     steps:
       - run:
