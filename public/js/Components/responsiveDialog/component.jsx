@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,6 +10,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   override: {
@@ -143,8 +147,8 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
-
+    const { fullScreen, classes } = this.props;
+    console.log('this.props',this.props);
     return (
       <Grid item lg={12} xs={12}>
           <Dialog
@@ -154,7 +158,7 @@ class ResponsiveDialog extends React.Component {
             aria-labelledby="form-dialog-title"
           >
             <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
-              How to get in touch 👋🏼
+              How to get in touch 👋
             </DialogTitle>
             <DialogContent>
               <DialogContentText className={classes.dialogOpeningText}>
@@ -177,6 +181,7 @@ class ResponsiveDialog extends React.Component {
                 label="First Name"
                 type="text"
                 required
+                onChange={this.props.onChange}
               />
               </Grid>
               <Grid item lg={6} xs={6}>
@@ -187,6 +192,7 @@ class ResponsiveDialog extends React.Component {
                 label="Last Name"
                 type="text"
                 required
+                onChange={this.props.onChange}
               />
               </Grid>
               <Grid item lg={6} xs={6}>
@@ -197,6 +203,7 @@ class ResponsiveDialog extends React.Component {
                 label="Email Address"
                 type="email"
                 required
+                onChange={this.props.onChange}
               />
               </Grid>
               <Grid item lg={6} xs={6}>
@@ -206,6 +213,7 @@ class ResponsiveDialog extends React.Component {
                 id="phone"
                 label="Phone Number"
                 type="phone"
+                onChange={this.props.onChange}
 
               />
               </Grid>
@@ -218,6 +226,7 @@ class ResponsiveDialog extends React.Component {
                 type="text"
                 fullWidth
                 required
+                onChange={this.props.onChange}
               />
               </Grid>
               <Grid item lg={12} xs={12}>
@@ -232,6 +241,7 @@ class ResponsiveDialog extends React.Component {
                 rowsMax="5"
                 rows="5"
                 required
+                onChange={this.props.onChange}
               />
               </Grid>
               </Grid>
@@ -254,4 +264,21 @@ ResponsiveDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withMobileDialog()(ResponsiveDialog);
+
+const mapStateToProps = (state, ownProps) => {
+  return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+     onChange : (e) => {
+       console.log('value',e.target,e.target.value);
+       //return sendFeedback(dispatch);
+     }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((withStyles(styles, { withTheme: true })(ResponsiveDialog)));

@@ -28,6 +28,8 @@ import ContactMail from '@material-ui/icons/ContactMail';
 import Work from '@material-ui/icons/Work';
 import ArtTrack from '@material-ui/icons/ArtTrack';
 import Toys from '@material-ui/icons/Toys';
+import ResponsiveDialog from '../responsiveDialog/component.jsx';
+
 function TabContainer({ children, dir }) {
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
@@ -276,105 +278,7 @@ class FullWidthTabs extends React.Component {
             </div>
             </SwipeableTemporaryDrawer>
         </Grid>
-        <Grid item lg={12} xs={12}>
-            <Dialog
-              open={this.state.dialogOpen}
-              onClose={this.handleDialogClose}
-              aria-labelledby="form-dialog-title"
-            >
-              <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
-                How to get in touch 👋🏼
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText className={classes.dialogOpeningText}>
-                 Like my work / Want to get a cuppa coffee / Want me to speak at your event ?
-                 Fill out the following info , and I’ll do my best to get back to you.
-                 <br/>
-                 Thank you!
-                </DialogContentText>
-                <Grid container>
-                <Grid item lg={12} xs={12}>
-                <Paper className={classes.contactPaperDiv}>
-                </Paper>
-                </Grid>
-
-                <Grid item lg={6} xs={6}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="firstName"
-                  label="First Name"
-                  type="text"
-                  required
-                />
-                </Grid>
-                <Grid item lg={6} xs={6}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="lastName"
-                  label="Last Name"
-                  type="text"
-                  required
-                />
-                </Grid>
-                <Grid item lg={6} xs={6}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Email Address"
-                  type="email"
-                  required
-                />
-                </Grid>
-                <Grid item lg={6} xs={6}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="phone"
-                  label="Phone Number"
-                  type="phone"
-
-                />
-                </Grid>
-                <Grid item lg={12} xs={12}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="subject"
-                  label="Subject"
-                  type="text"
-                  fullWidth
-                  required
-                />
-                </Grid>
-                <Grid item lg={12} xs={12}>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="message"
-                  label="Message"
-                  type="text"
-                  multiline
-                  fullWidth
-                  rowsMax="5"
-                  rows="5"
-                  required
-                />
-                </Grid>
-                </Grid>
-              </DialogContent>
-              <DialogActions className={classes.dialogButton}>
-                <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.buttonNo}>
-                  Naah !
-                </Button>
-                <Button onClick={this.handleDialogClose} variant="raised" color="secondary"  className={classes.button}>
-                  Yea !
-                </Button>
-              </DialogActions>
-            </Dialog>
-        </Grid>
+        <ResponsiveDialog fullScreen={true} open={false}/>
       </Grid>
 
     );

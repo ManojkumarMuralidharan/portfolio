@@ -42,7 +42,7 @@ const client = new ApolloClient({
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: 'Bearer 48c9fcedf75eaad04b6837a7792d2097e453413a'
+        authorization: `Bearer ${process.env.gitApiKey}`
       }
     });
   }
@@ -58,6 +58,7 @@ export default class Main extends React.Component {
     // if (jssStyles && jssStyles.parentNode) {
     //   jssStyles.parentNode.removeChild(jssStyles);
     // }
+    console.log(`${process.env.gitApiKey}`);
     this.setState({
         appStore: initStore(combinedReducers, { fieldState: {}, appState: {} })
     });
