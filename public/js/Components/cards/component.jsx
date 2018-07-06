@@ -11,10 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import red from '@material-ui/core/colors/red';
 
-const styles = {
+const styles = theme => ({
   card: {
-    maxWidth: '100%',
-    height: '99%'
+    width: '300px',
+    height: '100%',
+    margin: '0 auto'
   },
   media: {
     height: '45vh',
@@ -42,12 +43,19 @@ const styles = {
     color: '#fff',
     backgroundColor: red[500],
   },
-};
+  [`${theme.breakpoints.down('md')}`]: {
+    card: {
+      width: 'auto',
+      height: '100%',
+      margin: '0 auto'
+    },
+  }
+});
 
 function MediaCard(props) {
   const { classes, title, description, url } = props;
   return (
-    <div className={classes.card}>
+    <div className={classes.card} >
       <Card className={classes.card}>
       <CardHeader
         title= {title || 'URL Avatar'}
@@ -71,10 +79,10 @@ function MediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <Button size="small" className={classes.actionButton} color="primary" href="{url}">
+          <Button size="small" className={classes.actionButton} color="primary" href={url}>
             Share
           </Button>
-          <Button size="small" className={classes.actionButton} color="primary" href="{url}">
+          <Button size="small" className={classes.actionButton} color="primary" href={url}>
             Learn More
           </Button>
         </CardActions>

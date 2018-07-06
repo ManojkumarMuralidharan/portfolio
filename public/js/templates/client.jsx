@@ -58,9 +58,8 @@ export default class Main extends React.Component {
     // if (jssStyles && jssStyles.parentNode) {
     //   jssStyles.parentNode.removeChild(jssStyles);
     // }
-    console.log(`${process.env.gitApiKey}`);
     this.setState({
-        appStore: initStore(combinedReducers, { fieldState: {}, appState: {} })
+        appStore: initStore(combinedReducers, { fieldState: {contactForm:{display:false}}, appState: {} })
     });
   }
 

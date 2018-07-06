@@ -31,15 +31,36 @@ export const fetchLocations = (dispatch) => {
   }).catch(error => { throw error; })
 }
 
+export const  writeUserFeeback = (firstName, lastName, email, phone, subject, message)  => {
+  var newChildRef = firebase.database().ref('feedback').push();
+  newChildRef.set({
+    firstName: firstName,
+    email: email,
+    phone : phone,
+    lastName: lastName,
+    subject: subject,
+    message: message
+  });
+}
+
+
 export const fetchGitRepositories = (dispatch) => {
   return fetch('/git')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
+    const modifiedData = Array.prototype.map.call(data.data.search.edges,function(item){
+        const {name,description, url} = item.node;
+        return {
+          name,
+          description,
+          url
+        };
+    });
     return dispatch({
            type: types.UPDATE_FIELD,
-           value: {github : data}
+           value: {github : modifiedData}
     });
   }).catch(error => { throw error; })
 }
@@ -48,9 +69,28 @@ export const fetchGitRepositories = (dispatch) => {
 export const fetchMediumArticles = (dispatch) => {
   return fetch('/medium')
     .then(r => r.json())
-    .then(data => dispatch({
+    .then(data => {
+      const modifiedData = _.map(_.get(data,['payload','references','Post']),function(item){
+          const {title, content, uniqueSlug} = item;
+          return {
+            name : title,
+            title : title,
+            description : content.subtitle,
+            url : `https://medium.com/@manoj.wolfpack/${uniqueSlug}`
+          };
+      });
+      dispatch({
              type: types.UPDATE_FIELD,
-             value: {medium : _.get(data,['payload','references','Post'])}
-    }))
+             value: {medium : modifiedData}
+      })
+    }
+    )
     .catch(error =>  { throw error; })
+}
+
+export const toggleContactForm = (dispatch, dialogState) => {
+  return dispatch({
+         type: types.TOGGLE_CONTACT_FORM,
+         value: dialogState
+  });
 }

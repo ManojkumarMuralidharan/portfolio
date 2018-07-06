@@ -74,7 +74,7 @@
     "graphql-tag": "^2.9.2",
     "nodemon": "^1.17.5",
     "react-apollo": "^2.1.4",
-    "react-swipeable-views": "^0.12.13",
+    "react-swipeable-views": "^0.12.14",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.6.0",

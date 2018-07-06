@@ -29,6 +29,8 @@ import Work from '@material-ui/icons/Work';
 import ArtTrack from '@material-ui/icons/ArtTrack';
 import Toys from '@material-ui/icons/Toys';
 import ResponsiveDialog from '../responsiveDialog/component.jsx';
+import { connect } from 'react-redux';
+import { toggleContactForm } from '../../redux/modules/reducerHandlers';
 
 function TabContainer({ children, dir }) {
   return (
@@ -204,11 +206,13 @@ class FullWidthTabs extends React.Component {
   };
 
   handleDialogClickOpen = () => {
+   this.props.toggleContactForm(true);
    this.setState({ dialogOpen: true });
    this.toggleDrawer(false);
   };
 
   handleDialogClose = () => {
+   this.props.toggleContactForm(false);
    this.setState({ dialogOpen: false });
   };
 
@@ -278,7 +282,7 @@ class FullWidthTabs extends React.Component {
             </div>
             </SwipeableTemporaryDrawer>
         </Grid>
-        <ResponsiveDialog fullScreen={true} open={false}/>
+        <ResponsiveDialog fullScreen={false} open={false}/>
       </Grid>
 
     );
@@ -290,4 +294,20 @@ FullWidthTabs.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(FullWidthTabs);
+
+const mapStateToProps = (state, ownProps) => {
+  return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    toggleContactForm : (dialogState) => {
+      return toggleContactForm(dispatch,dialogState);
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((withStyles(styles, { withTheme: true })(FullWidthTabs)));

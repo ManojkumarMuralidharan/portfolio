@@ -12,6 +12,8 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { toggleContactForm, writeUserFeeback } from '../../redux/modules/reducerHandlers';
+import * as types from '../../constants/actionTypes';
 
 const styles = theme => ({
   override: {
@@ -143,17 +145,27 @@ class ResponsiveDialog extends React.Component {
   };
 
   handleClose = () => {
+    this.props.toggleContactForm(false);
     this.setState({ open: false });
   };
 
+  handleDialogClose = () => {
+    this.props.toggleContactForm(false);
+    this.setState({ open: false });
+  };
+
+  submitFeedBack = () => {
+    const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
+    this.props.writeUserFeeback(firstName, lastName, email, phone, subject, message);
+  }
+
   render() {
     const { fullScreen, classes } = this.props;
-    console.log('this.props',this.props);
     return (
       <Grid item lg={12} xs={12}>
           <Dialog
             fullScreen={fullScreen}
-            open={this.state.dialogOpen}
+            open={this.props.fieldState.contactForm.display}
             onClose={this.handleDialogClose}
             aria-labelledby="form-dialog-title"
           >
@@ -180,6 +192,7 @@ class ResponsiveDialog extends React.Component {
                 id="firstName"
                 label="First Name"
                 type="text"
+                value={this.props.fieldState.firstName||''}
                 required
                 onChange={this.props.onChange}
               />
@@ -191,6 +204,7 @@ class ResponsiveDialog extends React.Component {
                 id="lastName"
                 label="Last Name"
                 type="text"
+                value={this.props.fieldState.lastName||''}
                 required
                 onChange={this.props.onChange}
               />
@@ -199,9 +213,10 @@ class ResponsiveDialog extends React.Component {
               <TextField
                 autoFocus
                 margin="dense"
-                id="name"
+                id="email"
                 label="Email Address"
                 type="email"
+                value={this.props.fieldState.email||''}
                 required
                 onChange={this.props.onChange}
               />
@@ -213,6 +228,7 @@ class ResponsiveDialog extends React.Component {
                 id="phone"
                 label="Phone Number"
                 type="phone"
+                value={this.props.fieldState.phone||''}
                 onChange={this.props.onChange}
 
               />
@@ -224,6 +240,7 @@ class ResponsiveDialog extends React.Component {
                 id="subject"
                 label="Subject"
                 type="text"
+                value={this.props.fieldState.subject||''}
                 fullWidth
                 required
                 onChange={this.props.onChange}
@@ -236,6 +253,7 @@ class ResponsiveDialog extends React.Component {
                 id="message"
                 label="Message"
                 type="text"
+                value={this.props.fieldState.message||''}
                 multiline
                 fullWidth
                 rowsMax="5"
@@ -250,7 +268,7 @@ class ResponsiveDialog extends React.Component {
               <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
                 Naah !
               </Button>
-              <Button onClick={this.handleDialogClose} variant="raised" color="secondary"  className={classes.button}>
+              <Button onClick={this.submitFeedBack} variant="raised" color="secondary"  className={classes.button}>
                 Yea !
               </Button>
             </DialogActions>
@@ -264,7 +282,6 @@ ResponsiveDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
 };
 
-
 const mapStateToProps = (state, ownProps) => {
   return state;
 }
@@ -272,8 +289,21 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
      onChange : (e) => {
-       console.log('value',e.target,e.target.value);
-       //return sendFeedback(dispatch);
+       const dispatchObject = {};
+       dispatchObject[`${e.target.id}`] = e.target.value;
+       dispatch({
+                type: types.UPDATE_FIELD,
+                value: dispatchObject
+       });
+     },
+     toggleContactForm : (dialogOpen) => {
+       return toggleContactForm(dispatch,dialogOpen);
+     },
+     writeUserFeeback: (firstName, lastName, email, phone, subject, message) => {
+       dispatch({
+                type: types.WRITE_USER_FEEDBACK,
+                value: {firstName, lastName, email, phone, subject, message}
+       });
      }
   }
 }

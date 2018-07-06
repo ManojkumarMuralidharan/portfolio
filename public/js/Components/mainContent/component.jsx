@@ -11,6 +11,8 @@ import FormatQuote from '@material-ui/icons/FormatQuote';
 import SingleLineGridList from '../GridListInline/component.jsx';
 import GoogleApiWrapper from '../googleMaps/component.jsx';
 import MediumArticles from '../mediumArticles/component.jsx';
+import { fetchGitRepositories, fetchMediumArticles } from '../../redux/modules/reducerHandlers';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   card: {
@@ -201,97 +203,127 @@ const styles = theme => ({
   }
 });
 
-function MainContent(props) {
-  const { classes, theme } = props;
-  return (
-    <Grid container className={classes.grid} alignContent='center' alignItems='center' id="home" name="home">
-      <Grid item xs={12} lg={12} className={classes.identity} >
-        <Paper  className={classes.selfPaper} elevation={2}>
-          <Paper className={classes.selfImage}></Paper>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} lg={12} className={classes.identity} >
-      <Paper  className={classes.bio} elevation={2}>
-        <Typography component="p" className={classes.selfText}>
-          I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of today's technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
-        </Typography>
-      </Paper>
-      <Button variant="contained" style={{}} className={classes.button}>
-       Download my resume
-     </Button>
-      <Divider className={classes.divider}/>
-      </Grid>
+class MainContent extends React.Component  {
 
-      <Grid item xs={12} lg={12}>
-      <Paper className={classes.quotes} elevation={2}>
-        <Typography component="p" className={classes.quoteText}>
-          <FormatQuote />
-        </Typography>
-      </Paper>
+  constructor (props) {
+		super(props);
+	}
+
+  componentDidMount() {
+    this.props.getRepositories();
+    this.props.getMediumArticles();
+  }
+
+  render() {
+    const { classes, theme } = this.props;
+    return (
+      <Grid container className={classes.grid} alignContent='center' alignItems='center' id="home" name="home">
+        <Grid item xs={12} lg={12} className={classes.identity} >
+          <Paper  className={classes.selfPaper} elevation={2}>
+            <Paper className={classes.selfImage}></Paper>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} lg={12} className={classes.identity} >
+        <Paper  className={classes.bio} elevation={2}>
+          <Typography component="p" className={classes.selfText}>
+            I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of today's technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
+          </Typography>
+        </Paper>
+        <Button variant="contained" style={{}} className={classes.button}>
+         Download my resume
+       </Button>
+        <Divider className={classes.divider}/>
+        </Grid>
+
+        <Grid item xs={12} lg={12}>
         <Paper className={classes.quotes} elevation={2}>
           <Typography component="p" className={classes.quoteText}>
-            Those who dare to fail miserably can achieve greatly.
+            <FormatQuote />
           </Typography>
         </Paper>
-      </Grid>
-      <Grid item xs={12} lg={12}>
-        <Paper className={classes.quotes} elevation={2}>
-          <Typography component="p" className={classes.quoteAuthor}>
-            -John F. Kennedy
-          </Typography>
-        </Paper>
-        <Divider className={classes.divider} id="projects" name="projects" />
-      </Grid>
-      <Grid item xs={12} className={classes.backgroundProjects}>
-      </Grid>
-      <Grid item xs={12} lg={12} className={classes.identity} >
-        <Paper  className={classes.selfPaper} elevation={2}>
-          <Paper className={classes.projectImage}></Paper>
-        </Paper>
-      </Grid>
+          <Paper className={classes.quotes} elevation={2}>
+            <Typography component="p" className={classes.quoteText}>
+              Those who dare to fail miserably can achieve greatly.
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} lg={12}>
+          <Paper className={classes.quotes} elevation={2}>
+            <Typography component="p" className={classes.quoteAuthor}>
+              -John F. Kennedy
+            </Typography>
+          </Paper>
+          <Divider className={classes.divider} id="projects" name="projects" />
+        </Grid>
+        <Grid item xs={12} className={classes.backgroundProjects}>
+        </Grid>
+        <Grid item xs={12} lg={12} className={classes.identity} >
+          <Paper  className={classes.selfPaper} elevation={2}>
+            <Paper className={classes.projectImage}></Paper>
+          </Paper>
+        </Grid>
 
-      <Grid item xs={12} lg={12} >
-        <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',overflowY: 'hidden'}}/>
-        <Divider className={classes.divider} id="blog" name="blog" />
-      </Grid>
+        <Grid item xs={12} lg={12} >
+          <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',overflowY: 'hidden'}} nodes={this.props.fieldState.github}/>
+          <Divider className={classes.divider} id="blog" name="blog" />
+        </Grid>
 
 
-      <Grid item xs={12} className={classes.backgroundPosts}>
-      </Grid>
+        <Grid item xs={12} className={classes.backgroundPosts}>
+        </Grid>
 
-      <Grid item xs={12} lg={12} className={classes.identity} >
-        <Paper  className={classes.selfPaper} elevation={2}>
-          <Paper className={classes.selfBlogImage}></Paper>
-        </Paper>
-      </Grid>
+        <Grid item xs={12} lg={12} className={classes.identity} >
+          <Paper  className={classes.selfPaper} elevation={2}>
+            <Paper className={classes.selfBlogImage}></Paper>
+          </Paper>
+        </Grid>
 
-      <Grid item xs={12} lg={12} >
-        <MediumArticles style={{paddingLeft: '20%', paddingRight: '20%',}}/>
-        <Divider className={classes.divider} id="hobby" name="hobby"/>
-      </Grid>
+        <Grid item xs={12} lg={12} >
+          <SingleLineGridList style={{paddingLeft: '10%', paddingRight: '10%',overflowY: 'hidden'}} nodes={this.props.fieldState.medium}/>
+          <Divider className={classes.divider} id="hobby" name="hobby"/>
+        </Grid>
 
-      <Grid item xs={12} className={classes.backgroundHobby}>
-      </Grid>
-      <Grid item xs={12} lg={12} className={classes.identity} >
-        <Paper  className={classes.selfPaper} elevation={2}>
-          <Paper className={classes.selfCamping}></Paper>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} lg={12} className={classes.mapsContainer}>
-        <GoogleApiWrapper/>
-      </Grid>
+        <Grid item xs={12} className={classes.backgroundHobby}>
+        </Grid>
+        <Grid item xs={12} lg={12} className={classes.identity} >
+          <Paper  className={classes.selfPaper} elevation={2}>
+            <Paper className={classes.selfCamping}></Paper>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} lg={12} className={classes.mapsContainer}>
+          <GoogleApiWrapper/>
+        </Grid>
 
-      <Grid item xs={12} lg={12}>
-        <Divider className={classes.divider}/>
+        <Grid item xs={12} lg={12}>
+          <Divider className={classes.divider}/>
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  }
 }
 
 MainContent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MainContent);
+const mapStateToProps = (state, ownProps) => {
+  return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getRepositories : () => {
+      return fetchGitRepositories(dispatch);
+    },
+    getMediumArticles : () => {
+      return fetchMediumArticles(dispatch);
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)((withStyles(styles)(MainContent)));
 
 //<SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',}}/>

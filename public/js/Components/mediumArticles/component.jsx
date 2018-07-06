@@ -12,6 +12,7 @@ import gql from "graphql-tag";
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {fetchMediumArticles} from '../../redux/modules/reducerHandlers';
+import PortalCard from '../portalCard/component.jsx';
 
 const styles = theme => ({
   override: {
@@ -80,7 +81,7 @@ class MediumArticles extends React.Component {
         }))
       }
       </GridList>
-    </div>) : (<div><p>Test</p></div>) ;
+    </div>) : (<PortalCard/>) ;
   }
 }
 
