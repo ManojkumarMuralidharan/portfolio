@@ -164,9 +164,13 @@ class SingleLineGridList extends React.Component {
 	}
   resetStartIndex(event){
     const index = event.target.value;
-    this.setState({
-      currentStartIndex: index
-    });
+    //0 1 2 3 4
+    if((index+this.state.size) <= this.props.nodes.length){
+      this.setState({
+        currentStartIndex: index
+      });
+    }
+
   }
 	previousSlide () {
     const { nodes } = this.props;
