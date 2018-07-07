@@ -43,7 +43,7 @@ const styles = theme => ({
       marginBottom: '0'
     },
     backgroundPaperDiv:{
-      backgroundSize: 'contain',
+      backgroundSize: 'cover',
       backgroundPosition: 'inherit',
       backgroundAttachment: 'unset'
     }
