@@ -229,9 +229,9 @@ class MainContent extends React.Component  {
             I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of today's technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
           </Typography>
         </Paper>
-        <Button variant="contained" style={{}} className={classes.button}>
+        <Button href="resume_pdf.pdf" target="_blank" className={classes.button}>
          Download my resume
-       </Button>
+        </Button>
         <Divider className={classes.divider}/>
         </Grid>
 

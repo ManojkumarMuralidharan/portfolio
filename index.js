@@ -12,6 +12,7 @@ console.log(handleRender);
 const app = express();
 app.use(express.static('dist'));
 app.use(express.static('public'));
+app.use(express.static('docs'));
 // This is fired every time the server side receives a request.
 app.use('/git', handleGitApi);
 app.use('/medium', handleMedium);
