@@ -166,7 +166,6 @@ class SingleLineGridList extends React.Component {
     const index = event.target.value;
     //0 1 2 3 4
     if((index+this.state.cols) <= this.props.nodes.length){
-      console.log('index', index);
       this.setState({
         currentStartIndex: index
       });

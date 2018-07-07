@@ -218,6 +218,7 @@ class FullWidthTabs extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    const fullScreen = _.get(this.props,['appState','width'],false) && this.props.appState.width < 1000 ;
     return (
       <Grid container className={classes.appBar}>
         <Grid item lg={2} >
@@ -282,7 +283,7 @@ class FullWidthTabs extends React.Component {
             </div>
             </SwipeableTemporaryDrawer>
         </Grid>
-        <ResponsiveDialog fullScreen={false} open={false}/>
+        <ResponsiveDialog fullScreen={fullScreen} open={false}/>
       </Grid>
 
     );

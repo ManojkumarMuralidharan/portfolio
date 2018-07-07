@@ -1,10 +1,13 @@
 import * as types from '../../constants/actionTypes';
 
 const appReducer = (state = {}, action) => {
-    switch (action.type) {
-        default:
-            return state
-    }
+  const newState = Object.assign({}, state);
+  switch (action.type) {
+    case types.UPDATE_APP_STATE:
+      return _.merge(newState, action.value);
+    default:
+      return state;
+  }
 }
 
 

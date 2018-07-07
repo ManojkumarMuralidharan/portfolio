@@ -42,7 +42,7 @@ const styles = theme => ({
     backgroundImage: "url('/images/contact.png')",
     backgroundAttachment: 'inherit',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     maxWidth: '93%',
     borderRadius: '2em',
     height: '174px',

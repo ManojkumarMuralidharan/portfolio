@@ -58,6 +58,7 @@ export default class Main extends React.Component {
   constructor(props){
     super(props);
     this.windowLoaded = this.windowLoaded.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   windowLoaded(){
@@ -82,6 +83,10 @@ export default class Main extends React.Component {
                type: types.UPDATE_FIELD,
                value: {loadBar : dispatchObject}
       });
+      that.state.appStore.dispatch({
+        type: types.UPDATE_APP_STATE,
+        value:  {width: window.innerWidth, height: window.innerHeight}
+      });
       setTimeout(function(){
         that.state.appStore.dispatch({
                  type: types.UPDATE_FIELD,
@@ -104,15 +109,23 @@ export default class Main extends React.Component {
     //   jssStyles.parentNode.removeChild(jssStyles);
     // }
     window.addEventListener('load', this.windowLoaded);
+    window.addEventListener('resize', this.updateWindowDimensions);
     this.setState({
         appStore: initStore(combinedReducers, { fieldState: {contactForm:{display:false}}, appState: {} })
     });
   }
 
+  updateWindowDimensions() {
+    this.state.appStore.dispatch({
+      type: types.UPDATE_APP_STATE,
+      value:  {width: window.innerWidth, height: window.innerHeight}
+    });
+  }
 
 
-  componentWillMount(){
-
+  componentWillUnmount() {
+   window.removeEventListener('resize', this.updateWindowDimensions);
+   window.removeEventListener('load', this.windowLoaded);
   }
 
   render() {
