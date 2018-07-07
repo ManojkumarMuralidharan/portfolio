@@ -76,8 +76,11 @@ function renderFullPage(html, css) {
         <title>Material-UI</title>
         <style>
         body{
-          margin : 0;
+          margin : -16px;
           min-height: 100%;
+        }
+        copy{
+          visibility: hidden;
         }
         html { height: 100%; }
         <!-- TODO: load fonts optimally and using webpack 4 -->
@@ -103,6 +106,7 @@ function renderFullPage(html, css) {
         <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat" rel="stylesheet">
       </head>
       <body>
+        <p class="copy" ></p>
         <div id="root">${html}</div>
         <style id="jss-server-side">${css}</style>
         <script src="main.js"></script>

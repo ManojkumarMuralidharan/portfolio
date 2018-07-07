@@ -2,6 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { white, red } from '@material-ui/core/colors';
+import { withStyles } from '@material-ui/core/styles';
 import App from './app';
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -12,11 +13,12 @@ import { Provider } from "react-redux";
 import _ from 'lodash';
 import Spinner from 'react-spinkit';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 // const client = new ApolloClient({
 //   uri: "https://api.github.com/graphql"
 // });
 
-
+import * as types from '../constants/actionTypes';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -52,12 +54,56 @@ const client = new ApolloClient({
 
 
 export default class Main extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.windowLoaded = this.windowLoaded.bind(this);
+  }
+
+  windowLoaded(){
+    const that = this;
+    setTimeout(function(){
+      window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+      var t = performance.timing || {};
+
+      if (!t) {
+
+        return;
+      }
+      const start = t.navigationStart;
+      const end = t.loadEventEnd;
+      const loadTime = (end - start) / 1000;
+
+      const dispatchObject = {
+        open : true,
+        loadTime : loadTime
+      };
+      that.state.appStore.dispatch({
+               type: types.UPDATE_FIELD,
+               value: {loadBar : dispatchObject}
+      });
+      setTimeout(function(){
+        that.state.appStore.dispatch({
+                 type: types.UPDATE_FIELD,
+                 value: {
+                   loadBar : {
+                     open : false,
+                     loadTime : loadTime
+                   }
+                 }
+        });
+      },1000);
+
+    }, 0);
+
+  }
   // Remove the server-side injected CSS.
   componentDidMount() {
     // const jssStyles = document.getElementById('jss-server-side');
     // if (jssStyles && jssStyles.parentNode) {
     //   jssStyles.parentNode.removeChild(jssStyles);
     // }
+    window.addEventListener('load', this.windowLoaded);
     this.setState({
         appStore: initStore(combinedReducers, { fieldState: {contactForm:{display:false}}, appState: {} })
     });
@@ -80,6 +126,7 @@ export default class Main extends React.Component {
     </div>);
   }
 }
+
 //
 // Create a theme instance.
 const muiTheme = createMuiTheme({
