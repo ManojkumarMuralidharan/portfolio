@@ -39,7 +39,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
   contactPaperDiv: {
-    backgroundImage: "url('/images/contact.png')",
+    backgroundImage: "url('/images/contact.jpg')",
     backgroundAttachment: 'inherit',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

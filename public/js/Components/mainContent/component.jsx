@@ -98,7 +98,7 @@ const styles = theme => ({
     height: '250px'
   },
   backgroundProjects: {
-    backgroundImage: "url('/images/coffee-projects-menu.png')",
+    backgroundImage: "url('/images/coffee-projects-menu.jpg')",
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -106,7 +106,7 @@ const styles = theme => ({
     height: '350px'
   },
   backgroundHobby: {
-    backgroundImage: "url('/images/Hobby.png')",
+    backgroundImage: "url('/images/Hobby.jpg')",
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
