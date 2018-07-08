@@ -110,6 +110,7 @@ function renderFullPage(html, css) {
         <div id="root">${html}</div>
         <style id="jss-server-side">${css}</style>
         <script src="main.js"></script>
+        <script src="vendors~main.main.js"></script>
       </body>
     </html>
   `;

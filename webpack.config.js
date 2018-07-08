@@ -2,8 +2,9 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const webpack = require('webpack');
 module.exports = env => {
-  console.log('env', env);
   return {
     entry: { main: './public/js/templates/client.jsx' },
     output: {
@@ -18,17 +19,21 @@ module.exports = env => {
     			uglifyOptions: {
     				compress : true,
     				ecma: 6,
-    				mangle: false,
+    				mangle: true,
             console: false,
             debugger: false,
             debug: false,
     			},
-    			sourceMap : true
+    			sourceMap : false
     		})
     	]
     },
     plugins:[
-      new DotenvPlugin()
+      new DotenvPlugin(),
+      new LodashModuleReplacementPlugin({
+        'collections': true,
+        'paths': true
+      })
     ],
     module: {
       rules: [

@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import App from './app';
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
-import { graphql } from 'react-apollo'
 import initStore from '../redux/store/store.js';
 import combinedReducers from '../redux/reducers/index.js';
 import { Provider } from "react-redux";
