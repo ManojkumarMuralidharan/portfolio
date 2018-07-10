@@ -200,7 +200,6 @@ class ResponsiveDialog extends React.Component {
               </Grid>
               <Grid item lg={6} xs={6}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="lastName"
                 label="Last Name"
@@ -212,7 +211,6 @@ class ResponsiveDialog extends React.Component {
               </Grid>
               <Grid item lg={6} xs={6}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="email"
                 label="Email Address"
@@ -224,7 +222,6 @@ class ResponsiveDialog extends React.Component {
               </Grid>
               <Grid item lg={6} xs={6}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="phone"
                 label="Phone Number"
@@ -236,7 +233,6 @@ class ResponsiveDialog extends React.Component {
               </Grid>
               <Grid item lg={12} xs={12}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="subject"
                 label="Subject"
