@@ -12,7 +12,6 @@ const initStore = (appReducers, appInitialState) => {
 const preloadedState = window.__PRELOADED_STATE__;
 // Allow the passed state to be garbage-collected
 delete window.__PRELOADED_STATE__;
-​
     if(typeof window !== 'undefined') {
         const url = _.get(window, 'location.href', '');
         const reduxDebugging = (url.indexOf('localhost') > 0);
