@@ -17,5 +17,5 @@ app.use(express.static('docs'));
 app.use('/git', handleGitApi);
 app.use('/medium', handleMedium);
 app.use(handleRender);
-const port = 3000;
+const port = process.env.appPort;
 app.listen(port);

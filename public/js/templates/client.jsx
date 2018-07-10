@@ -4,8 +4,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { white, red } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import App from './app';
-import { ApolloProvider } from "react-apollo";
-import ApolloClient from "apollo-boost";
 import initStore from '../redux/store/store.js';
 import combinedReducers from '../redux/reducers/index.js';
 import { Provider } from "react-redux";
@@ -13,41 +11,10 @@ import _ from 'lodash';
 import Spinner from 'react-spinkit';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-// const client = new ApolloClient({
-//   uri: "https://api.github.com/graphql"
-// });
-
 import * as types from '../constants/actionTypes';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-//
-// const httpLink = createHttpLink({
-//   uri: 'https://api.github.com/graphql',
-// });
-//
-//
-// const authLink = setContext((_, { headers }) => {
-//   // get the authentication token from local storage if it exists
-//   const token = localStorage.getItem('token');
-//   // return the headers to the context so httpLink can read them
-//   return {
-//     headers: {
-//       authorization: 'Bearer 48c9fcedf75eaad04b6837a7792d2097e453413a'
-//     }
-//   }
-// });
-
-const client = new ApolloClient({
-  uri: "https://api.github.com/graphql",
-  request: (operation) => {
-    operation.setContext({
-      headers: {
-        authorization: `Bearer ${process.env.gitApiKey}`
-      }
-    });
-  }
-});
 
 
 
@@ -151,10 +118,8 @@ const muiTheme = createMuiTheme({
 });
 
 hydrate(
-  <ApolloProvider client={client}>
   <MuiThemeProvider theme={muiTheme}>
    <Main />
- </MuiThemeProvider>
- </ApolloProvider>,
+ </MuiThemeProvider>,
   document.querySelector('#root'),
 );

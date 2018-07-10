@@ -157,6 +157,7 @@ class ResponsiveDialog extends React.Component {
   submitFeedBack = () => {
     const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
     this.props.writeUserFeeback(firstName, lastName, email, phone, subject, message);
+    this.props.toggleContactForm(false);
   }
 
   render() {
@@ -248,7 +249,6 @@ class ResponsiveDialog extends React.Component {
               </Grid>
               <Grid item lg={12} xs={12}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="message"
                 label="Message"

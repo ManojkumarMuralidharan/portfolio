@@ -9,11 +9,17 @@ import createGenerateClassName from '@material-ui/core/styles/createGenerateClas
 // import {green100, green500, green700} from 'material-ui/colors';
 import App from '../../public/js/templates/app';
 import { white, red } from '@material-ui/core/colors';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import combinedReducers from '../../public/js/redux/reducers/index.js';
 
 export function handleRender(req, res) {
  //  // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-  console.log('sheets',sheetsRegistry);
+
+  // Create a new Redux store instance
+ const store = createStore(combinedReducers, { fieldState: {contactForm:{display:false}}, appState: {} } );
+
  //
  // Create a theme instance.
  const muiTheme = createMuiTheme({
@@ -41,25 +47,30 @@ export function handleRender(req, res) {
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
-  // const html = renderToString(
-  //   <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-  //   <MuiThemeProvider theme={muiTheme}>
-  //    <App />
-  //  </MuiThemeProvider>
-  //  </JssProvider>
-  // );
-  const html ='<div></div>';
+  const html = renderToString(
+    <Provider store={store}>
+    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+    <MuiThemeProvider theme={muiTheme}>
+     <App />
+   </MuiThemeProvider>
+   </JssProvider>
+   </Provider>
+  );
+  //const html ='<div></div>';
 
 
   // // Grab the CSS from our sheetsRegistry.
   const css = sheetsRegistry.toString()
+  // Grab the initial state from our Redux store
+  const preloadedState = store.getState();
+
   // console.log('css',css);
 
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css))
+  res.send(renderFullPage(html, css, preloadedState))
 }
 
-function renderFullPage(html, css) {
+function renderFullPage(html, css, preloadedState) {
   return `
     <!doctype html>
     <html>
@@ -73,6 +84,11 @@ function renderFullPage(html, css) {
 
           gtag('config', 'UA-38147306-2');
         </script>
+        <script>
+         // WARNING: See the following for security issues around embedding JSON in HTML:
+         // http://redux.js.org/recipes/ServerRendering.html#security-considerations
+         window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+       </script>
         <title>Material-UI</title>
         <style>
         body{

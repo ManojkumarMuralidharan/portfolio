@@ -31,6 +31,7 @@ import Toys from '@material-ui/icons/Toys';
 import ResponsiveDialog from '../responsiveDialog/component.jsx';
 import { connect } from 'react-redux';
 import { toggleContactForm } from '../../redux/modules/reducerHandlers';
+import _ from 'lodash';
 
 function TabContainer({ children, dir }) {
   return (
