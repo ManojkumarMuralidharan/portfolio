@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'Tests successfull'",
-    "start": "nodemon --exec 'node --require ./dotenvLoader.js' ./node_modules/.bin/babel-node index.js --presets es2015,stage-2,react",
+    "start": "nodemon --exec 'node --require ./dotenvLoader.js' babel-startup.js",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production --json > stats.json"
   },
@@ -33,6 +33,7 @@
   "homepage": "https://github.com/ManojkumarMuralidharan/portfolio#readme",
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.52",
+    "@babel/register": "^7.0.0-beta.52",
     "babel-loader": "^8.0.0-beta.4",
     "babel-plugin-lodash": "^3.3.4",
     "express": "^4.16.3",
@@ -58,6 +59,7 @@
     "apollo-cache-inmemory": "^1.2.2",
     "apollo-link-context": "^1.0.8",
     "apollo-link-http": "^1.5.4",
+    "babel-node": "^7.0.0-beta.3",
     "css-loader": "^0.28.11",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",

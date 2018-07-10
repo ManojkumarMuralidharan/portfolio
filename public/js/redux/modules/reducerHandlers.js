@@ -23,6 +23,18 @@ import * as types from '../../constants/actionTypes';
 import _ from 'lodash';
 
 export const fetchLocations = (dispatch) => {
+  // return fetch('/locations')
+  // .then(function(response) {
+  //   return response.json();
+  // })
+  // .then(function(data) {
+  //   return dispatch({
+  //          type: types.UPDATE_FIELD,
+  //          value: {locations : data}
+  //   });
+  // }).catch(error => { throw error; });
+
+
   return firebase.database().ref('/locations').once('value').then(function(snapshot) {
     return dispatch({
            type: types.UPDATE_FIELD,

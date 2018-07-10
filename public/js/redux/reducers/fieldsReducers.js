@@ -1,5 +1,6 @@
 import * as types from '../../constants/actionTypes';
 import { writeUserFeeback } from '../modules/reducerHandlers';
+import {merge} from 'lodash';
 
 const fieldsReducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
@@ -7,7 +8,7 @@ const fieldsReducer = (state = {}, action) => {
     case types.FETCH_TODOS:
       return action.payload;
     case types.UPDATE_FIELD:
-      return _.merge(newState, action.value);
+      return merge(newState, action.value);
     case types.TOGGLE_CONTACT_FORM:
       newState.contactForm.display = action.value;
       return newState;

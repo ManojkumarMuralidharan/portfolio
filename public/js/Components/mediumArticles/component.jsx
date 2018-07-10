@@ -7,7 +7,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 //import tileData from '../tileData/component.jsx';
 import MediaCard from '../cards/component.jsx';
-import gql from "graphql-tag";
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {fetchMediumArticles} from '../../redux/modules/reducerHandlers';
