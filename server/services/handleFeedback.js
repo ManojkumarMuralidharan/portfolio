@@ -39,14 +39,13 @@ export function sendFeedback(req, res) {
 
 
 export function writeUserFeeback(firstName, lastName, email, phone, subject, message) {
-  // var newChildRef = firebase.database().ref('feedback').push();
-  // newChildRef.set({
-  //   firstName: firstName,
-  //   email: email,
-  //   phone : phone,
-  //   lastName: lastName,
-  //   subject: subject,
-  //   message: message
-  // });
-  console.log(firstName, lastName, email, phone, subject, message);
+  const newChildRef = firebase.database().ref('feedback').push();
+  newChildRef.set({
+    firstName: firstName,
+    email: email,
+    phone : phone,
+    lastName: lastName,
+    subject: subject,
+    message: message
+  });
 }
