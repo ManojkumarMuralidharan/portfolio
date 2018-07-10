@@ -1,58 +1,39 @@
-// import { todosRef } from "../config/firebase";
-// import { FETCH_TODOS } from "./types";
-//
-// export const addToDo = newToDo => async dispatch => {
-//   todosRef.push().set(newToDo);
-// };
-//
-// export const completeToDo = completeToDoId => async dispatch => {
-//   todosRef.child(completeToDoId).remove();
-// };
-//
-// export const fetchToDos = () => async dispatch => {
-//   todosRef.on("value", snapshot => {
-//     dispatch({
-//       type: FETCH_TODOS,
-//       payload: snapshot.val()
-//     });
-//   });
-// };
-
-import firebase from '../../../../config/firebase';
 import * as types from '../../constants/actionTypes';
 import _ from 'lodash';
 
 export const fetchLocations = (dispatch) => {
-  // return fetch('/locations')
-  // .then(function(response) {
-  //   return response.json();
-  // })
-  // .then(function(data) {
-  //   return dispatch({
-  //          type: types.UPDATE_FIELD,
-  //          value: {locations : data}
-  //   });
-  // }).catch(error => { throw error; });
-
-
-  return firebase.database().ref('/locations').once('value').then(function(snapshot) {
+  return fetch('/locations')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
     return dispatch({
            type: types.UPDATE_FIELD,
-           value: {locations : _.values(snapshot.val())}
+           value: {locations : data.locations}
     });
-  }).catch(error => { throw error; })
+  }).catch(error => { throw error; });
 }
 
 export const  writeUserFeeback = (firstName, lastName, email, phone, subject, message)  => {
-  var newChildRef = firebase.database().ref('feedback').push();
-  newChildRef.set({
+  const data = {
     firstName: firstName,
     email: email,
     phone : phone,
     lastName: lastName,
     subject: subject,
     message: message
-  });
+  }
+  return fetch('/sendFeedback', {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
 }
 
 
