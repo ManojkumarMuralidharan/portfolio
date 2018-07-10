@@ -12,11 +12,6 @@ import Spinner from 'react-spinkit';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import * as types from '../constants/actionTypes';
-import { createHttpLink } from 'apollo-link-http';
-import { setContext } from 'apollo-link-context';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
-
 
 
 export default class Main extends React.Component {

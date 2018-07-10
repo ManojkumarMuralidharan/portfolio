@@ -8,8 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import ListSubheader from '@material-ui/core/ListSubheader';
 //import tileData from '../tileData/component.jsx';
 import MediaCard from '../cards/component.jsx';
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import { connect } from 'react-redux';
 import {fetchGitRepositories} from '../../redux/modules/reducerHandlers';
 import _ from 'lodash';

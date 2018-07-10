@@ -4,6 +4,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = env => {
   return {
     entry: { main: './public/js/templates/client.jsx' },
