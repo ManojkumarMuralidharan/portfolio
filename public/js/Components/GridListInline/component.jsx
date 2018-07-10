@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -34,6 +36,11 @@ const styles = theme => ({
     paddingLeft: '10%',
     paddingRight: '10%',
     height: 'auto'
+  },
+  titleText:{
+    paddingBottom: '5%',
+    fontSize: '1.5rem',
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;'
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -195,11 +202,16 @@ class SingleLineGridList extends React.Component {
 	}
 
   render(){
-    const { classes, nodes } = this.props;
+    const { classes, nodes,logoUrl, sectionTitle } = this.props;
     const { currentStartIndex, size, cols } = this.state;
     const edges = (nodes ? nodes.slice(currentStartIndex, (currentStartIndex+cols) ) : null);
     return edges ? (
       <div>
+      <Paper>
+      <Typography className={classes.titleText}>
+      {sectionTitle}
+      </Typography>
+      </Paper>
       <div className={classes.root}>
         <Arrow direction="left" clickFunction={ this.previousSlide } glyph="&#9001;"  className={classes.slideArrowLeft}/>
         <GridList className={classes.gridList} spacing={(cols*10)}  cols={ ((nodes.length < cols) ? nodes.length : cols) }>
@@ -207,7 +219,7 @@ class SingleLineGridList extends React.Component {
           Array.prototype.map.call(edges,((tile, index) => {
             return(
               <GridListTile key={index} style={{height:'auto'}} classes={{tile: classes.gridListTile }} >
-                <MediaCard title={tile.name}  description={tile.description} url={tile.url}  />
+                <MediaCard title={tile.name}  description={tile.description} url={tile.url} logoUrl={logoUrl} />
               </GridListTile>
             );
           }))

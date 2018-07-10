@@ -166,6 +166,12 @@ const styles = theme => ({
     left: '50%',
     transform: 'translate(-50%, -55%)'
   },
+  titleText:{
+    paddingBottom: '5%',
+    fontSize: '1.5rem',
+    fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;',
+    boxShadow: 'none'
+  },
   selfCamping: {
     borderRadius: '50%',
     width: '240px',
@@ -226,7 +232,7 @@ class MainContent extends React.Component  {
         <Grid item xs={12} lg={12} className={classes.identity} >
         <Paper  className={classes.bio} elevation={2}>
           <Typography component="p" className={classes.selfText}>
-            I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of today's technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
+            I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
           </Typography>
         </Paper>
         <Button href="resume_pdf.pdf" target="_blank" className={classes.button}>
@@ -264,7 +270,7 @@ class MainContent extends React.Component  {
         </Grid>
 
         <Grid item xs={12} lg={12} >
-          <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',overflowY: 'hidden'}} nodes={this.props.fieldState.github}/>
+          <SingleLineGridList style={{paddingLeft: '20%', paddingRight: '20%',overflowY: 'hidden'}} nodes={this.props.fieldState.github} logoUrl='/images/logo.svg' sectionTitle='Projects'/>
           <Divider className={classes.divider} id="blog" name="blog" />
         </Grid>
 
@@ -279,7 +285,7 @@ class MainContent extends React.Component  {
         </Grid>
 
         <Grid item xs={12} lg={12} >
-          <SingleLineGridList style={{paddingLeft: '10%', paddingRight: '10%',overflowY: 'hidden'}} nodes={this.props.fieldState.medium}/>
+          <SingleLineGridList style={{paddingLeft: '10%', paddingRight: '10%',overflowY: 'hidden'}} nodes={this.props.fieldState.medium} logoUrl='/images/blog.png' sectionTitle='Blogs'/>
           <Divider className={classes.divider} id="hobby" name="hobby"/>
         </Grid>
 
@@ -289,6 +295,9 @@ class MainContent extends React.Component  {
           <Paper  className={classes.selfPaper} elevation={2}>
             <Paper className={classes.selfCamping}></Paper>
           </Paper>
+          <Typography className={classes.titleText}>
+            Camping
+          </Typography>
         </Grid>
         <Grid item xs={12} lg={12} className={classes.mapsContainer}>
           <GoogleApiWrapper/>

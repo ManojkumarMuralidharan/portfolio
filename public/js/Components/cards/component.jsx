@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 
 function MediaCard(props) {
-  const { classes, title, description, url } = props;
+  const { classes, title, description, url, logoUrl } = props;
   return (
     <div className={classes.card} >
       <Card className={classes.card}>
@@ -71,7 +71,7 @@ function MediaCard(props) {
           className={classes.media}
           image="/images/contemplative-reptile.jpg"
           title="Contemplative Reptile"
-          style={{backgroundImage:'url("/images/contemplative-reptile.jpg")', height: '22vh'}}
+          style={{backgroundImage:`url(${logoUrl})`, height: '22vh', backgroundSize: 'contain'}}
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.typographyDescription} component="p">
