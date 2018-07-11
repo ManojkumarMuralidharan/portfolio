@@ -207,11 +207,9 @@ class SingleLineGridList extends React.Component {
     const edges = (nodes ? nodes.slice(currentStartIndex, (currentStartIndex+cols) ) : null);
     return edges ? (
       <div>
-      <Paper>
       <Typography className={classes.titleText}>
       {sectionTitle}
       </Typography>
-      </Paper>
       <div className={classes.root}>
         <Arrow direction="left" clickFunction={ this.previousSlide } glyph="&#9001;"  className={classes.slideArrowLeft}/>
         <GridList className={classes.gridList} spacing={(cols*10)}  cols={ ((nodes.length < cols) ? nodes.length : cols) }>

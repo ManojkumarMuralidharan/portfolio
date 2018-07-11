@@ -45,7 +45,7 @@ const styles = theme => ({
   },
   [`${theme.breakpoints.down('md')}`]: {
     card: {
-      width: 'auto',
+      width: '300px',
       height: '100%',
       margin: '0 auto'
     },
@@ -71,7 +71,7 @@ function MediaCard(props) {
           className={classes.media}
           image="/images/contemplative-reptile.jpg"
           title="Contemplative Reptile"
-          style={{backgroundImage:`url(${logoUrl})`, height: '22vh', backgroundSize: 'contain'}}
+          style={{backgroundImage:`url(${logoUrl})`, height: '14vh', backgroundSize: 'contain'}}
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.typographyDescription} component="p">
