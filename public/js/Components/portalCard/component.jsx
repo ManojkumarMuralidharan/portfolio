@@ -15,7 +15,8 @@ const styles = theme => ({
   cardContainer: {
     width: '300px',
     height: '100%',
-    margin: '0 auto'
+    margin: '0 auto',
+    paddingBottom: '3%'
   },
   card: {
     width: '300px',
@@ -140,9 +141,8 @@ function PortalCard(props) {
         avatar={<Avatar className={classes.avatar}></Avatar>}
       >
       </CardHeader>
-        <CardMedia
-          className={classes.image}
-        />
+        <CardContent className={classes.image}>
+        </CardContent>
         <CardContent className={classes.textLine}>
         </CardContent>
         <CardContent className={classes.textLine}>

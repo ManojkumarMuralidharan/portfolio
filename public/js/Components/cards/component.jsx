@@ -69,9 +69,10 @@ function MediaCard(props) {
       </CardHeader>
         <CardMedia
           className={classes.media}
-          image="/images/contemplative-reptile.jpg"
+          src={`${logoUrl}`}
+          image={`${logoUrl}`}
           title="Contemplative Reptile"
-          style={{backgroundImage:`url(${logoUrl})`, height: '14vh', backgroundSize: 'contain'}}
+          style={{height: '14vh', backgroundSize: 'contain'}}
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.typographyDescription} component="p">

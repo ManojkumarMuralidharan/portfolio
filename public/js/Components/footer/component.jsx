@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
-import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarComposite from '../snackbar/component.jsx';
 
 /**
 *
@@ -88,14 +88,7 @@ class Footer extends React.Component {
                 © 2018. Manoj. All Rights Reserved.
               </Paper>
             </Grid>
-            <Snackbar
-              anchorOrigin={{vertical:'top',horizontal:'center'}}
-              open={ this.props.fieldState.loadBar && this.props.fieldState.loadBar.open }
-              ContentProps={{
-                'aria-describedby': 'message-id',
-              }}
-              message={<span id="message-id">This Page loaded in { this.props.fieldState.loadBar && this.props.fieldState.loadBar.loadTime } seconds</span>}
-            />
+            <SnackbarComposite />
           </Grid>
           </footer>
     );

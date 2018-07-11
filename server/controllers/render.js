@@ -18,7 +18,7 @@ export function handleRender(req, res) {
   const sheetsRegistry = new SheetsRegistry();
 
   // Create a new Redux store instance
- const store = createStore(combinedReducers, { fieldState: {contactForm:{display:false}}, appState: {} } );
+ const store = createStore(combinedReducers, { fieldState: {contactForm:{display:false}, loadBar:{ open : false,text: '',autoHideDuration:2000}}, appState: {} } );
 
  //
  // Create a theme instance.

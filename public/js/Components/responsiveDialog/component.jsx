@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { toggleContactForm, writeUserFeeback } from '../../redux/modules/reducerHandlers';
 import * as types from '../../constants/actionTypes';
+import { isEmpty } from 'lodash';
 
 const styles = theme => ({
   override: {
@@ -159,8 +160,19 @@ class ResponsiveDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  validateForm = () =>{
+    const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
+    if(isEmpty(firstName) || isEmpty(lastName) || isEmpty(phone) || isEmpty(message)){
+      console.log('Empty form');
+      return false;
+    }
+  }
   submitFeedBack = () => {
     const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
+    if(!this.validateForm()){
+      this.props.invalidForm();
+      return;
+    }
     this.props.writeUserFeeback(firstName, lastName, email, phone, subject, message);
     this.props.toggleContactForm(false);
   }
@@ -303,6 +315,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
        dispatch({
                 type: types.WRITE_USER_FEEDBACK,
                 value: {firstName, lastName, email, phone, subject, message}
+       });
+     },
+     invalidForm: () => {
+       dispatch({
+         type: types.UPDATE_FIELD,
+         value: {
+           loadBar : {
+             open : true,
+             text: 'Please check your values in the Form'
+           }
+         }
        });
      }
   }

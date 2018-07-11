@@ -38,7 +38,8 @@ export default class Main extends React.Component {
 
       const dispatchObject = {
         open : true,
-        loadTime : loadTime
+        loadTime : loadTime,
+        text: `This Page loaded in ${loadTime} seconds`
       };
       that.state.appStore.dispatch({
                type: types.UPDATE_FIELD,
@@ -48,17 +49,7 @@ export default class Main extends React.Component {
         type: types.UPDATE_APP_STATE,
         value:  {width: window.innerWidth, height: window.innerHeight}
       });
-      setTimeout(function(){
-        that.state.appStore.dispatch({
-                 type: types.UPDATE_FIELD,
-                 value: {
-                   loadBar : {
-                     open : false,
-                     loadTime : loadTime
-                   }
-                 }
-        });
-      },1000);
+      
 
     }, 0);
 
