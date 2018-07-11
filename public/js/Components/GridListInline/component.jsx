@@ -112,8 +112,14 @@ const styles = theme => ({
   },
   [`${theme.breakpoints.down('md')}`]: {
     gridListTile: {
-      width: 'auto',
+      width: '300px',
       margin: '0 auto'
+    },
+    slideArrowLeft : {
+      fontSize: '3rem',
+    },
+    slideArrowRight : {
+      fontSize: '3rem',
     },
   },
   [`${theme.breakpoints.down('sm')}`]: {
@@ -124,7 +130,7 @@ const styles = theme => ({
     slideArrowLeft : {
       fontSize: '6rem',
     },
-    slideArrowLeft : {
+    slideArrowRight : {
       fontSize: '6rem',
     },
   }
