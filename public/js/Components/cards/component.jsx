@@ -18,8 +18,7 @@ const styles = theme => ({
     margin: '0 auto'
   },
   media: {
-    height: '45vh',
-    backgroundImage: 'url("/images/contemplative-reptile.jpg")',
+    height: '14vh',
   },
   typographyDescription:{
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;'
@@ -49,6 +48,9 @@ const styles = theme => ({
       height: '100%',
       margin: '0 auto'
     },
+    media: {
+      height: '14vh',
+    },
   }
 });
 
@@ -72,7 +74,7 @@ function MediaCard(props) {
           src={`${logoUrl}`}
           image={`${logoUrl}`}
           title="Contemplative Reptile"
-          style={{height: '14vh', backgroundSize: 'contain'}}
+          style={{backgroundImage:`url(${logoUrl})`, backgroundSize: 'contain'}}
         />
         <CardContent className={classes.cardContent}>
           <Typography className={classes.typographyDescription} component="p">
