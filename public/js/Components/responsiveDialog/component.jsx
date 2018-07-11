@@ -122,6 +122,11 @@ const styles = theme => ({
       display: 'block',
       color: 'white'
     },
+    button:{
+      width: '30%',
+      height: '85px',
+      fontSize: '2rem'
+    },
     tabMenu: {
       display: 'none'
     },
