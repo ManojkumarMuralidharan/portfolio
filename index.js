@@ -6,7 +6,7 @@ import React from 'react';
 import {handleRender} from './server/controllers/render';
 import {handleGitApi} from './server/services/gitApi.js';
 import {handleMedium} from './server/services/medium.js';
-import {fetchLocations,sendFeedback} from './server/services/handleFeedback.js';
+import {fetchLocations,sendFeedback, fetchBio} from './server/services/handleFeedback.js';
 import * as bodyParser from 'body-parser';
 const app = express();
 app.use(bodyParser.json());
@@ -19,6 +19,8 @@ app.use('/git', handleGitApi);
 app.use('/medium', handleMedium);
 app.use('/locations', fetchLocations);
 app.post('/sendFeedback', sendFeedback);
+app.use('/fetchBio',fetchBio);
+
 app.use(handleRender);
 const port = process.env.appPort;
 app.listen(port);

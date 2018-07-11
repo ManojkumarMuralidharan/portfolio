@@ -13,6 +13,18 @@ export const fetchLocations = (dispatch) => {
     });
   }).catch(error => { throw error; });
 }
+export const fetchBio = (dispatch) => {
+  return fetch('/fetchBio')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    return dispatch({
+           type: types.UPDATE_FIELD,
+           value: data
+    });
+  }).catch(error => { throw error; });
+}
 
 export const  writeUserFeeback = (firstName, lastName, email, phone, subject, message)  => {
   const data = {

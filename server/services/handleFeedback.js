@@ -25,6 +25,18 @@ export function fetchLocations(req, res) {
   });
 
 }
+
+export function fetchBio(req, res) {
+
+  return firebase.database().ref('/self').once('value').then(function(snapshot) {
+    var response =  snapshot.val();
+    return response;
+  }).then(result =>  res.send(result)).catch(error => {
+    console.log('inside error',error); throw error;
+  });
+
+}
+
 export function sendFeedback(req, res) {
   const firstName = req.param('firstName');
   const lastName = req.param('lastName');

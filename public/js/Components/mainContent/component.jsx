@@ -11,7 +11,7 @@ import FormatQuote from '@material-ui/icons/FormatQuote';
 import SingleLineGridList from '../GridListInline/component.jsx';
 import GoogleApiWrapper from '../googleMaps/component.jsx';
 import MediumArticles from '../mediumArticles/component.jsx';
-import { fetchGitRepositories, fetchMediumArticles } from '../../redux/modules/reducerHandlers';
+import { fetchGitRepositories, fetchMediumArticles, fetchBio } from '../../redux/modules/reducerHandlers';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
@@ -218,6 +218,7 @@ class MainContent extends React.Component  {
   componentDidMount() {
     this.props.getRepositories();
     this.props.getMediumArticles();
+    this.props.fetchBio();
   }
 
   render() {
@@ -232,7 +233,7 @@ class MainContent extends React.Component  {
         <Grid item xs={12} lg={12} className={classes.identity} >
         <Paper  className={classes.bio} elevation={2}>
           <Typography component="p" className={classes.selfText}>
-            I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.
+            {this.props.fieldState.bio}
           </Typography>
         </Paper>
         <Button href="resume_pdf.pdf" target="_blank" className={classes.button}>
@@ -326,6 +327,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getMediumArticles : () => {
       return fetchMediumArticles(dispatch);
+    },
+    fetchBio: () => {
+      return fetchBio(dispatch);
     }
   }
 }
