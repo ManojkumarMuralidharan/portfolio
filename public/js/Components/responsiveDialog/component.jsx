@@ -278,10 +278,10 @@ class ResponsiveDialog extends React.Component {
             </DialogContent>
             <DialogActions className={classes.dialogButton}>
               <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
-                Naah !
+                Cancel !
               </Button>
               <Button onClick={this.submitFeedBack} variant="raised" color="secondary"  className={classes.button}>
-                Yea !
+                Send !
               </Button>
             </DialogActions>
           </Dialog>
