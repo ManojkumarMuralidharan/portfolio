@@ -121,6 +121,12 @@ const styles = theme => ({
       width: '300px',
       margin: '0 auto'
     },
+    slideArrowLeft : {
+      fontSize: '6rem',
+    },
+    slideArrowLeft : {
+      fontSize: '6rem',
+    },
   }
 });
 
