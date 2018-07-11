@@ -188,7 +188,6 @@ class ResponsiveDialog extends React.Component {
 
               <Grid item lg={6} xs={6}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="firstName"
                 label="First Name"
