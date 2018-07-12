@@ -18,7 +18,7 @@ const styles = theme => ({
   card: {
     maxWidth: '100%',
   },
-  button:{
+  downloadButton:{
     backgroundColor:"#6279fb",
     color: "#fff",
     fontFamily: "'ubuntu', sans-serif;",
@@ -205,15 +205,21 @@ const styles = theme => ({
     quoteText: {
       paddingLeft: '20%',
       paddingRight: '20%',
+      fontSize: "2.5rem",
+    },
+    quoteAuthor:{
+      fontSize: "2.5rem"
     },
     identity: {
       background: '#ffffff',
       fontFamily: "'Muli', Verdana, Tahoma",
-      opacity: '0.8'
+    },
+    downloadButton:{
+      fontSize: '1.5rem'
     },
     selfText:{
       fontFamily: "'Muli', sans-serif;",
-      fontSize: "1.5rem",
+      fontSize: "2.5rem",
       opacity: '0.8'
     },
   }
@@ -246,7 +252,7 @@ class MainContent extends React.Component  {
             {this.props.fieldState.bio || 'I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.'}
           </Typography>
         </Paper>
-        <Button href="resume_pdf.pdf" target="_blank" className={classes.button}>
+        <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
          Download my resume
         </Button>
         <Divider className={classes.divider}/>

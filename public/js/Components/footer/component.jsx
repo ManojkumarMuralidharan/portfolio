@@ -40,6 +40,15 @@ const styles = theme => ({
     backgroundColor: '#f17d74',
     color: 'white',
     boxShadow: 'none'
+  },
+  [`${theme.breakpoints.down('md')}`]: {
+    footerText: {
+        fontSize: '1.5rem',
+    },
+    icons:{
+      width: "45",
+      height: "45"
+    },
   }
 });
 class Footer extends React.Component {

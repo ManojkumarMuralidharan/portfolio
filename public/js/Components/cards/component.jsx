@@ -51,6 +51,9 @@ const styles = theme => ({
     media: {
       height: '14vh',
     },
+    subHeader:{
+      fontSize: '2rem'
+    }
   }
 });
 

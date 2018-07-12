@@ -230,7 +230,11 @@ const styles = theme => ({
       fontSize: '3rem',
       width: '100px',
       height: '100px'
-    }
+    },
+    icon: {
+      width: '3em',
+      height: '3em'
+    },
   }
 });
 
@@ -286,7 +290,7 @@ class FullWidthTabs extends React.Component {
                   indicator: classes.indicator
                 }}
                 >
-                <Tab label="Menu"  icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
                 <Tab label="Home"  variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
                 <Tab label="Blog" href="#blog" className={classes.tabMenu} />
                 <Tab label="Projects" href="#projects" className={classes.tabMenu} />
