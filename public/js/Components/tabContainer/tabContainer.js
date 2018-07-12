@@ -94,7 +94,7 @@ const styles = theme => ({
     background: 'transparent',
   },
   list: {
-   width: '300px',
+   width: '600px',
   },
   fullList: {
    width: 'auto',
@@ -183,6 +183,16 @@ const styles = theme => ({
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
     fontSize:'1.75rem'
   },
+  iconClass:{
+
+  },
+  drawer:{
+    height: '102vh'
+  },
+  tabAvatarContainer:{
+    width: '100px',
+    height: '100px'
+  },
   [`${theme.breakpoints.down('md')}`]: {
     avatar:{
       marginLeft: '100%',
@@ -201,6 +211,26 @@ const styles = theme => ({
       position: 'relative',
       marginLeft: '85%',
     },
+    subHeading:{
+      fontSize: '3rem',
+      fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
+      opacity: '0.6'
+    },
+    iconClass:{
+      fontSize: '4rem'
+    },
+    buttonBase:{
+      paddingTop: '15%',
+    },
+    tabAvatarContainer:{
+      width: '100px',
+      height: '100px'
+    },
+    tabAvatar:{
+      fontSize: '3rem',
+      width: '100px',
+      height: '100px'
+    }
   }
 });
 
@@ -268,36 +298,36 @@ class FullWidthTabs extends React.Component {
             <div className={classes.list}>
               <List>
               <div>
-                  <ListItem>
+                  <ListItem className={classes.tabAvatarContainer}>
                       <Avatar className={classes.tabAvatar}>MJ</Avatar>
                   </ListItem>
                   <ListItem button className={classes.buttonBase}  component="a" href="#home">
                     <ListItemIcon>
-                      <HomeIcon />
+                      <HomeIcon className={classes.iconClass} />
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Home" className={classes.subHeading} onClick={this.toggleDrawer(false)}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component="a" href="#blog" onClick={this.toggleDrawer(false)}>
                     <ListItemIcon>
-                      <ArtTrack />
+                      <ArtTrack className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Blog" className={classes.subHeading}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component="a" href="#projects" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
-                      <Work/>
+                      <Work className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Projects" className={classes.subHeading}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component="a" href="#hobby" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
-                      <Toys/>
+                      <Toys className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Hobbies" className={classes.subHeading} />
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component="a" onClick={this.handleDialogClickOpen}>
                     <ListItemIcon>
-                      <ContactMail />
+                      <ContactMail className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText primary="Contact" disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} className={classes.subHeading} />
                   </ListItem>
