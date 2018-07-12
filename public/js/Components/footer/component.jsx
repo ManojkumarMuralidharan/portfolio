@@ -45,9 +45,15 @@ const styles = theme => ({
     footerText: {
         fontSize: '1.5rem',
     },
+    iconButton:{
+      paddingLeft: '3%',
+      paddingRight: '3%'
+    },
     icons:{
       width: '110%',
-      height: 'auto'
+      height: 'auto',
+      paddingLeft: '5%',
+      paddingRight: '5%',
     },
   }
 });
