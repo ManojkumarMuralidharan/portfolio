@@ -30,8 +30,8 @@ const styles = theme => ({
   iconButton:{
   },
   icons:{
-    width: "45",
-    height: "45"
+    width: '50%',
+    height: 'auto'
   },
   footerText: {
     paddingTop: '2%',
@@ -46,8 +46,8 @@ const styles = theme => ({
         fontSize: '1.5rem',
     },
     icons:{
-      width: "45",
-      height: "45"
+      width: '110%',
+      height: 'auto'
     },
   }
 });
@@ -63,28 +63,28 @@ class Footer extends React.Component {
           <Grid container className={classes.grid} alignContent='center' alignItems='center'>
             <Grid item xs={12} lg={12} className={classes.iconsContainer}>
             <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
-             <img src="/images/linkedin.png" width="25" height="25" alt="facebook" />
+             <img src="/images/linkedin.png" className={classes.icons} alt="facebook" />
             </IconButton>
             <IconButton variant="fab" href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
-             <img src="/images/github.png" width="25" height="25" alt="github" />
+             <img src="/images/github.png" className={classes.icons} alt="github" />
             </IconButton>
             <IconButton variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
-             <img src="/images/instagram.png" width="25" height="25" alt="instagram" />
+             <img src="/images/instagram.png" className={classes.icons} alt="instagram" />
             </IconButton>
             <IconButton variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
-             <img src="/images/paypal.png" width="25" height="25" alt="paypal" />
+             <img src="/images/paypal.png" className={classes.icons} alt="paypal" />
             </IconButton>
             <IconButton variant="fab" href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
-             <img src="/images/amazon.png" width="25" height="25" alt="amazon" />
+             <img src="/images/amazon.png" className={classes.icons} alt="amazon" />
             </IconButton>
             <IconButton variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
-             <img src="/images/gmail.png" width="25" height="25" alt="gmail" />
+             <img src="/images/gmail.png" className={classes.icons} alt="gmail" />
             </IconButton>
             <IconButton variant="fab" href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
-             <img src="/images/slack.png" width="25" height="25" alt="slack" />
+             <img src="/images/slack.png" className={classes.icons} alt="slack" />
             </IconButton>
             <IconButton variant="fab" href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
-             <img src="/images/twitter.png" width="25" height="25" alt="twitter" />
+             <img src="/images/twitter.png" className={classes.icons} alt="twitter" />
             </IconButton>
             </Grid>
             <Grid item xs={6} sm={6}>
