@@ -205,7 +205,17 @@ const styles = theme => ({
     quoteText: {
       paddingLeft: '20%',
       paddingRight: '20%',
-    }
+    },
+    identity: {
+      background: '#ffffff',
+      fontFamily: "'Muli', Verdana, Tahoma",
+      opacity: '0.8'
+    },
+    selfText:{
+      fontFamily: "'Muli', sans-serif;",
+      fontSize: "1.5rem",
+      opacity: '0.8'
+    },
   }
 });
 
@@ -233,7 +243,7 @@ class MainContent extends React.Component  {
         <Grid item xs={12} lg={12} className={classes.identity} >
         <Paper  className={classes.bio} elevation={2}>
           <Typography component="p" className={classes.selfText}>
-            {this.props.fieldState.bio}
+            {this.props.fieldState.bio || 'I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.'}
           </Typography>
         </Paper>
         <Button href="resume_pdf.pdf" target="_blank" className={classes.button}>
