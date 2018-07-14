@@ -49,7 +49,7 @@ export default class Main extends React.Component {
         type: types.UPDATE_APP_STATE,
         value:  {width: window.innerWidth, height: window.innerHeight}
       });
-      
+
 
     }, 0);
 
@@ -103,9 +103,12 @@ const muiTheme = createMuiTheme({
   },
 });
 
-hydrate(
-  <MuiThemeProvider theme={muiTheme}>
-   <Main />
- </MuiThemeProvider>,
-  document.querySelector('#root'),
-);
+document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+    hydrate(
+      <MuiThemeProvider theme={muiTheme}>
+       <Main />
+     </MuiThemeProvider>,
+      document.querySelector('#root'),
+    );
+  });

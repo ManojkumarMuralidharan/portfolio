@@ -90,7 +90,7 @@ function renderFullPage(html, css, preloadedState) {
          // http://redux.js.org/recipes/ServerRendering.html#security-considerations
          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
        </script>
-        <title>Material-UI</title>
+        <title>Manoj-IO</title>
         <style>
         body{
           margin : -16px;
@@ -125,6 +125,10 @@ function renderFullPage(html, css, preloadedState) {
         <p class="copy" ></p>
         <div id="root">${html}</div>
         <style id="jss-server-side">${css}</style>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.1/umd/react.development.js"></script>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.1/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.7/react-redux.min.js"></script>
         <script src="main.js"></script>
       </body>
     </html>
