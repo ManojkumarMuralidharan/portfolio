@@ -232,8 +232,12 @@ class MainContent extends React.Component  {
 	}
 
   componentDidMount() {
-    this.props.getRepositories();
-    this.props.getMediumArticles();
+    if(!this.props.fieldState.github){
+      this.props.getRepositories();
+    }
+    if(!this.props.fieldState.medium){
+      this.props.getMediumArticles();
+    }
     this.props.fetchBio();
   }
 

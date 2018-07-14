@@ -34,7 +34,6 @@ export function fetchBio(req, res) {
   }).then(result =>  res.send(result)).catch(error => {
     console.log('inside error',error); throw error;
   });
-
 }
 
 export function sendFeedback(req, res) {

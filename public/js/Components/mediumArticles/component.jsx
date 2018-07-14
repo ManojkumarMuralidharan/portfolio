@@ -62,7 +62,9 @@ class MediumArticles extends React.Component {
 	}
 
   componentDidMount() {
-    this.props.getMediumArticles();
+    if(!this.props.fieldState.medium){
+      this.props.getMediumArticles();
+    }
 	}
   render(){
     const { classes } = this.props;

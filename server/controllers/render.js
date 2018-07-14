@@ -13,61 +13,104 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import combinedReducers from '../../public/js/redux/reducers/index.js';
 
+import {fetchGraphQlData } from '../services/gitApi';
+import {fetchMediumArticles} from '../services/medium';
+import _ from 'lodash';
+
 export function handleRender(req, res) {
  //  // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-
+  let storeInitialState = {
+    fieldState: {
+      contactForm:{
+        display:false
+      },
+      loadBar:{
+        open : false,
+        text: '',
+        autoHideDuration:2000
+      }
+    },
+    appState: {}
+  } ;
   // Create a new Redux store instance
- const store = createStore(combinedReducers, { fieldState: {contactForm:{display:false}, loadBar:{ open : false,text: '',autoHideDuration:2000}}, appState: {} } );
+  async function prefetchDataforSSR(){
+      let githubData = await fetchGraphQlData();
+      const modifiedDataGithub = Array.prototype.map.call(githubData.data.search.edges,function(item){
+          const {name,description, url} = item.node;
+          return {
+            name,
+            description,
+            url
+          };
+      });
+      storeInitialState['fieldState']['github'] = modifiedDataGithub;
+      let mediumArticleData = await fetchMediumArticles();
+      const modifiedDataMedium = _.map(_.get(mediumArticleData,['payload','references','Post']),function(item){
+          const {title, content, uniqueSlug} = item;
+          return {
+            name : title,
+            title : title,
+            description : content.subtitle,
+            url : `https://medium.com/@manoj.wolfpack/${uniqueSlug}`
+          };
+      });
+      storeInitialState['fieldState']['medium'] = modifiedDataMedium;
+      const store = createStore(combinedReducers, storeInitialState);
 
- //
- // Create a theme instance.
- const muiTheme = createMuiTheme({
-   palette: {
-     primary: white,
-     secondary: white,
-     accent: white,
-     type: 'light',
-   },
- });
- //  // Create a theme instance.
- //  const theme =  createMuiTheme({
-	//   palette: {
-	//     primary1Color: green500,
-	//     primary2Color: green700,
-	//     primary3Color: green100,
-	//   },
-	// }, {
-	//   avatar: {
-	//     borderColor: null,
-	//   },
-	//   userAgent: req.headers['user-agent'],
- //  });
- //
-  const generateClassName = createGenerateClassName();
+      //
+      // Create a theme instance.
+      const muiTheme = createMuiTheme({
+        palette: {
+          primary: white,
+          secondary: white,
+          accent: white,
+          type: 'light',
+        },
+      });
+      //  // Create a theme instance.
+      //  const theme =  createMuiTheme({
+     	//   palette: {
+     	//     primary1Color: green500,
+     	//     primary2Color: green700,
+     	//     primary3Color: green100,
+     	//   },
+     	// }, {
+     	//   avatar: {
+     	//     borderColor: null,
+     	//   },
+     	//   userAgent: req.headers['user-agent'],
+      //  });
+      //
+       const generateClassName = createGenerateClassName();
 
-  // Render the component to a string.
-  const html = renderToString(
-    <Provider store={store}>
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-    <MuiThemeProvider theme={muiTheme}>
-     <App />
-   </MuiThemeProvider>
-   </JssProvider>
-   </Provider>
-  );
-  //const html ='<div></div>';
+       // Render the component to a string.
+       const html = renderToString(
+         <Provider store={store}>
+         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+         <MuiThemeProvider theme={muiTheme}>
+          <App />
+        </MuiThemeProvider>
+        </JssProvider>
+        </Provider>
+       );
+       //const html ='<div></div>';
 
 
-  // // Grab the CSS from our sheetsRegistry.
-  const css = sheetsRegistry.toString()
-  // Grab the initial state from our Redux store
-  const preloadedState = store.getState();
+       // // Grab the CSS from our sheetsRegistry.
+       const css = sheetsRegistry.toString()
+       // Grab the initial state from our Redux store
+       const preloadedState = store.getState();
 
-  // console.log('css',css);
+       // console.log('css',css);
 
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css, preloadedState))
+       // Send the rendered page back to the client.
+       res.send(renderFullPage(html, css, preloadedState));
+
+  }
+
+ prefetchDataforSSR();
+
 }
 
 function renderFullPage(html, css, preloadedState) {
