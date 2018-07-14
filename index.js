@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('dist', options));
 app.use(express.static('public', options));
 app.use(express.static('docs', options));
+app.use(express.static('fonts', options));
 // This is fired every time the server side receives a request.
 app.use('/git', handleGitApi);
 app.use('/medium', handleMedium);
