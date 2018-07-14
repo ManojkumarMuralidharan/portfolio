@@ -40,6 +40,11 @@ export function fetchGraphQlData(){
 
 export function handleGitApi(req, res) {
 
-  return fetchGraphQlData().then(result =>  res.send(result));
+  return fetchGraphQlData().then(result => {
+      res.setHeader("Cache-Control", "public, max-age=2592000");
+      res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+      return res.send(result);
+    }
+  );
 
 }

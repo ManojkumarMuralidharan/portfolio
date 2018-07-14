@@ -20,8 +20,10 @@ export function fetchLocations(req, res) {
   return firebase.database().ref('/locations').once('value').then(function(snapshot) {
     var response =   {locations : _.values(snapshot.val())};
     return response;
-  }).then(result =>  res.send(result)).catch(error => {
-    console.log('inside error',error); throw error;
+  }).then(result => {
+    res.setHeader("Cache-Control", "public, max-age=2592000");
+    res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+    return res.send(result);
   });
 
 }
@@ -31,8 +33,10 @@ export function fetchBio(req, res) {
   return firebase.database().ref('/self').once('value').then(function(snapshot) {
     var response =  snapshot.val();
     return response;
-  }).then(result =>  res.send(result)).catch(error => {
-    console.log('inside error',error); throw error;
+  }).then(result => {
+    res.setHeader("Cache-Control", "public, max-age=2592000");
+    res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+    return res.send(result);
   });
 }
 
