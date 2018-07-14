@@ -14,10 +14,7 @@ module.exports = env => {
       filename: 'main.js'
     },
     externals: {
-      "react": "React",
-      "react-dom": "ReactDOM",
-      "redux": "Redux",
-      "react-redux":"ReactRedux"
+    
     },
     optimization: {
       splitChunks: {
@@ -61,7 +58,8 @@ module.exports = env => {
       new LodashModuleReplacementPlugin({
         'collections': true,
         'paths': true
-      })
+      }),
+      new BundleAnalyzerPlugin()
     ],
     module: {
       rules: [
