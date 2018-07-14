@@ -5,7 +5,6 @@ const DotenvPlugin = require('dotenv-webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 module.exports = env => {
   return {
     entry: { main: './public/js/templates/client.jsx' },
@@ -14,7 +13,7 @@ module.exports = env => {
       filename: 'main.js'
     },
     externals: {
-    
+
     },
     optimization: {
       splitChunks: {
@@ -58,8 +57,7 @@ module.exports = env => {
       new LodashModuleReplacementPlugin({
         'collections': true,
         'paths': true
-      }),
-      new BundleAnalyzerPlugin()
+      })
     ],
     module: {
       rules: [
