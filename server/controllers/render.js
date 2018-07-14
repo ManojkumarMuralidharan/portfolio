@@ -75,6 +75,7 @@ function renderFullPage(html, css, preloadedState) {
     <!doctype html>
     <html>
       <head>
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat" rel="stylesheet">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38147306-2"></script>
         <script>
@@ -119,7 +120,6 @@ function renderFullPage(html, css, preloadedState) {
             src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
         }
         </style>
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat" rel="stylesheet">
       </head>
       <body>
         <p class="copy" ></p>
