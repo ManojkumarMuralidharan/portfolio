@@ -228,7 +228,7 @@ class SingleLineGridList extends React.Component {
         {
           Array.prototype.map.call(edges,((tile, index) => {
             return(
-              <GridListTile key={index} style={{height:'auto'}} classes={{tile: classes.gridListTile }} >
+              <GridListTile key={index} style={{height:'auto', margin: '0 auto'}} classes={{tile: classes.gridListTile }} >
                 <MediaCard title={tile.name}  description={tile.description} url={tile.url} logoUrl={logoUrl} />
               </GridListTile>
             );

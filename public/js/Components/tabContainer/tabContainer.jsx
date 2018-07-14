@@ -299,9 +299,7 @@ class FullWidthTabs extends React.Component {
               </Tabs>
             </AppBar>
             <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}>
-            <div className={classes.list}>
-              <List>
-              <div>
+              <List className={classes.list}>
                   <ListItem className={classes.tabAvatarContainer}>
                       <Avatar className={classes.tabAvatar}>MJ</Avatar>
                   </ListItem>
@@ -335,9 +333,7 @@ class FullWidthTabs extends React.Component {
                     </ListItemIcon>
                     <ListItemText primary="Contact" disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} className={classes.subHeading} />
                   </ListItem>
-                </div>
               </List>
-            </div>
             </SwipeableTemporaryDrawer>
         </Grid>
         <ResponsiveDialog fullScreen={fullScreen} open={false}/>

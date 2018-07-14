@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
-import TabContainer from '../tabContainer/tabContainer.js';
+import TabContainer from '../tabContainer/tabContainer.jsx';
 import Footer from '../footer/component.jsx';
 //import BackgroundImage from '../../../images/background.jpg';
 import MainContent from '../mainContent/component.jsx';
@@ -60,8 +60,8 @@ function CSSGrid(props) {
           <TabContainer />
         </Grid>
         <Grid item xs={12}>
-        <Paper className={classes.backgroundPaperDiv}>
-        </Paper>
+          <Paper className={classes.backgroundPaperDiv}>
+          </Paper>
         </Grid>
         <Grid item xs={12}>
           <MainContent/>

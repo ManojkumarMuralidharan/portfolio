@@ -56,10 +56,10 @@ export default class Main extends React.Component {
   }
   // Remove the server-side injected CSS.
   componentDidMount() {
-    // const jssStyles = document.getElementById('jss-server-side');
-    // if (jssStyles && jssStyles.parentNode) {
-    //   jssStyles.parentNode.removeChild(jssStyles);
-    // }
+    const jssStyles = document.getElementById('jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
     window.addEventListener('load', this.windowLoaded);
     window.addEventListener('resize', this.updateWindowDimensions);
     this.setState({
@@ -81,13 +81,15 @@ export default class Main extends React.Component {
   }
 
   render() {
-    return _.get(this.state,'appStore',false) ? (<Provider store={this.state.appStore} firebase={this.state.firebase}>
+    return _.get(this.state,'appStore',false) ? (
+    <Provider store={this.state.appStore} firebase={this.state.firebase}>
       <App {...this.props} />
-    </Provider>) : (<div >
-    <Spinner name="pacman" style={{position: 'absolute', top: '50%', left: '50%'}}/>
-    <Typography style={{position: 'absolute', top: '60%', left: '50%'}}>
-      Loading
-    </Typography>
+    </Provider>) : (
+    <div >
+      <Spinner name="pacman" style={{position: 'absolute', top: '50%', left: '50%'}}/>
+      <Typography style={{position: 'absolute', top: '60%', left: '50%'}}>
+        Loading
+      </Typography>
     </div>);
   }
 }
@@ -103,12 +105,12 @@ const muiTheme = createMuiTheme({
   },
 });
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed");
+// document.addEventListener("DOMContentLoaded", function(event) {
+//     console.log("DOM fully loaded and parsed");
     hydrate(
       <MuiThemeProvider theme={muiTheme}>
        <Main />
      </MuiThemeProvider>,
       document.querySelector('#root'),
     );
-  });
+  // });
