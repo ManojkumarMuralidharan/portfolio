@@ -130,5 +130,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(GoogleApiWrapper({
-    api: `${process.env.googleMapsApiKey}`
+    api: `${process.env.googleMapsApiKey}`,
+    url: `https://maps.googleapis.com/maps/api/js?key=${process.env.googleMapsApiKey}&callback=initMap`,
 })(GoogleMapsContainer))
