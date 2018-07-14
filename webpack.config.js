@@ -61,7 +61,8 @@ module.exports = env => {
       new LodashModuleReplacementPlugin({
         'collections': true,
         'paths': true
-      })
+      }),
+      new BundleAnalyzerPlugin()
     ],
     module: {
       rules: [

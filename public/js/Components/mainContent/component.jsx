@@ -232,12 +232,12 @@ class MainContent extends React.Component  {
 	}
 
   componentDidMount() {
-    //if(!this.props.fieldState.github){
+    if(!this.props.fieldState.github){
       this.props.getRepositories();
-    //}
-    //if(!this.props.fieldState.medium){
+    }
+    if(!this.props.fieldState.medium){
       this.props.getMediumArticles();
-    //}
+    }
     this.props.fetchBio();
   }
 
