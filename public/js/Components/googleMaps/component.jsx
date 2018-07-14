@@ -28,7 +28,6 @@ class GoogleMapsContainer extends React.Component {
   }
   constructor(props) {
     super(props);
-    console.log(`${process.env.googleMapsApiKey}`);
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
