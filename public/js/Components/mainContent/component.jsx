@@ -98,7 +98,7 @@ const styles = theme => ({
     height: '250px'
   },
   backgroundProjects: {
-    backgroundImage: "url('/images/coffee-projects-menu.jpg')",
+    backgroundImage: "url('/images/coffee-projects-menu.webp')",
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -140,7 +140,7 @@ const styles = theme => ({
     borderRadius: '50%',
     width: '240px',
     height: '240px',
-    backgroundImage:'url(/images/talks.jpg)',
+    backgroundImage:'url(/images/talks.webp)',
     backgroundSize: 'cover',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',

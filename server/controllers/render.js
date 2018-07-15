@@ -133,6 +133,12 @@ function renderFullPage(html, css, preloadedState) {
          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
        </script>
         <title>Manoj-IO</title>
+      </head>
+      <body>
+        <p class="copy" ></p>
+        <div id="root">${html}</div>
+        <style id="jss-server-side">${css}</style>
+        <script src="main.js"></script>
         <style>
         body{
           margin : -16px;
@@ -162,12 +168,6 @@ function renderFullPage(html, css, preloadedState) {
             src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
         }
         </style>
-      </head>
-      <body>
-        <p class="copy" ></p>
-        <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
-        <script src="main.js"></script>
       </body>
     </html>
   `;

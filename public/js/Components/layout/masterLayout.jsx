@@ -28,7 +28,7 @@ const styles = theme => ({
     boxShadow: "none",
   },
   backgroundPaperDiv: {
-    backgroundImage: "url('/images/background.jpg')",
+    backgroundImage: "url('/images/background.webp')",
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
