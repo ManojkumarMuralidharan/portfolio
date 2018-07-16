@@ -270,14 +270,14 @@ class MainContent extends React.Component  {
         </Paper>
           <Paper className={classes.quotes} elevation={2}>
             <Typography component="p" className={classes.quoteText}>
-              Those who dare to fail miserably can achieve greatly.
+            The possibilities are numerous once we decide to act and not react.
             </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} lg={12}>
           <Paper className={classes.quotes} elevation={2}>
             <Typography component="p" className={classes.quoteAuthor}>
-              -John F. Kennedy
+              -George Bernard Shaw
             </Typography>
           </Paper>
           <Divider className={classes.divider} id="projects" name="projects" />
