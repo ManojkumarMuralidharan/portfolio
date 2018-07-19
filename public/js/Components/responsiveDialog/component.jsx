@@ -166,6 +166,7 @@ class ResponsiveDialog extends React.Component {
       console.log('Empty form');
       return false;
     }
+    return true;
   }
   submitFeedBack = () => {
     const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
