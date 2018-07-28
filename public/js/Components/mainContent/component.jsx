@@ -270,14 +270,14 @@ class MainContent extends React.Component  {
         </Paper>
           <Paper className={classes.quotes} elevation={2}>
             <Typography component="p" className={classes.quoteText}>
-            The possibilities are numerous once we decide to act and not react.
+            You’ve got to find what you love,” Jobs said. “The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.
             </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} lg={12}>
           <Paper className={classes.quotes} elevation={2}>
             <Typography component="p" className={classes.quoteAuthor}>
-              -George Bernard Shaw
+              - Steeve Jobs
             </Typography>
           </Paper>
           <Divider className={classes.divider} id="projects" name="projects" />
