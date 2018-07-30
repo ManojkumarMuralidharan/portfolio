@@ -32,6 +32,9 @@ import ResponsiveDialog from '../responsiveDialog/component.jsx';
 import { connect } from 'react-redux';
 import { toggleContactForm } from '../../redux/modules/reducerHandlers';
 import _ from 'lodash';
+import * as types from '../../constants/actionTypes';
+
+import { Route, Link } from "react-router-dom";
 
 function TabContainer({ children, dir }) {
   return (
@@ -50,7 +53,7 @@ const styles = theme => ({
   override: {
     MuiTabs: {
       scroller: {
-          backgroundColor: '#ffffff',
+          backgroundColor: 'rgb(48, 42, 42);',
       },
     }
   },
@@ -91,7 +94,7 @@ const styles = theme => ({
     marginLeft: '3%'
   },
   root: {
-    background: 'transparent',
+    background: 'rgb(48, 42, 42);',
   },
   list: {
    width: '600px',
@@ -118,9 +121,11 @@ const styles = theme => ({
   },
   tabMenu:{
     color: 'white',
-    fontFamily: "'Roboto', sans-serif;",
+    fontFamily: "'Exo', sans-serif;",
+    border: '2px solid rgba(255,255,255,0)',
     '&:hover': {
-      animation: 'navfadein 1.0s 1 0s forwards',
+      border: '2px solid rgba(255,255,255,0.8)',
+      borderRadius: '4%',
       background: 'transparent',
     },
     '&:selected': {
@@ -129,13 +134,10 @@ const styles = theme => ({
   },
   '@keyframes navfadein': {
     from: {
-    border: '2px solid rgba(255,255,255,0.8)',
     opacity: '1',
     },
     to: {
-    border: '2px solid rgba(255,255,255,1)',
     boxShadow: '0 10px 6px -6px #777',
-    borderRadius: '4%',
     opacity: '0.7',
     }
   },
@@ -149,13 +151,10 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   appBar: {
-    marginTop: theme.spacing.unit * 4,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgb(48, 42, 42);',
     boxShadow: 'none',
-    position: 'absolute',
   },
   appBarGrid: {
-    position: 'absolute',
     width: '100%'
   },
   tabAvatar:{
@@ -240,7 +239,7 @@ const styles = theme => ({
 
 class FullWidthTabs extends React.Component {
   state = {
-    value: 0,
+    value: 'home',
     drawerState : false,
     dialogOpen: false
   };
@@ -253,10 +252,12 @@ class FullWidthTabs extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.switchTabs(value);
   };
 
   handleChangeIndex = index => {
     this.setState({ value: index });
+
   };
 
   handleDialogClickOpen = () => {
@@ -279,7 +280,7 @@ class FullWidthTabs extends React.Component {
           <Avatar className={classes.avatar}>MJ</Avatar>
         </Grid>
         <Grid item lg={10}>
-            <AppBar color="default" position="absolute" style={{background:"transparent", boxShadow:"none"}}>
+            <AppBar color="default" style={{background:"inherit", boxShadow:"none", position: "inherit"}}>
               <Tabs
                 selected={classes.selected}
                 value={this.state.value}
@@ -290,14 +291,16 @@ class FullWidthTabs extends React.Component {
                   indicator: classes.indicator
                 }}
                 >
-                <Tab icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
-                <Tab label="Home"  variant='outlined' className={classes.tabMenu} onClick={this.toggleDrawer(true)}/>
-                <Tab label="Blog" href="#blog" className={classes.tabMenu} />
-                <Tab label="Projects" href="#projects" className={classes.tabMenu} />
-                <Tab label="Hobbies" href="#hobby" className={classes.tabMenu} />
-                <Tab label="Contact"  onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
+                <Tab component={Link} to="/" value="mobile_home" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab component={Link} to="/" label="home" value="home" variant='outlined' className={classes.tabMenu}/>
+                <Tab component={Link} to="/blog" value="blog" label="Blog"  className={classes.tabMenu} />
+                <Tab component={Link} to="/projects" value="projects" label="Projects" className={classes.tabMenu} />
+                <Tab component={Link} to="/hobbies" value="hobbies" label="Hobbies" className={classes.tabMenu} />
+                <Tab value="contact" label="Contact"  onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
               </Tabs>
             </AppBar>
+
+
             <SwipeableTemporaryDrawer drawerState={this.state.drawerState} toggleDrawer={this.toggleDrawer}>
               <List className={classes.list}>
                   <ListItem className={classes.tabAvatarContainer}>
@@ -355,6 +358,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    switchTabs : (tabSelected) => {
+      dispatch({
+               type: types.UPDATE_APP_STATE,
+               value: {"activeTab": tabSelected }
+      });
+    },
     toggleContactForm : (dialogState) => {
       return toggleContactForm(dispatch,dialogState);
     }

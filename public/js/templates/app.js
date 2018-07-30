@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { white, red } from '@material-ui/core/colors';
 import CSSGrid from '../Components/layout/masterLayout.jsx';
-
 export default class App extends React.Component {
   // Remove the server-side injected CSS.
   componentDidMount() {
@@ -11,6 +10,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return   (<CSSGrid />);
+    return   (
+      <CSSGrid />);
   }
 }

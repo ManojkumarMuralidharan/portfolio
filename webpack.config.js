@@ -10,6 +10,7 @@ module.exports = env => {
     entry: { main: './public/js/templates/client.jsx' },
     output: {
       path: path.resolve(__dirname, 'dist'),
+      chunkFilename: '[name].bundle.js',
       filename: 'main.js'
     },
     externals: {

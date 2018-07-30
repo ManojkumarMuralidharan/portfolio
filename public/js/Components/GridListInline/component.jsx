@@ -224,11 +224,11 @@ class SingleLineGridList extends React.Component {
       </Typography>
       <div className={classes.root}>
         <Arrow direction="left" clickFunction={ this.previousSlide } glyph="&#9001;"  className={classes.slideArrowLeft}/>
-        <GridList className={classes.gridList} spacing={(cols*10)}  cols={ ((nodes.length < cols) ? nodes.length : cols) }>
+        <GridList className={classes.gridList} spacing={(cols*10)}  style={{margin:'auto'}} cols={ ((nodes.length < cols) ? nodes.length : cols) }>
         {
           Array.prototype.map.call(edges,((tile, index) => {
             return(
-              <GridListTile key={index} style={{height:'auto', margin: '0 auto'}} classes={{tile: classes.gridListTile }} >
+              <GridListTile key={`tile.name${index}`} style={{height:'auto', margin: '0 auto'}} classes={{tile: classes.gridListTile }} >
                 <MediaCard title={tile.name}  description={tile.description} url={tile.url} logoUrl={logoUrl} />
               </GridListTile>
             );

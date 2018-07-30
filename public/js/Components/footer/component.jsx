@@ -28,6 +28,9 @@ const styles = theme => ({
     background: '#ffffff'
   },
   iconButton:{
+    '&:hover':{
+      transform: 'scale(1.2)'
+    }
   },
   icons:{
     width: '50%',

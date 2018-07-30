@@ -12,6 +12,7 @@ import Spinner from 'react-spinkit';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import * as types from '../constants/actionTypes';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 export default class Main extends React.Component {
@@ -82,9 +83,10 @@ export default class Main extends React.Component {
 
   render() {
     return _.get(this.state,'appStore',false) ? (
-    <Provider store={this.state.appStore} firebase={this.state.firebase}>
-      <App {...this.props} />
-    </Provider>) : (
+      <Provider store={this.state.appStore} firebase={this.state.firebase}>
+        <App {...this.props} />
+      </Provider>
+    ) : (
     <div >
       <Spinner name="pacman" style={{position: 'absolute', top: '50%', left: '50%'}}/>
       <Typography style={{position: 'absolute', top: '60%', left: '50%'}}>
@@ -109,7 +111,9 @@ const muiTheme = createMuiTheme({
 //     console.log("DOM fully loaded and parsed");
     hydrate(
       <MuiThemeProvider theme={muiTheme}>
-       <Main />
+       <Router>
+          <Main />
+       </Router>
      </MuiThemeProvider>,
       document.querySelector('#root'),
     );

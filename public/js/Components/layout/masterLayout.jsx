@@ -27,25 +27,12 @@ const styles = theme => ({
     marginBottom: `${theme.spacing.unit * 0}px`,
     boxShadow: "none",
   },
-  backgroundPaperDiv: {
-    backgroundImage: "url('/images/background.webp')",
-    backgroundAttachment: 'fixed',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    height: '550px'
-  },
   divider: {
     margin: `${theme.spacing.unit * 2}px 0`,
   },
   [`${theme.breakpoints.down('md')}`]: {
     backgroundGrid: {
       marginBottom: '0'
-    },
-    backgroundPaperDiv:{
-      backgroundSize: 'cover',
-      backgroundPosition: 'inherit',
-      backgroundAttachment: 'unset'
     }
   }
 });
@@ -58,10 +45,6 @@ function CSSGrid(props) {
       <Grid container spacing={0}>
         <Grid item xs={12} >
           <TabContainer />
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.backgroundPaperDiv}>
-          </Paper>
         </Grid>
         <Grid item xs={12}>
           <MainContent/>

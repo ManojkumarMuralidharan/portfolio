@@ -12,6 +12,7 @@ import { white, red } from '@material-ui/core/colors';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import combinedReducers from '../../public/js/redux/reducers/index.js';
+import { StaticRouter, matchPath } from "react-router-dom";
 
 import {fetchGraphQlData } from '../services/gitApi';
 import {fetchMediumArticles} from '../services/medium';
@@ -89,7 +90,9 @@ export function handleRender(req, res) {
          <Provider store={store}>
          <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
          <MuiThemeProvider theme={muiTheme}>
-          <App />
+          <StaticRouter location={req.url} context={{}}>
+            <App />
+          </StaticRouter>
         </MuiThemeProvider>
         </JssProvider>
         </Provider>
@@ -117,7 +120,7 @@ function renderFullPage(html, css, preloadedState) {
     <!doctype html>
     <html>
       <head>
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat|Exo:900"" rel="stylesheet">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38147306-2"></script>
         <script>
