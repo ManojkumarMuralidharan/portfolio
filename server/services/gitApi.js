@@ -50,10 +50,8 @@ export function getGraphQlData(){
 export function fetchGraphQlData(){
   const cacheResult = cache.get('githubRepos');
   if(!cacheResult){
-    console.log('not found in cache');
     return getGraphQlData();
   }else{
-    console.log('Found in cache - ');
     return Promise.resolve(cacheResult);
   }
 }
@@ -65,12 +63,10 @@ export function handleGitApi(req, res) {
 
   const cacheResult = cache.get('githubRepos');
   if(!cacheResult){
-    console.log('not found in cache1');
     getGraphQlData().then(result =>  {
       res.json(result);
     });
   }else{
-    console.log('Found in cache1 - ');
     res.json(cacheResult);
   }
 
