@@ -294,7 +294,7 @@ class FullWidthTabs extends React.Component {
                   indicator: classes.indicator
                 }}
                 >
-                <Tab component={Link} to="/" value="mobile_home" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab value="mobile_home" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
                 <Tab component={Link} to="/" label="home" value="home" variant='outlined' className={classes.tabMenu}/>
                 <Tab component={Link} to="/blog" value="blog" label="Blog"  className={classes.tabMenu} />
                 <Tab component={Link} to="/projects" value="projects" label="Projects" className={classes.tabMenu} />

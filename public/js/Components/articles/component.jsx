@@ -51,7 +51,7 @@ const styles = theme => ({
     borderRadius: '50%',
     width: '240px',
     height: '240px',
-    backgroundImage:'url(/images/talks.webp)',
+    backgroundImage:'url(/images/talks.jpg)',
     backgroundSize: 'cover',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',

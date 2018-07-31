@@ -41,7 +41,7 @@ const styles = theme => ({
     boxShadow: 'none'
   },
   backgroundProjects: {
-      backgroundImage: "url('/images/coffee-projects-menu.webp')",
+      backgroundImage: "url('/images/coffee-projects-menu.jpg')",
       backgroundAttachment: 'fixed',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
