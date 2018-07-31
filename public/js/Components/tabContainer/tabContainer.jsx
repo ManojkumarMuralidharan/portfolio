@@ -234,6 +234,9 @@ const styles = theme => ({
       width: '3em',
       height: '3em'
     },
+    avatar: {
+      zIndex: '12'
+    }
   }
 });
 
@@ -280,7 +283,7 @@ class FullWidthTabs extends React.Component {
           <Avatar className={classes.avatar}>MJ</Avatar>
         </Grid>
         <Grid item lg={10}>
-            <AppBar color="default" style={{background:"inherit", boxShadow:"none", position: "inherit"}}>
+            <AppBar color="default" style={{background:"inherit", boxShadow:"none"}}>
               <Tabs
                 selected={classes.selected}
                 value={this.state.value}
@@ -312,19 +315,19 @@ class FullWidthTabs extends React.Component {
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Home" className={classes.subHeading} onClick={this.toggleDrawer(false)}/>
                   </ListItem>
-                  <ListItem button className={classes.buttonBase} component="a" href="#blog" onClick={this.toggleDrawer(false)}>
+                  <ListItem button className={classes.buttonBase} component={Link} to="/blog" onClick={this.toggleDrawer(false)}>
                     <ListItemIcon>
                       <ArtTrack className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Blog" className={classes.subHeading}/>
                   </ListItem>
-                  <ListItem button className={classes.buttonBase} component="a" href="#projects" onClick={this.toggleDrawer(false)} >
+                  <ListItem button className={classes.buttonBase} component={Link} to="/projects" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
                       <Work className={classes.iconClass}/>
                     </ListItemIcon>
                     <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Projects" className={classes.subHeading}/>
                   </ListItem>
-                  <ListItem button className={classes.buttonBase} component="a" href="#hobby" onClick={this.toggleDrawer(false)} >
+                  <ListItem button className={classes.buttonBase} component={Link} to="/hobbies" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
                       <Toys className={classes.iconClass}/>
                     </ListItemIcon>
