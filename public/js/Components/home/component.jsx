@@ -90,7 +90,7 @@ const styles = theme => ({
     transform: 'translate(-50%, -55%)'
   },
   backgroundPaperDiv: {
-    backgroundImage: "url('/images/background.webp')",
+    backgroundImage: "url('/images/background.jpg')",
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

@@ -136,8 +136,7 @@ function renderFullPage(html, css, preloadedState) {
          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
        </script>
         <title>Manoj-IO</title>
-        <link rel="manifest" href="/manifest/manifest.json"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="/manifest/manifest.json">
       </head>
       <body>
         <p class="copy" ></p>
