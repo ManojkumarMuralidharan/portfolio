@@ -309,7 +309,7 @@ class FullWidthTabs extends React.Component {
                   <ListItem className={classes.tabAvatarContainer}>
                       <Avatar className={classes.tabAvatar}>MJ</Avatar>
                   </ListItem>
-                  <ListItem button className={classes.buttonBase}  component={Link} to="/blog">
+                  <ListItem button className={classes.buttonBase}  component={Link} to="/">
                     <ListItemIcon>
                       <HomeIcon className={classes.iconClass} />
                     </ListItemIcon>
