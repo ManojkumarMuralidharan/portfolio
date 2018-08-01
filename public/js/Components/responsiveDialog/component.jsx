@@ -15,6 +15,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { toggleContactForm, writeUserFeeback } from '../../redux/modules/reducerHandlers';
 import * as types from '../../constants/actionTypes';
 import { isEmpty } from 'lodash';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   override: {
@@ -24,17 +26,35 @@ const styles = theme => ({
       },
     }
   },
+  contentTitle:{
+    fontSize: '1rem',
+    fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
+    paddingBottom: theme.spacing.unit * 4,
+    color: 'rgba(0, 0, 0, 1)',
+  },
+  typographyTitle:{
+    fontSize: '2rem',
+    paddingBottom: theme.spacing.unit * 4,
+    fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
+    color: 'rgba(0, 0, 0, 1)',
+  },
   button:{
      margin: theme.spacing.unit,
      color: '#fff',
      backgroundColor: '#2196f3',
      '&:hover':{
        backgroundColor: 'green'
-     }
+     },
+    fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
+    fontSize: '1rem',
+  },
+  inputFields:{
+    fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
+    color: 'rgba(0, 0, 0, 1)',
   },
   dialogOpeningText:{
     lineHeight: '1.8em',
-    padding: '10px 0px 10px 0px'
+    padding: '10px 0px 10px 0px',
   },
   dialogTitle:{
     textAlign: 'center',
@@ -51,92 +71,56 @@ const styles = theme => ({
     marginLeft: '3%'
   },
   root: {
-    background: 'transparent',
-  },
-  selected:{
-    color: 'white'
-  },
-  hover: {
-    cursor: 'default'
-  },
-  menuDrawer: {
-    display : 'none',
-    color: 'white'
-  },
-  icon: {
-    color: 'white'
-  },
-  scroller: {
-    color: 'white',
-    background: 'white'
-  },
-  tabMenu:{
-    color: 'white',
-    fontFamily: "'Roboto', sans-serif;",
-    '&:hover': {
-      animation: 'navfadein 1.0s 1 0s forwards',
-      background: 'transparent',
-    },
-    '&:selected': {
-      color: 'white'
-    },
-  },
-  '@keyframes navfadein': {
-    from: {
-    border: '2px solid rgba(255,255,255,0.8)',
-    opacity: '1',
-    },
-    to: {
-    border: '2px solid rgba(255,255,255,1)',
-    boxShadow: '0 10px 6px -6px #777',
-    borderRadius: '4%',
-    opacity: '0.7',
-    }
-  },
-  indicator: {
-    backgroundColor: 'white',
-  },
-  flexContainer: {
-    placeContent: 'flex-end'
+
   },
   dialogButton:{
     justifyContent: 'center'
   },
-  appBar: {
-    marginTop: theme.spacing.unit * 4,
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    position: 'absolute',
+  container: {
+      display: 'flex',
+      flexWrap: 'wrap',
   },
-  appBarGrid: {
-    position: 'absolute',
-    width: '100%'
+  textField: {
+      fontSize: '1rem',
+      color: 'rgba(0, 0, 0, 1)',
   },
-  siteTitle: {
-    color: 'white',
-    display: 'block',
-    position: 'relative',
-    marginLeft: '20%',
+  inputFields:{
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  grid:{
+
+  },
+  //style for font size
+  resize:{
+    fontSize:'50'
   },
   [`${theme.breakpoints.down('md')}`]: {
-    menuDrawer: {
-      display: 'block',
-      color: 'white'
-    },
     button:{
       width: '30%',
       height: '85px',
       fontSize: '2rem'
     },
-    tabMenu: {
-      display: 'none'
+    grid:{
+      paddingTop: '32px',
+      paddingBottom: '32px'
     },
-    flexContainer: {
-      placeContent: 'flex-end'
+    textField: {
+      fontSize: '2.5rem',
+      color: 'rgba(0, 0, 0, 1)',
     },
-    siteTitle: {
-      position: 'relative',
-      marginLeft: '85%',
+    contentTitle:{
+      fontSize: '2.5rem',
+      fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif;',
+      color: 'rgba(0, 0, 0, 1)',
+    },
+    contactPaperDiv:{
+      paddingBottom: '12px',
+    },
+    typographyTitle:{
+      fontSize: '4rem',
+      fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
+      color: 'rgba(0, 0, 0, 1)',
     },
   }
 });
@@ -181,30 +165,27 @@ class ResponsiveDialog extends React.Component {
   render() {
     const { fullScreen, classes } = this.props;
     return (
-      <Grid item lg={12} xs={12}>
+      <Grid item lg={12} xs={12} className={classes.root}>
           <Dialog
             fullScreen={fullScreen}
             open={this.props.fieldState.contactForm.display}
             onClose={this.handleDialogClose}
             aria-labelledby="form-dialog-title"
           >
-            <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
-              How to get in touch 👋
+            <DialogTitle id="form-dialog-title" className={classes.dialogTitle} >
+              <Typography className={classes.typographyTitle}> How to get in touch 👋 </Typography>
+              <Typography className={classes.contentTitle}> Like my work / Want to get a cuppa coffee / Want me to speak at your event ?
+              Fill out the following info , and I’ll do my best to get back to you.
+              </Typography>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText className={classes.dialogOpeningText}>
-               Like my work / Want to get a cuppa coffee / Want me to speak at your event ?
-               Fill out the following info , and I’ll do my best to get back to you.
-               <br/>
-               Thank you!
-              </DialogContentText>
-              <Grid container>
-              <Grid item lg={12} xs={12}>
+              <Grid container className={classes.inputFields}>
+              <Grid item lg={12} xs={12} className={classes.grid}>
               <Paper className={classes.contactPaperDiv}>
               </Paper>
               </Grid>
 
-              <Grid item lg={6} xs={6}>
+              <Grid item lg={6} xs={6} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="firstName"
@@ -213,9 +194,16 @@ class ResponsiveDialog extends React.Component {
                 value={this.props.fieldState.firstName||''}
                 required
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
               />
               </Grid>
-              <Grid item lg={6} xs={6}>
+              <Grid item lg={6} xs={6} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="lastName"
@@ -224,9 +212,16 @@ class ResponsiveDialog extends React.Component {
                 value={this.props.fieldState.lastName||''}
                 required
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
               />
               </Grid>
-              <Grid item lg={6} xs={6}>
+              <Grid item lg={6} xs={6} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="email"
@@ -235,9 +230,16 @@ class ResponsiveDialog extends React.Component {
                 value={this.props.fieldState.email||''}
                 required
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
               />
               </Grid>
-              <Grid item lg={6} xs={6}>
+              <Grid item lg={6} xs={6} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="phone"
@@ -245,10 +247,17 @@ class ResponsiveDialog extends React.Component {
                 type="phone"
                 value={this.props.fieldState.phone||''}
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
 
               />
               </Grid>
-              <Grid item lg={12} xs={12}>
+              <Grid item lg={12} xs={12} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="subject"
@@ -258,9 +267,16 @@ class ResponsiveDialog extends React.Component {
                 fullWidth
                 required
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
               />
               </Grid>
-              <Grid item lg={12} xs={12}>
+              <Grid item lg={12} xs={12} className={classes.grid}>
               <TextField
                 margin="dense"
                 id="message"
@@ -273,16 +289,23 @@ class ResponsiveDialog extends React.Component {
                 rows="5"
                 required
                 onChange={this.props.onChange}
+                className={classes.textField}
+                InputLabelProps={{
+                  className: classes.textField
+                }}
+                InputProps={{
+                  className: classes.textField
+                }}
               />
               </Grid>
               </Grid>
             </DialogContent>
             <DialogActions className={classes.dialogButton}>
               <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
-                Cancel !
+                Cancel
               </Button>
               <Button onClick={this.submitFeedBack} variant="raised" color="secondary"  className={classes.button}>
-                Send !
+                Send
               </Button>
             </DialogActions>
           </Dialog>

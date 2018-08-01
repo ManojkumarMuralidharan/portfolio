@@ -159,7 +159,7 @@ const styles = theme => ({
   },
   tabAvatar:{
     margin: '0',
-    backgroundColor : '#2b2525d9',
+    backgroundColor : '#f35f3cd9',
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
     fontSize:'1.75rem'
   },
@@ -177,10 +177,13 @@ const styles = theme => ({
     paddingTop: '46px',
   },
   avatar:{
-    backgroundColor : '#2b2525d9',
-    marginLeft: '20%',
+    backgroundColor : '#f35f3cd9',
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
-    fontSize:'1.75rem'
+    fontSize:'1.75rem',
+    zIndex: '1200',
+    position: 'absolute',
+    left: '32px',
+    top: '8px',
   },
   iconClass:{
 
@@ -194,7 +197,10 @@ const styles = theme => ({
   },
   [`${theme.breakpoints.down('md')}`]: {
     avatar:{
-      marginLeft: '100%',
+      width: '60px',
+      height: '60px',
+      zIndex: '12000',
+      top: '16px'
     },
     menuDrawer: {
       display: 'block',
@@ -234,9 +240,6 @@ const styles = theme => ({
       width: '3em',
       height: '3em'
     },
-    avatar: {
-      zIndex: '12'
-    }
   }
 });
 
@@ -280,7 +283,7 @@ class FullWidthTabs extends React.Component {
     return (
       <Grid container className={classes.appBar}>
         <Grid item lg={2} >
-          <Avatar className={classes.avatar}>MJ</Avatar>
+          {!this.state.drawerState && <Avatar className={classes.avatar}>MJ</Avatar>}
         </Grid>
         <Grid item lg={10}>
             <AppBar color="default" style={{background:"inherit", boxShadow:"none"}}>
@@ -294,7 +297,7 @@ class FullWidthTabs extends React.Component {
                   indicator: classes.indicator
                 }}
                 >
-                <Tab value="mobile_home" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
+                <Tab value="mobile_home" label="home" icon={ <MenuIcon className={classes.icon}/>} className={classes.menuDrawer} onClick={this.toggleDrawer(true)}/>
                 <Tab component={Link} to="/" label="home" value="home" variant='outlined' className={classes.tabMenu}/>
                 <Tab component={Link} to="/blog" value="blog" label="Blog"  className={classes.tabMenu} />
                 <Tab component={Link} to="/projects" value="projects" label="Projects" className={classes.tabMenu} />
@@ -313,31 +316,31 @@ class FullWidthTabs extends React.Component {
                     <ListItemIcon>
                       <HomeIcon className={classes.iconClass} />
                     </ListItemIcon>
-                    <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Home" className={classes.subHeading} onClick={this.toggleDrawer(false)}/>
+                    <ListItemText  disableTypography={true} primarytypographyprops={{className:classes.subHeading}} primary="Home" className={classes.subHeading} onClick={this.toggleDrawer(false)}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component={Link} to="/blog" onClick={this.toggleDrawer(false)}>
                     <ListItemIcon>
                       <ArtTrack className={classes.iconClass}/>
                     </ListItemIcon>
-                    <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Blog" className={classes.subHeading}/>
+                    <ListItemText  disableTypography={true} primarytypographyprops={{className:classes.subHeading}} primary="Blog" className={classes.subHeading}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component={Link} to="/projects" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
                       <Work className={classes.iconClass}/>
                     </ListItemIcon>
-                    <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Projects" className={classes.subHeading}/>
+                    <ListItemText  disableTypography={true} primarytypographyprops={{className:classes.subHeading}} primary="Projects" className={classes.subHeading}/>
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component={Link} to="/hobbies" onClick={this.toggleDrawer(false)} >
                     <ListItemIcon>
                       <Toys className={classes.iconClass}/>
                     </ListItemIcon>
-                    <ListItemText  disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} primary="Hobbies" className={classes.subHeading} />
+                    <ListItemText  disableTypography={true} primarytypographyprops={{className:classes.subHeading}} primary="Hobbies" className={classes.subHeading} />
                   </ListItem>
                   <ListItem button className={classes.buttonBase} component="a" onClick={this.handleDialogClickOpen}>
                     <ListItemIcon>
                       <ContactMail className={classes.iconClass}/>
                     </ListItemIcon>
-                    <ListItemText primary="Contact" disableTypography={true} primaryTypographyProps={{className:classes.subHeading}} className={classes.subHeading} />
+                    <ListItemText primary="Contact" disableTypography={true} primarytypographyprops={{className:classes.subHeading}} className={classes.subHeading} />
                   </ListItem>
               </List>
             </SwipeableTemporaryDrawer>
