@@ -179,7 +179,7 @@ class Home extends React.Component  {
         <Grid item xs={12} lg={12}>
           <Paper className={classes.quotes} elevation={2}>
             <Typography component="p" className={classes.quoteAuthor}>
-              - Steeve Jobs
+              - Steve Jobs
             </Typography>
           </Paper>
           <Divider className={classes.divider} id="projects" name="projects" />
