@@ -51,7 +51,7 @@ jobs:
       - run:
           name: "Deploy npm tar"
           command: |
-            scp -P $SSH_PORT -r /tmp/repo/deploy_build.tar $SSH_UNAME@$SSH_HOST:$REMOTE_PATH
+            ssh -o "StrictHostKeyChecking no" $SSH_UNAME@$SSH_HOST "cd ~; mkdir test;"
 
 workflows:
   version: 2
