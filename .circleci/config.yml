@@ -33,25 +33,20 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: npm test
+      # run build and test!
+      - run: nom run build
+      - run: npm run
       - run: tar -cvf deploy_build.tar ~/repo
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - deploy_build.tar
   deploy:
     machine:
       enabled: true
     working_directory: ~/repo
     steps:
-      - attach_workspace:
-          at: /tmp/repo
       - run:
-          name: "Deploy npm tar"
+          name: "Deployment via SSH"
           command: |
-            ssh -o "StrictHostKeyChecking no" $SSH_UNAME@$SSH_HOST "cd ~; mkdir test;"
+            ssh -o "StrictHostKeyChecking no" $SSH_UNAME@$SSH_HOST "cd $PROJECT_PATH; git pull; npm run build; pm2 stop 0; pm2 start 0"
 
 workflows:
   version: 2
