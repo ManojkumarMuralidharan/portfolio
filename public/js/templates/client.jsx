@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import * as types from '../constants/actionTypes';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+//import * as serviceWorker from '../serviceWorkers/serviceWorker';
 
 export default class Main extends React.Component {
 
@@ -25,6 +25,12 @@ export default class Main extends React.Component {
 
   windowLoaded(){
     const that = this;
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/serviceWorker.js')
+               .then(function() { console.log("Service Worker Registered"); });
+    }
+
     setTimeout(function(){
       window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
       var t = performance.timing || {};
