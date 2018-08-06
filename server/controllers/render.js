@@ -136,6 +136,9 @@ function renderFullPage(html, css, preloadedState) {
          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
        </script>
         <title>Manoj-IO</title>
+        <meta name="theme-color" content="#302b2a" />
+        <meta name="Description" content="Portfolio of Manojkumar Muralidharan">
+        <meta name="viewport" content="width=device-width, initial-scale=0.5">
         <link rel="manifest" href="/manifest/manifest.json">
       </head>
       <body>

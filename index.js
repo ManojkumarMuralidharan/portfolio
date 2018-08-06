@@ -24,7 +24,7 @@ var options = {
   setHeaders: function (res, path, stat) {
     res.set('x-timestamp', Date.now()),
     res.setHeader("Cache-Control", "public, max-age=612000");
-    res.setHeader("Expires", new Date(Date.now() + 612000000).toUTCString());
+    res.setHeader("Expires", new Date(Date.now() + 612000).toUTCString());
   }
 }
 app.use(bodyParser.json());
