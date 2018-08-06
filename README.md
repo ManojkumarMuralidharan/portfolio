@@ -18,7 +18,7 @@ This project was built progressively, to add mulitple features.
 9. Node Performance Optimization
 10. Hosting on a VPS with SSL
 11. Google Cloud Functions 
-12. PWA - Progressive Web Apps
+12. PWA - Progressive Web Apps with service workers for offline experience
 
 
 
