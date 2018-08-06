@@ -118,7 +118,7 @@ export function handleRender(req, res) {
 function renderFullPage(html, css, preloadedState) {
   return `
     <!doctype html>
-    <html>
+    <html lang="en">
       <head>
         <link rel="shortcut icon" href="manifest/icons/lowres_48.png" type="image/x-icon">
         <!-- Global site tag (gtag.js) - Google Analytics -->

@@ -154,7 +154,7 @@ class Home extends React.Component  {
         </Grid>
         <Grid item xs={12} lg={12} className={classes.identity} >
         <Paper  className={classes.bio} elevation={2}>
-          <Typography component="p" className={classes.selfText}>
+          <Typography component="p" className={classes.selfText} role="main">
             {this.props.fieldState.bio || 'I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.'}
           </Typography>
         </Paper>
