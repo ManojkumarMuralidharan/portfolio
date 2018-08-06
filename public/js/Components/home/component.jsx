@@ -79,7 +79,7 @@ const styles = theme => ({
     width: '240px',
     height: '240px',
     backgroundImage:'url(/images/self.jpg)',
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
