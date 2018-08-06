@@ -1,5 +1,7 @@
 # Portfolio  [![Circle CI](https://img.shields.io/circleci/project/ManojkumarMuralidharan/Portfolio/node-csgo-parser.svg?style=for-the-badge)](https://circleci.com/gh/ManojkumarMuralidharan/Portfolio/)
 
+![Lighthouse Audit status](https://github.com/ManojkumarMuralidharan/Portfolio/blob/master/lighthouse/results/Status.png)
+
 This repo serves as the codebase for my portfolio website hosted at https://manoj.io.
 
 I started this project as a way to explore and experiment various web frameworks and technologies.
