@@ -26,6 +26,9 @@ export function handleRender(req, res) {
       contactForm:{
         display:false
       },
+      drawer:{
+        state : false
+      },
       loadBar:{
         open : false,
         text: '',
@@ -120,7 +123,7 @@ function renderFullPage(html, css, preloadedState) {
     <!doctype html>
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="manifest/icons/lowres_48.png" type="image/x-icon">
+        <link rel="shortcut icon" href="manifest/icons/favicon_2.png" type="image/x-icon">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38147306-2"></script>
         <script>

@@ -16,6 +16,9 @@ const fieldsReducer = (state = {}, action) => {
       const {firstName, lastName, email, phone, subject, message} = action.value;
       writeUserFeeback(firstName, lastName, email, phone, subject, message);
       return state;
+    case types.OPEN_SIDE_DRAWER:
+      newState.drawer.state = action.value;
+      return newState;
     default:
       return state;
   }

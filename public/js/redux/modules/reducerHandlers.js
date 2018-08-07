@@ -99,3 +99,10 @@ export const toggleContactForm = (dispatch, dialogState) => {
          value: dialogState
   });
 }
+
+export const toggleDrawerState = (dispatch, drawerState) => {
+  return dispatch({
+         type: types.OPEN_SIDE_DRAWER,
+         value: drawerState
+  });
+}
