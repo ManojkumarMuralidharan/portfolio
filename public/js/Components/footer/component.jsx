@@ -40,9 +40,10 @@ const styles = theme => ({
     paddingTop: '2%',
     paddingBottom: '3%',
     textAlign: 'center',
-    backgroundColor: '#f17d74',
-    color: 'white',
-    boxShadow: 'none'
+    backgroundColor: 'rgba(0,0,0,0.87)',
+    color: 'rgba(255,255,255,0.9)',
+    boxShadow: 'none',
+    fontFamily: "'Exo', sans-serif"
   },
   [`${theme.breakpoints.down('md')}`]: {
     footerText: {
