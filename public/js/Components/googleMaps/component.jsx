@@ -2,9 +2,6 @@ import React from 'react';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { typography } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import {fetchLocations} from '../../redux/modules/reducerHandlers';
 

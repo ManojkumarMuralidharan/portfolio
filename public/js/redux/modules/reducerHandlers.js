@@ -13,6 +13,21 @@ export const fetchLocations = (dispatch) => {
     });
   }).catch(error => { throw error; });
 }
+
+export const isResumeEnabled = (dispatch) => {
+  return fetch('/resume')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    return dispatch({
+           type: types.UPDATE_FIELD,
+           value: {resume : data}
+    });
+  }).catch(error => { throw error; });
+}
+
+
 export const fetchBio = (dispatch) => {
   return fetch('/fetchBio')
   .then(function(response) {

@@ -1,21 +1,12 @@
 'use strict';
-import path from 'path';
 import express from 'express';
-// import fs from 'fs';
-import React from 'react';
-/*import App from './App';*/
 import {handleRender} from './server/controllers/render';
 import {handleGitApi} from './server/services/gitApi.js';
 import {handleMedium} from './server/services/medium.js';
-import {fetchLocations,sendFeedback, fetchBio} from './server/services/handleFeedback.js';
+import {fetchLocations,sendFeedback, fetchBio, handleResumeEnabled} from './server/services/handleFeedback.js';
 import * as bodyParser from 'body-parser';
-const app = express();
 
-// const http = require('http');
-// const https = require('https');
-// const privateKey  = fs.readFileSync('/usr/local/etc/nginx/server_local.key', 'utf8');
-// const certificate = fs.readFileSync('/usr/local/etc/nginx/server_local.crt', 'utf8');
-// const credentials = {key: privateKey, cert: certificate};
+const app = express();
 
 var options = {
   etag: true,
@@ -36,17 +27,13 @@ app.use(express.static('docs', options));
 app.use(express.static('fonts', options));
 app.use(express.static('manifest', options));
 
-//app.use('serviceWorker.js', express.serve('serviceWorkers/serviceWorker.js'))
-// This is fired every time the server side receives a request.
 app.use('/git', handleGitApi);
 app.use('/medium', handleMedium);
 app.use('/locations', fetchLocations);
 app.post('/sendFeedback', sendFeedback);
 app.use('/fetchBio',fetchBio);
-
+app.use('/resume', handleResumeEnabled);
 app.use(handleRender);
 const port = process.env.appPort;
 app.listen(port);
-// const httpsServer = https.createServer(credentials, app);
-// httpsServer.listen(8443);
 

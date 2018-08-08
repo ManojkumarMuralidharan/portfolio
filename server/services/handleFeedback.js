@@ -14,6 +14,20 @@ if (!firebase.apps.length) {
     firebase.initializeApp(FirebaseConfig);
 }
 
+export function handleResumeEnabled(req, res){
+  res.setHeader("Cache-Control", "public, max-age=2592000");
+  res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+  isResumeEnabled().then(result =>  {
+    res.json(result);
+  });
+}
+
+export function isResumeEnabled(){
+  return firebase.database().ref('/resume').once('value').then(function(snapshot) {
+    var response =   snapshot;
+    return response;
+  });
+}
 
 export function fetchLocations(req, res) {
 

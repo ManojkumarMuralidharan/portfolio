@@ -16,6 +16,8 @@ import { StaticRouter, matchPath } from "react-router-dom";
 
 import {fetchGraphQlData } from '../services/gitApi';
 import {fetchMediumArticles} from '../services/medium';
+import {isResumeEnabled} from '../services/handleFeedback';
+
 import _ from 'lodash';
 
 export function handleRender(req, res) {
@@ -60,6 +62,7 @@ export function handleRender(req, res) {
           };
       });
       storeInitialState['fieldState']['medium'] = modifiedDataMedium;
+      let resumeDisplayed = await isResumeEnabled();
       const store = createStore(combinedReducers, storeInitialState);
 
       //

@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card, { CardActions, CardContent, CardMedia, CardHeader, CardTitle } from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import FormatQuote from '@material-ui/icons/FormatQuote';
-import { fetchBio } from '../../redux/modules/reducerHandlers';
+import { fetchBio, isResumeEnabled } from '../../redux/modules/reducerHandlers';
 import { connect } from 'react-redux';
 
 
@@ -137,6 +136,7 @@ class Home extends React.Component  {
 
   componentDidMount() {
     this.props.fetchBio();
+    this.props.isResumeEnabled();
   }
 
   render() {
@@ -158,9 +158,9 @@ class Home extends React.Component  {
             {this.props.fieldState.bio || 'I love problem solving and I enjoy working on improvising user interaction. I wish to develop novel solution using the might of todays technology to make life easier and enjoyable. I work on web and mobile applications and strive to build apps that could make life simple and enjoyable for everyone.'}
           </Typography>
         </Paper>
-        <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
+        {this.props.fieldState.resume && <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
          Download my resume
-        </Button>
+        </Button>}
         <Divider className={classes.divider}/>
         </Grid>
 
@@ -201,7 +201,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchBio: () => {
       return fetchBio(dispatch);
+    },
+    isResumeEnabled: () => {
+      return isResumeEnabled(dispatch);
     }
+
   }
 }
 
