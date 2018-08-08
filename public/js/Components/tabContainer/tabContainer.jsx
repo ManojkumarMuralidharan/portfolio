@@ -66,7 +66,7 @@ const styles = theme => ({
     boxShadow: 'none',
   },
   avatar: {
-    backgroundColor: '#f35f3cd9',
+    backgroundColor: '#302b2a',
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
     fontSize: '1.75rem',
     zIndex: '1200',
