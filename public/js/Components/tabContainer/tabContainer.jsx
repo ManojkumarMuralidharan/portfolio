@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import CustomDrawer from '../swipeableDrawer/component.jsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +15,7 @@ import { toggleContactForm, toggleDrawerState } from '../../redux/modules/reduce
 import _ from 'lodash';
 import * as types from '../../constants/actionTypes';
 import { Link } from "react-router-dom";
+import { auto } from 'async';
 
 const styles = theme => ({
   root: {
@@ -30,8 +31,20 @@ const styles = theme => ({
     display: 'none',
     color: 'white'
   },
-  icon: {
-    color: 'white'
+  icons: {
+    color: 'white',
+    width: '2em',
+    height: 'auto'
+  },
+  iconButton:{
+    '&:hover':{
+      transform: 'scale(1.2)'
+    },
+    paddingLeft: '30%',
+    paddingTop: '3%'
+  },
+  appBar:{
+    position: 'relative'
   },
   tabMenu: {
     color: 'white',
@@ -62,14 +75,13 @@ const styles = theme => ({
     placeContent: 'flex-end'
   },
   appBar: {
-    backgroundColor: 'rgb(48, 42, 42);',
+    background: '#302b2a',
     boxShadow: 'none',
   },
   avatar: {
     backgroundColor: '#302b2a',
     fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
     fontSize: '1.75rem',
-    zIndex: '1200',
     position: 'absolute',
     left: '32px',
     top: '8px',
@@ -78,12 +90,12 @@ const styles = theme => ({
     avatar: {
       width: '60px',
       height: '60px',
-      zIndex: '12000',
       top: '16px'
     },
     menuDrawer: {
       display: 'block',
-      color: 'white'
+      color: 'white',
+      paddingRight: '4%'
     },
     tabMenu: {
       display: 'none'
@@ -94,6 +106,13 @@ const styles = theme => ({
     icon: {
       width: '3em',
       height: '3em'
+    },
+    icons:{
+      width: '4em'
+    },
+    iconButton:{
+      paddingLeft: '40%',
+      paddingTop: '18%'
     },
   }
 });
@@ -130,11 +149,13 @@ class FullWidthTabs extends React.Component {
     const fullScreen = _.get(this.props, ['appState', 'width'], false) && this.props.appState.width < 1000;
     return (
       <Grid container className={classes.appBar}>
-        <Grid item lg={2} >
-          {!this.props.fieldState.drawer.state && <Avatar className={classes.avatar}>MJ</Avatar>}
+        <Grid item lg={1} sm={2} md={1} xs={2} className={classes.root}>
+        <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+             <img src="/images/avatar.png" className={classes.icons} alt="" />
+        </IconButton>
         </Grid>
-        <Grid item lg={10}>
-          <AppBar color="default" style={{ background: "inherit", boxShadow: "none" }}>
+        <Grid item lg={11} sm={10} md={11} xs={10}>
+          <AppBar color="default" className={classes.appBar} style={{'position':'relative'}}>
             <Tabs
               selected={classes.selected}
               value={this.state.value}

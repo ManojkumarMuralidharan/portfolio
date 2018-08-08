@@ -101,7 +101,7 @@ class Footer extends React.Component {
              <img src="/images/twitter.png" className={classes.icons} alt="twitter" />
             </IconButton>
             </Grid>
-            <Grid container xs={12} sm={12} className={classes.iconsContainer}>
+            <Grid container className={classes.iconsContainer}>
               <Grid item xs={6} sm={6} className={classes.footerGrow}>
                 <Paper className={classes.footerText} >
                   This Page loaded in { this.props.fieldState.loadBar && this.props.fieldState.loadBar.loadTime } seconds
