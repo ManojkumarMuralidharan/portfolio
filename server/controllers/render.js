@@ -124,6 +124,7 @@ function renderFullPage(html, css, preloadedState) {
     <html lang="en">
       <head>
         <link rel="shortcut icon" href="manifest/icons/favicon_2.png" type="image/x-icon">
+        <link rel="apple-touch-icon" href="/images/avatar.png">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38147306-2"></script>
         <script>
