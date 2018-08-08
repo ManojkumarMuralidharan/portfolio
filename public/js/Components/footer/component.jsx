@@ -36,6 +36,9 @@ const styles = theme => ({
     width: '50%',
     height: 'auto'
   },
+  footerGrow:{
+    flexGrow: 1,
+  },
   footerText: {
     paddingTop: '2%',
     paddingBottom: '3%',
@@ -43,7 +46,8 @@ const styles = theme => ({
     backgroundColor: 'rgba(0,0,0,0.87)',
     color: 'rgba(255,255,255,0.9)',
     boxShadow: 'none',
-    fontFamily: "'Exo', sans-serif"
+    fontFamily: "'Exo', sans-serif",
+    height: '100%'
   },
   [`${theme.breakpoints.down('md')}`]: {
     footerText: {
@@ -97,15 +101,17 @@ class Footer extends React.Component {
              <img src="/images/twitter.png" className={classes.icons} alt="twitter" />
             </IconButton>
             </Grid>
-            <Grid item xs={6} sm={6}>
-              <Paper className={classes.footerText} >
-                This Page loaded in { this.props.fieldState.loadBar && this.props.fieldState.loadBar.loadTime } seconds
-              </Paper>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <Paper className={classes.footerText} >
-                © 2018. Manoj. All Rights Reserved.
-              </Paper>
+            <Grid container xs={12} sm={12} className={classes.iconsContainer}>
+              <Grid item xs={6} sm={6} className={classes.footerGrow}>
+                <Paper className={classes.footerText} >
+                  This Page loaded in { this.props.fieldState.loadBar && this.props.fieldState.loadBar.loadTime } seconds
+                </Paper>
+              </Grid>
+              <Grid item xs={6} sm={6} className={classes.footerGrow}>
+                <Paper className={classes.footerText} >
+                  © 2018. Manoj. All Rights Reserved.
+                </Paper>
+              </Grid>
             </Grid>
             <SnackbarComposite />
           </Grid>
