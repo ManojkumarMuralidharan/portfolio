@@ -55,19 +55,19 @@ export function fetchBio(req, res) {
 }
 
 export function sendFeedback(req, res) {
+
+  writeUserFeeback(req, res);
+  
+}
+
+
+export function writeUserFeeback(req, res) {
   const firstName = req.param('firstName');
   const lastName = req.param('lastName');
   const email = req.param('email');
   const phone = req.param('phone');
   const subject = req.param('subject');
   const message = req.param('message');
-
-  writeUserFeeback(firstName, lastName, email, phone, subject, message);
-  return res.send({feedback: 'success'});
-}
-
-
-export function writeUserFeeback(firstName, lastName, email, phone, subject, message) {
   const newChildRef = firebase.database().ref('feedback').push();
   newChildRef.set({
     firstName: firstName,
@@ -77,4 +77,6 @@ export function writeUserFeeback(firstName, lastName, email, phone, subject, mes
     subject: subject,
     message: message
   });
+
+  return res.send({feedback: 'success'});
 }
