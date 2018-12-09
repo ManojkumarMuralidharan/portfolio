@@ -62,12 +62,12 @@ export function sendFeedback(req, res) {
 
 
 export function writeUserFeeback(req, res) {
-  const firstName = req.params.firstName;
-  const lastName = req.params.lastName;
-  const email = req.params.email;
-  const phone = req.params.phone;
-  const subject = req.params.subject;
-  const message = req.params.message;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const subject = req.body.subject;
+  const message = req.body.message;
   const newChildRef = firebase.database().ref('feedback').push();
   newChildRef.set({
     firstName: firstName,
