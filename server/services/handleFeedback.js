@@ -63,7 +63,7 @@ export function sendFeedback(req, res) {
   const message = req.param('message');
 
   writeUserFeeback(firstName, lastName, email, phone, subject, message);
-  return ({feedback: 'success'});
+  return res.send({feedback: 'success'});
 }
 
 
