@@ -5,7 +5,7 @@ import { SheetsRegistry, JssProvider } from 'react-jss';
 import React from 'react';
 import {createMuiTheme}  from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName';
+import { createGenerateClassName } from '@material-ui/styles';
 // import {green100, green500, green700} from 'material-ui/colors';
 import App from '../../public/js/templates/app';
 import { white, red } from '@material-ui/core/colors';
