@@ -54,7 +54,9 @@ module.exports = env => {
     	]
     },
     plugins:[
-      new DotenvPlugin(),
+      new DotenvPlugin({
+      path: path.resolve(__dirname, '.env')
+    }),
       new LodashModuleReplacementPlugin({
         'collections': true,
         'paths': true
