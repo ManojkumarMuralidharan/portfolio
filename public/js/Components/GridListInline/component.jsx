@@ -151,11 +151,11 @@ class SingleLineGridList extends React.Component {
     let cols = 3;
     switch (true){
 
-    case window.innerWidth < 880:
+    case window.innerWidth < 680:
         // I'm guessing this is an error
         cols = 1;
         break;
-    case window.innerWidth < 1290:
+    case window.innerWidth < 1090:
         cols = 2;
         break;
     default:
