@@ -139,9 +139,11 @@ const styles = theme => ({
 class SingleLineGridList extends React.Component {
 
   componentDidMount() {
+    const isBrowser = () => typeof window !== 'undefined'
+    const getWidth = () => (isBrowser() ? window.innerWidth : Infinity );
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+    this.setState({ width: getWidth(), height: window.innerHeight });
   }
   componentWillUnmount() {
    window.removeEventListener('resize', this.updateWindowDimensions);
