@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
 import { connect } from 'react-redux';
 import SnackbarComposite from '../snackbar/component.jsx';
 
@@ -30,7 +31,8 @@ const styles = theme => ({
   iconButton:{
     '&:hover':{
       transform: 'scale(1.2)'
-    }
+    },
+     margin: theme.spacing(1),
   },
   icons:{
     width: '50%',
@@ -76,30 +78,30 @@ class Footer extends React.Component {
         <footer>
           <Grid container className={classes.grid} alignContent='center' alignItems='center'>
             <Grid item xs={12} lg={12} className={classes.iconsContainer}>
-            <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+            <Fab variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
              <img src="/images/linkedin.png" className={classes.icons} alt="facebook" />
-            </IconButton>
-            <IconButton variant="fab" href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
              <img src="/images/github.png" className={classes.icons} alt="github" />
-            </IconButton>
-            <IconButton variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
              <img src="/images/instagram.png" className={classes.icons} alt="instagram" />
-            </IconButton>
-            <IconButton variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
              <img src="/images/paypal.png" className={classes.icons} alt="paypal" />
-            </IconButton>
-            <IconButton variant="fab" href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
              <img src="/images/amazon.png" className={classes.icons} alt="amazon" />
-            </IconButton>
-            <IconButton variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
              <img src="/images/gmail.png" className={classes.icons} alt="gmail" />
-            </IconButton>
-            <IconButton variant="fab" href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
              <img src="/images/slack.png" className={classes.icons} alt="slack" />
-            </IconButton>
-            <IconButton variant="fab" href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
+            </Fab>
+            <Fab variant="fab" href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
              <img src="/images/twitter.png" className={classes.icons} alt="twitter" />
-            </IconButton>
+            </Fab>
             </Grid>
             <Grid container className={classes.iconsContainer}>
               <Grid item xs={6} sm={6} className={classes.footerGrow}>
