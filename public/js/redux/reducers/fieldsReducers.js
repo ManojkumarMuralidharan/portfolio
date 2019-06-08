@@ -1,6 +1,10 @@
+import {
+  merge,
+} from 'lodash';
 import * as types from '../../constants/actionTypes';
-import { writeUserFeeback, verifyCaptcha } from '../modules/reducerHandlers';
-import {merge} from 'lodash';
+import {
+  writeUserFeeback,
+} from '../modules/reducerHandlers';
 
 const fieldsReducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
@@ -13,8 +17,7 @@ const fieldsReducer = (state = {}, action) => {
       newState.contactForm.display = action.value;
       return newState;
     case types.WRITE_USER_FEEDBACK:
-      const {firstName, lastName, email, phone, subject, message} = action.value;
-      writeUserFeeback(firstName, lastName, email, phone, subject, message);
+      writeUserFeeback(action.value);
       return state;
     case types.OPEN_SIDE_DRAWER:
       newState.drawer.state = action.value;

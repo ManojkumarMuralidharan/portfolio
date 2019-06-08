@@ -1,5 +1,6 @@
+import { merge } from 'lodash';
 import * as types from '../../constants/actionTypes';
-import {merge} from 'lodash';
+
 const appReducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
@@ -8,7 +9,7 @@ const appReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 
 export default appReducer;
