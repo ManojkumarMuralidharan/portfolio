@@ -137,6 +137,7 @@ class ResponsiveDialog extends React.Component {
 
   handleDialogClose = () => {
     this.props.toggleContactForm(false);
+    this.props.resetCaptcha();
     this.setState({ open: false });
   };
 
@@ -166,7 +167,6 @@ class ResponsiveDialog extends React.Component {
     this.props.toggleContactForm(false);
   }
   verifyCallback = (response) => {
-    alert(response);
     this.props.verifyCaptcha(response);
   };
   _renderGrecaptcha = () => {
@@ -178,7 +178,6 @@ class ResponsiveDialog extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ResponsiveDialog mounted');
     if (this.state.ready) {
         this.props.updateCaptchaState('show');
     }
@@ -387,6 +386,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 value: {loadBar : dispatchObject}
        });
 
+     },
+     resetCaptcha: () => {
+       const dispatchObject = {};
+       dispatchObject['captcha'] = {'verified':false};
+       dispatch({
+                 type: types.UPDATE_FIELD,
+                 value: dispatchObject
+       });
      },
      verifyCaptcha:(token) =>{
        return verifyCaptcha(dispatch, token);

@@ -1,4 +1,3 @@
-
 const version = "0.1.0";
 const cacheName = `manoj.io-${version}`;
 self.addEventListener('install', e => {
@@ -42,6 +41,8 @@ self.addEventListener('fetch', event => {
       .then(cache => cache.match(event.request, {ignoreSearch: true}))
       .then(response => {
       return response || fetch(event.request);
-    })
+    }.catch(err => {
+      console.log(err);
+    }))
   );
-});
+});});
