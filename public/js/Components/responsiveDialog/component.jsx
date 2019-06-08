@@ -171,7 +171,7 @@ class ResponsiveDialog extends React.Component {
   };
   _renderGrecaptcha = () => {
     grecaptcha.render('captcha', {
-          'sitekey' : '6Ldwm6cUAAAAAHCBAGoiuubq7_zYE-pRlAM6aafR',
+          'sitekey' : '6Lcay6cUAAAAAF60t1a1YE5BG_T6w5jNGJZfIn_F',
           'callback' : this.verifyCallback
     });
     this.props.updateCaptchaState('rendered');
