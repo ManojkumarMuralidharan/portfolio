@@ -3,6 +3,7 @@ import express from 'express';
 import {handleRender} from './server/controllers/render';
 import {handleGitApi} from './server/services/gitApi.js';
 import {handleMedium} from './server/services/medium.js';
+import {verifyCaptcha} from './server/services/captcha.js'
 import {fetchLocations,sendFeedback, fetchBio, handleResumeEnabled} from './server/services/handleFeedback.js';
 import * as bodyParser from 'body-parser';
 
@@ -33,6 +34,7 @@ app.use('/locations', fetchLocations);
 app.post('/sendFeedback', sendFeedback);
 app.use('/fetchBio',fetchBio);
 app.use('/resume', handleResumeEnabled);
+app.use('/verifyCaptcha', verifyCaptcha);
 app.use(handleRender);
 const port = process.env.appPort;
 app.listen(port);

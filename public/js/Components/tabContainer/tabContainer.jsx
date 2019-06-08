@@ -176,7 +176,7 @@ class FullWidthTabs extends React.Component {
           </AppBar>
           <CustomDrawer/>
         </Grid>
-        <ResponsiveDialog fullScreen={fullScreen} open={false} />
+        {this.props.fieldState.contactForm.display ? <ResponsiveDialog fullScreen={fullScreen} open={false} /> : null}
       </Grid>
 
     );

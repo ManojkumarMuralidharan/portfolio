@@ -17,7 +17,8 @@ import * as types from '../../constants/actionTypes';
 import { isEmpty } from 'lodash';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-
+import { verifyCaptcha } from '../../redux/modules/reducerHandlers';
+import Fab from '@material-ui/core/Fab';
 const styles = theme => ({
   override: {
     MuiTabs: {
@@ -124,19 +125,14 @@ const styles = theme => ({
     },
   }
 });
+const isReady = () => typeof window !== 'undefined'
+  && typeof window.grecaptcha !== 'undefined'
+  && typeof window.grecaptcha.render === 'function';
 
 class ResponsiveDialog extends React.Component {
+
   state = {
-    open: false,
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.props.toggleContactForm(false);
-    this.setState({ open: false });
+     ready: isReady(),
   };
 
   handleDialogClose = () => {
@@ -145,7 +141,9 @@ class ResponsiveDialog extends React.Component {
   };
 
   validateForm = () =>{
-    const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
+    const {firstName, lastName, email, phone, subject, message, captcha} = this.props.fieldState;
+
+
     if(isEmpty(firstName) || isEmpty(lastName) || isEmpty(phone) || isEmpty(message)){
       console.log('Empty form');
       return false;
@@ -153,24 +151,57 @@ class ResponsiveDialog extends React.Component {
     return true;
   }
   submitFeedBack = () => {
-    const {firstName, lastName, email, phone, subject, message} = this.props.fieldState;
+    const {firstName, lastName, email, phone, subject, message, captcha} = this.props.fieldState;
+    const {verified} = captcha;
     if(!this.validateForm()){
-      this.props.invalidForm();
+      const {verified} = captcha;
+      if(!verified){
+        this.props.invalidForm('Please verify captcha');
+      }else{
+        this.props.invalidForm('Please check your values in the Form');
+      }
       return;
     }
     this.props.writeUserFeeback(firstName, lastName, email, phone, subject, message);
     this.props.toggleContactForm(false);
   }
+  verifyCallback = (response) => {
+    alert(response);
+    this.props.verifyCaptcha(response);
+  };
+  _renderGrecaptcha = () => {
+    grecaptcha.render('captcha', {
+          'sitekey' : '6Ldwm6cUAAAAAHCBAGoiuubq7_zYE-pRlAM6aafR',
+          'callback' : this.verifyCallback
+    });
+    this.props.updateCaptchaState('rendered');
+  }
+
+  componentDidMount() {
+    console.log('ResponsiveDialog mounted');
+    if (this.state.ready) {
+        this.props.updateCaptchaState('show');
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    const { render, fieldState } = this.props;
+    if (this.state.ready && fieldState.captcha && fieldState.captcha.state==='show') {
+      this._renderGrecaptcha();
+   }
+  }
 
   render() {
     const { fullScreen, classes } = this.props;
+    const transitionDuration = { "enter":0, "exit":0};
     return (
-      <Grid item lg={12} xs={12} className={classes.root}>
+
           <Dialog
             fullScreen={fullScreen}
             open={this.props.fieldState.contactForm.display}
             onClose={this.handleDialogClose}
             aria-labelledby="form-dialog-title"
+            transitionDuration={transitionDuration}
           >
             <DialogTitle id="form-dialog-title" className={classes.dialogTitle} >
               <Typography className={classes.typographyTitle}> How to get in touch 👋 </Typography>
@@ -298,18 +329,21 @@ class ResponsiveDialog extends React.Component {
                 }}
               />
               </Grid>
+              <Grid item lg={12} xs={12} className={classes.grid} align="center">
+                <div id="captcha"></div>
+              </Grid>
               </Grid>
             </DialogContent>
             <DialogActions className={classes.dialogButton}>
-              <Button onClick={this.handleDialogClose} variant="raised" color="secondary" className={classes.button}>
+              <Fab onClick={this.handleDialogClose} variant="extended" color="secondary" className={classes.button}>
                 Cancel
-              </Button>
-              <Button onClick={this.submitFeedBack} variant="raised" color="secondary"  className={classes.button}>
+              </Fab>
+              <Fab onClick={this.submitFeedBack} variant="extended" color="secondary"  className={classes.button}>
                 Send
-              </Button>
+              </Fab>
             </DialogActions>
           </Dialog>
-      </Grid>
+
     );
   }
 }
@@ -341,13 +375,37 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 value: {firstName, lastName, email, phone, subject, message}
        });
      },
-     invalidForm: () => {
+     showCaptchaNotVerifiedMessage: ()=>{
+       //dispatch message saying verify captcha
+       const dispatchObject = {
+         open : true,
+         loadTime : 4,
+         text: `Please verify captcha`
+       };
+       return dispatch({
+                type: types.UPDATE_FIELD,
+                value: {loadBar : dispatchObject}
+       });
+
+     },
+     verifyCaptcha:(token) =>{
+       return verifyCaptcha(dispatch, token);
+     },
+     updateCaptchaState: (captchaState) => {
+        const dispatchObject = {};
+        dispatchObject['captcha'] = {'state':captchaState};
+       dispatch({
+                type: types.UPDATE_FIELD,
+                value: dispatchObject
+       });
+     },
+     invalidForm: (message) => {
        dispatch({
          type: types.UPDATE_FIELD,
          value: {
            loadBar : {
              open : true,
-             text: 'Please check your values in the Form'
+             text: message
            }
          }
        });

@@ -41,6 +41,29 @@ export const fetchBio = (dispatch) => {
   }).catch(error => { throw error; });
 }
 
+export const verifyCaptcha = (dispatch, tokenValue) => {
+  const data =  {"token" : tokenValue};
+
+  return fetch('/verifyCaptcha',{
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: JSON.stringify(data),
+      }).then(function(response) {
+        return response.json();
+      }).then((response) => {
+        return dispatch({
+               type: types.UPDATE_FIELD,
+               value: {"captcha" : {"verified":true}}
+        });
+      }).catch(error => { throw error; });
+};
+
 export const  writeUserFeeback = (firstName, lastName, email, phone, subject, message)  => {
   const data = {
     firstName: firstName,

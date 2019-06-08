@@ -1,5 +1,5 @@
 import * as types from '../../constants/actionTypes';
-import { writeUserFeeback } from '../modules/reducerHandlers';
+import { writeUserFeeback, verifyCaptcha } from '../modules/reducerHandlers';
 import {merge} from 'lodash';
 
 const fieldsReducer = (state = {}, action) => {

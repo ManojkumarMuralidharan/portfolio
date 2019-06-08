@@ -8,7 +8,6 @@ self.addEventListener('install', e => {
       return cache.addAll([
         `/`,
         `/home`,
-        `/main.js`,
         `/git`,
         `/medium`,
         `/locations`,

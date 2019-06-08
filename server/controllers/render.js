@@ -25,6 +25,9 @@ export function handleRender(req, res) {
   const sheetsRegistry = new SheetsRegistry();
   let storeInitialState = {
     fieldState: {
+      captcha:{
+        verified: false
+      },
       contactForm:{
         display:false
       },
@@ -148,6 +151,7 @@ function renderFullPage(html, css, preloadedState) {
 
           gtag('config', 'UA-38147306-2');
         </script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lcpm6cUAAAAAP9Un8nwFkkXshD32onWGlNguaiy"></script>
         <script>
          // WARNING: See the following for security issues around embedding JSON in HTML:
          // http://redux.js.org/recipes/ServerRendering.html#security-considerations

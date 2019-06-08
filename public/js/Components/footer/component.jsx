@@ -78,28 +78,28 @@ class Footer extends React.Component {
         <footer>
           <Grid container className={classes.grid} alignContent='center' alignItems='center'>
             <Grid item xs={12} lg={12} className={classes.iconsContainer}>
-            <Fab variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
              <img src="/images/linkedin.png" className={classes.icons} alt="facebook" />
             </Fab>
-            <Fab variant="fab" href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://github.com/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
              <img src="/images/github.png" className={classes.icons} alt="github" />
             </Fab>
-            <Fab variant="fab" href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://www.instagram.com/mjwolfpack/" aria-label="add" className={classes.iconButton}>
              <img src="/images/instagram.png" className={classes.icons} alt="instagram" />
             </Fab>
-            <Fab variant="fab" href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://www.paypal.me/man0j/" aria-label="add" className={classes.iconButton}>
              <img src="/images/paypal.png" className={classes.icons} alt="paypal" />
             </Fab>
-            <Fab variant="fab" href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://a.co/hbOsTcM" aria-label="add" className={classes.iconButton}>
              <img src="/images/amazon.png" className={classes.icons} alt="amazon" />
             </Fab>
-            <Fab variant="fab" href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
+            <Fab  href="mailto:manoj.wolfpack@gmail.com" aria-label="add" className={classes.iconButton}>
              <img src="/images/gmail.png" className={classes.icons} alt="gmail" />
             </Fab>
-            <Fab variant="fab" href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://manojio.slack.com/" aria-label="add" className={classes.iconButton}>
              <img src="/images/slack.png" className={classes.icons} alt="slack" />
             </Fab>
-            <Fab variant="fab" href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
+            <Fab  href="https://twitter.com/search?q=manojwolfpack" aria-label="add" className={classes.iconButton}>
              <img src="/images/twitter.png" className={classes.icons} alt="twitter" />
             </Fab>
             </Grid>

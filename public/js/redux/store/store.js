@@ -14,7 +14,7 @@ const preloadedState = window.__PRELOADED_STATE__;
 delete window.__PRELOADED_STATE__;
     if(typeof window !== 'undefined') {
         const url = _.get(window, 'location.href', '');
-        const reduxDebugging = (url.indexOf('localhost') > 0);
+        const reduxDebugging = (url.indexOf('localhost') > 0||url.indexOf('127.0.0.1')>0);
         const middleWares = reduxDebugging ?
             compose(applyMiddleware(thunk),window.devToolsExtension ? window.devToolsExtension() : f => f) :
             applyMiddleware(thunk);
