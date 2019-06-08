@@ -151,7 +151,7 @@ function renderFullPage(html, css, preloadedState) {
 
           gtag('config', 'UA-38147306-2');
         </script>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LfMiKcUAAAAANhSP1rBDtyQRZ7AZTDUX7UqAcyD"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lcay6cUAAAAAF60t1a1YE5BG_T6w5jNGJZfIn_F"></script>
         <script>
          // WARNING: See the following for security issues around embedding JSON in HTML:
          // http://redux.js.org/recipes/ServerRendering.html#security-considerations
