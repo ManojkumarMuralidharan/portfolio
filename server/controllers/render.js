@@ -151,7 +151,7 @@ function renderFullPage(html, css, preloadedState) {
 
           gtag('config', 'UA-38147306-2');
         </script>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LfMiKcUAAAAANhSP1rBDtyQRZ7AZTDUX7UqAcyD"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lcpm6cUAAAAAP9Un8nwFkkXshD32onWGlNguaiy"></script>
         <script>
         grecaptcha.ready(function() {
            console.log('Captcha loaded and ready');
