@@ -30,17 +30,17 @@ const styles = theme => ({
   contentTitle:{
     fontSize: '1rem',
     fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
-    paddingBottom: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing(4),
     color: 'rgba(0, 0, 0, 1)',
   },
   typographyTitle:{
     fontSize: '2rem',
-    paddingBottom: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing(4),
     fontFamily: '"Muli", "Helvetica", "Arial", sans-serif;',
     color: 'rgba(0, 0, 0, 1)',
   },
   button:{
-     margin: theme.spacing.unit,
+     margin: theme.spacing(1),
      color: '#fff',
      backgroundColor: '#2196f3',
      '&:hover':{

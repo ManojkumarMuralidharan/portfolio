@@ -15,11 +15,11 @@ const styles = theme => ({
     maxWidth: '100%',
   },
   grid: {
-    paddingBottom : theme.spacing.unit * 6,
+    paddingBottom : theme.spacing(6),
     textAlign: 'center',
   },
   selfPaper:{
-    height: theme.spacing.unit * 20,
+    height: theme.spacing(20),
     position: 'relative',
     background: '#ffffff',
     boxShadow: 'none'

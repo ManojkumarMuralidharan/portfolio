@@ -15,11 +15,11 @@ const styles = theme => ({
     maxWidth: '100%',
   },
   grid: {
-    paddingBottom : theme.spacing.unit * 6,
+    paddingBottom : theme.spacing(6),
     textAlign: 'center',
   },
   selfPaper:{
-    height: theme.spacing.unit * 20,
+    height: theme.spacing(20),
     position: 'relative',
     background: '#ffffff',
     boxShadow: 'none'
@@ -32,7 +32,7 @@ const styles = theme => ({
     fontFamily: "'roboto-thin', sans-serif;",
     fontSize: "1.355rem",
     lineHeight: "1.56429em",
-    paddingBottom: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing(4),
   },
   divider:{
     marginLeft: '25%',
@@ -69,7 +69,7 @@ const styles = theme => ({
     height: '350px'
   },
   mapsContainer: {
-    height: theme.spacing.unit * 51,
+    height: theme.spacing(51),
     position: 'relative'
   },
   [`${theme.breakpoints.down('md')}`]: {

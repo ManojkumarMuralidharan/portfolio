@@ -60,10 +60,15 @@ const styles = theme => ({
       paddingRight: '3%'
     },
     icons:{
-      width: '110%',
+      width: '30px',
       height: 'auto',
       paddingLeft: '5%',
       paddingRight: '5%',
+    },
+  },
+  [`${theme.breakpoints.only('md')}`]: {
+    icons:{
+      width: '30px'
     },
   }
 });

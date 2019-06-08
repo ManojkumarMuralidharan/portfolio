@@ -14,21 +14,21 @@ const styles = theme => ({
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: `${theme.spacing.unit * 3}px`,
+    gridGap: `${theme.spacing(3)}px`,
   },
   backgroundPaper:{
     width: '100%'
   },
   paper: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
-    marginBottom: `${theme.spacing.unit * 0}px`,
+    marginBottom: `${theme.spacing(0)}px`,
     boxShadow: "none",
   },
   divider: {
-    margin: `${theme.spacing.unit * 2}px 0`,
+    margin: `${theme.spacing(2)}px 0`,
   },
   [`${theme.breakpoints.down('md')}`]: {
     backgroundGrid: {

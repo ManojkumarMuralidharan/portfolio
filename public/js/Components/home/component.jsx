@@ -25,7 +25,7 @@ const styles = theme => ({
     }
   },
   grid: {
-    paddingBottom : theme.spacing.unit * 6,
+    paddingBottom : theme.spacing(6),
     textAlign: 'center',
   },
   quotes: {
@@ -39,7 +39,7 @@ const styles = theme => ({
     paddingRight: '30%',
   },
   selfPaper:{
-    height: theme.spacing.unit * 20,
+    height: theme.spacing(20),
     position: 'relative',
     background: '#ffffff',
     boxShadow: 'none'
@@ -53,7 +53,7 @@ const styles = theme => ({
     fontSize: "1.675rem",
     fontFamily: '"muli", Verdana, Tahoma;',
     lineHeight: "1.56429em",
-    paddingBottom: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing(4),
   },
   quoteText: {
     fontFamily: "\"muli\", Verdana, Tahoma",
