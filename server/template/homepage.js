@@ -14,12 +14,6 @@ const renderFullPageTemplate = (html, css, preloadedState) => `
 
       gtag('config', 'UA-38147306-2');
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lcpm6cUAAAAAP9Un8nwFkkXshD32onWGlNguaiy"></script>
-    <script>
-    grecaptcha.ready(function() {
-       console.log('Captcha loaded and ready');
-    });
-    </script>
     <script>
      // WARNING: See the following for security issues around embedding JSON in HTML:
      // http://redux.js.org/recipes/ServerRendering.html#security-considerations
@@ -39,7 +33,7 @@ const renderFullPageTemplate = (html, css, preloadedState) => `
     <p class="copy" ></p>
     <div id="root">${html}</div>
     <style id="jss-server-side">${css}</style>
-    <script src="main.js"></script>
+    
     <style>
     body{
       margin : -16px;
@@ -69,7 +63,14 @@ const renderFullPageTemplate = (html, css, preloadedState) => `
         src: url(/fonts/roboto/Roboto-Thin.ttf) format("truetype");
     }
     </style>
+    <script src="main.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto:100|Ubuntu:500|Roboto+Condensed:300|Montserrat|Exo:900"" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lcpm6cUAAAAAP9Un8nwFkkXshD32onWGlNguaiy"></script>
+    <script>
+    grecaptcha.ready(function() {
+       console.log('Captcha loaded and ready');
+    });
+    </script>
   </body>
 </html>
 `;

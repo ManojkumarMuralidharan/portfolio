@@ -6,4 +6,4 @@ const cache = require('memory-cache');
 //   console.log("Error " + err);
 // })
 //
- module.exports = cache
+module.exports = cache;
