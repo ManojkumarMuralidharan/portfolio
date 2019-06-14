@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
-const accessToken = process.env.gitApiKey;
 const cache = require('./../redis/cache');
+
+const accessToken = process.env.gitApiKey;
 const query = `
 {
   search(query: "user:manojkumarmuralidharan topic:public-manoj", type: REPOSITORY, first: 30) {
@@ -28,46 +29,41 @@ const query = `
 }
 `;
 
-
-export function getGraphQlData(){
-  return fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    body: JSON.stringify({query}),
-    headers: {
-      'Authorization': `Bearer ${process.env.gitApiKey}`,
-    },
-  })
+export const getGraphQlData = () => fetch('https://api.github.com/graphql', {
+  method: 'POST',
+  body: JSON.stringify({ query }),
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
+})
   .then(res => res.text())
   .then(res => JSON.parse(res))
-  .then(response => {
-      cache.put('githubRepos',response,100000000,  function(key, value) {
-          console.log('Cache cleared - githubRepos');
-      });
-      return response;
+  .then((response) => {
+    cache.put('githubRepos', response, 100000000, (key, value) => {
+      console.log('Cache cleared - githubRepos');
+    });
+    return response;
   });
-}
 
-export function fetchGraphQlData(){
+export const fetchGraphQlData = () => {
   const cacheResult = cache.get('githubRepos');
-  if(!cacheResult){
+  if (!cacheResult) {
     return getGraphQlData();
-  }else{
-    return Promise.resolve(cacheResult);
   }
-}
+  return Promise.resolve(cacheResult);
+};
 
 
-export function handleGitApi(req, res) {
-  res.setHeader("Cache-Control", "public, max-age=2592000");
-  res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+export const handleGitApi = (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=2592000');
+  res.setHeader('Expires', new Date(Date.now() + 2592000000).toUTCString());
 
   const cacheResult = cache.get('githubRepos');
-  if(!cacheResult){
-    getGraphQlData().then(result =>  {
+  if (!cacheResult) {
+    getGraphQlData().then((result) => {
       res.json(result);
     });
-  }else{
+  } else {
     res.json(cacheResult);
   }
-
-}
+};
