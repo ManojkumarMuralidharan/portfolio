@@ -21,6 +21,7 @@ This project was built progressively, to add mulitple features.
 10. Hosting on a VPS with SSL
 11. Google Cloud Functions 
 12. PWA - Progressive Web Apps with service workers for offline experience
+13. Gmail API to send email
 
 
 
