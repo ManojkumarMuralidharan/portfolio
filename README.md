@@ -42,6 +42,9 @@ Blogging Articles - Medium json parser
 ## api Key Management
 api keys - dotenv loader
 
+## Mail service
+Gmail API
+
 ## CI Builds
 Circle CI
 
