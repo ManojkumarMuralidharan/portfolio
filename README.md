@@ -2,7 +2,7 @@
 
 ![Lighthouse Audit status](https://github.com/ManojkumarMuralidharan/Portfolio/blob/master/lighthouse/results/Status.png)
 
-This repo serves as the codebase for my portfolio website hosted at https://manoj.io.
+This repo serves as the codebase for my portfolio website hosted at https://manoj.io
 
 I started this project as a way to explore and experiment various web frameworks and technologies.
 
