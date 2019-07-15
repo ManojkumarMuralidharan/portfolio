@@ -5,46 +5,46 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import IconButton from '@material-ui/core/IconButton';
-import CustomDrawer from '../swipeableDrawer/component.jsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import ResponsiveDialog from '../responsiveDialog/component.jsx';
 import { connect } from 'react-redux';
 import { toggleContactForm, toggleDrawerState } from '../../redux/modules/reducerHandlers';
 import _ from 'lodash';
 import * as types from '../../constants/actionTypes';
 import { Link } from "react-router-dom";
 import { auto } from 'async';
+import ResponsiveDialog from '../responsiveDialog/component.jsx';
+import CustomDrawer from '../swipeableDrawer/component.jsx';
 
 const styles = theme => ({
   root: {
     background: 'rgb(48, 42, 42);',
   },
   selected: {
-    color: 'white'
+    color: 'white',
   },
   hover: {
-    cursor: 'default'
+    cursor: 'default',
   },
   menuDrawer: {
     display: 'none',
-    color: 'white'
+    color: 'white',
   },
   icons: {
     color: 'white',
     width: '2em',
-    height: 'auto'
+    height: 'auto',
   },
-  iconButton:{
-    '&:hover':{
-      transform: 'scale(1.2)'
+  iconButton: {
+    '&:hover': {
+      transform: 'scale(1.2)',
     },
     paddingLeft: '30%',
-    paddingTop: '3%'
+    paddingTop: '3%',
   },
-  appBar:{
-    position: 'relative'
+  appBar: {
+    position: 'relative',
   },
   tabMenu: {
     color: 'white',
@@ -56,7 +56,7 @@ const styles = theme => ({
       background: 'transparent',
     },
     '&:selected': {
-      color: 'white'
+      color: 'white',
     },
   },
   '@keyframes navfadein': {
@@ -66,13 +66,13 @@ const styles = theme => ({
     to: {
       boxShadow: '0 10px 6px -6px #777',
       opacity: '0.7',
-    }
+    },
   },
   indicator: {
     backgroundColor: 'white',
   },
   flexContainer: {
-    placeContent: 'flex-end'
+    placeContent: 'flex-end',
   },
   appBar: {
     background: '#302b2a',
@@ -90,31 +90,31 @@ const styles = theme => ({
     avatar: {
       width: '60px',
       height: '60px',
-      top: '16px'
+      top: '16px',
     },
     menuDrawer: {
       display: 'block',
       color: 'white',
-      paddingRight: '4%'
+      paddingRight: '4%',
     },
     tabMenu: {
-      display: 'none'
+      display: 'none',
     },
     flexContainer: {
-      placeContent: 'flex-end'
+      placeContent: 'flex-end',
     },
     icon: {
       width: '3em',
-      height: '3em'
+      height: '3em',
     },
-    icons:{
-      width: '4em'
+    icons: {
+      width: '4em',
     },
-    iconButton:{
-      paddingLeft: '40%',
-      paddingTop: '18%'
+    iconButton: {
+      paddingLeft: '30%',
+      paddingTop: '18%',
     },
-  }
+  },
 });
 
 class FullWidthTabs extends React.Component {
@@ -122,7 +122,7 @@ class FullWidthTabs extends React.Component {
     value: 'home',
   };
 
-  toggleDrawer = (open) => () => {
+  toggleDrawer = open => () => {
     this.props.toggleDrawerState(open);
   };
 
@@ -131,9 +131,8 @@ class FullWidthTabs extends React.Component {
     this.props.switchTabs(value);
   };
 
-  handleChangeIndex = index => {
+  handleChangeIndex = (index) => {
     this.setState({ value: index });
-
   };
 
   handleDialogClickOpen = () => {
@@ -149,13 +148,13 @@ class FullWidthTabs extends React.Component {
     const fullScreen = _.get(this.props, ['appState', 'width'], false) && this.props.appState.width < 1000;
     return (
       <Grid container className={classes.appBar}>
-        <Grid item lg={1} sm={2} md={1} xs={2} className={classes.root}>
-        <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
-             <img src="/images/avatar.png" className={classes.icons} alt="" />
-        </IconButton>
+        <Grid item lg={1} sm={3} md={3} xs={3} className={classes.root}>
+          <IconButton variant="fab" href="https://www.linkedin.com/in/manojkumarmuralidharan" aria-label="add" className={classes.iconButton}>
+            <img src="/images/avatar.png" className={classes.icons} alt="" />
+          </IconButton>
         </Grid>
-        <Grid item lg={11} sm={10} md={11} xs={10}>
-          <AppBar color="default" className={classes.appBar} style={{'position':'relative'}}>
+        <Grid item lg={11} sm={9} md={9} xs={9}>
+          <AppBar color="default" className={classes.appBar} style={{ position: 'relative' }}>
             <Tabs
               selected={classes.selected}
               value={this.state.value}
@@ -163,18 +162,18 @@ class FullWidthTabs extends React.Component {
               classes={{
                 root: classes.root, // class name, e.g. `classes-nesting-root-x`
                 flexContainer: classes.flexContainer,
-                indicator: classes.indicator
+                indicator: classes.indicator,
               }}
             >
               <Tab value="mobile_home" label="home" icon={<MenuIcon className={classes.icon} />} className={classes.menuDrawer} onClick={this.toggleDrawer(true)} />
-              <Tab component={Link} to="/" label="home" value="home" variant='outlined' className={classes.tabMenu} />
+              <Tab component={Link} to="/" label="home" value="home" variant="outlined" className={classes.tabMenu} />
               <Tab component={Link} to="/blog" value="blog" label="Blog" className={classes.tabMenu} />
               <Tab component={Link} to="/projects" value="projects" label="Projects" className={classes.tabMenu} />
               <Tab component={Link} to="/hobbies" value="hobbies" label="Hobbies" className={classes.tabMenu} />
               <Tab value="contact" label="Contact" onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
             </Tabs>
           </AppBar>
-          <CustomDrawer/>
+          <CustomDrawer />
         </Grid>
         {this.props.fieldState.contactForm.display ? <ResponsiveDialog fullScreen={fullScreen} open={false} /> : null}
       </Grid>
@@ -189,28 +188,20 @@ FullWidthTabs.propTypes = {
 };
 
 
-const mapStateToProps = (state, ownProps) => {
-  return state;
-}
+const mapStateToProps = (state, ownProps) => state;
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    switchTabs: (tabSelected) => {
-      dispatch({
-        type: types.UPDATE_APP_STATE,
-        value: { "activeTab": tabSelected }
-      });
-    },
-    toggleDrawerState: (drawerState) => {
-      return toggleDrawerState(dispatch, drawerState);
-    },
-    toggleContactForm: (dialogState) => {
-      return toggleContactForm(dispatch, dialogState);
-    }
-  }
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  switchTabs: (tabSelected) => {
+    dispatch({
+      type: types.UPDATE_APP_STATE,
+      value: { activeTab: tabSelected },
+    });
+  },
+  toggleDrawerState: (drawerState) => toggleDrawerState(dispatch, drawerState),
+  toggleContactForm: (dialogState) => toggleContactForm(dispatch, dialogState),
+});
 
 export default (withStyles(styles, { withTheme: true }))(connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(FullWidthTabs));
