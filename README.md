@@ -1,4 +1,4 @@
-# Portfolio  [![Circle CI](https://img.shields.io/circleci/project/ManojkumarMuralidharan/Portfolio/node-csgo-parser.svg?style=for-the-badge)](https://circleci.com/gh/ManojkumarMuralidharan/Portfolio/)
+# Portfolio  [![CircleCI](https://img.shields.io/circleci/build/github/ManojkumarMuralidharan/Portfolio/master.svg?style=for-the-badge)]
 
 ![Lighthouse Audit status](https://github.com/ManojkumarMuralidharan/Portfolio/blob/master/lighthouse/results/Status.png)
 
