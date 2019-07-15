@@ -25,10 +25,10 @@ This project was built progressively, to add mulitple features.
 
 
 
-## Global
+## UI Library 
 UI Components MDL v1.x
 
-## Projects
+## Projects 
 Github Integration - Github's GraphQL
 
 ## Camping
@@ -49,7 +49,8 @@ Gmail API
 Circle CI
 
 ## How to run the project locally
-To test it on your local, make sure to add all you env to a .env file at the root of the project
+
+1] To test it on your local, make sure to add all you env to a .env file at the root of the project
 ```
 gitApiKey=<gitApiKey>
 apiKey=<Firebase_apiKey>
@@ -64,23 +65,28 @@ googleMapsApiKey=<googleMapsApiKey>
 appPort=<appPort>
 ```
 
-Clone the project
+2] Clone the project
 ```
 git clone 
 cd Portfolio
 ```
 
-Install depedancies
+3] Install depedancies
 ```
 npm i
 ```
 
-Build the front end bundle
+4] Build the front end bundle
 ```
 npm run build
 ```
 
-Start the application
+5] Start the application
 ```
 npm run start
+```
+
+6] Start pm2 process
+```
+pm2 start npm -- start
 ```
