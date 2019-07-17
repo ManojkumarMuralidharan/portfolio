@@ -158,20 +158,22 @@ class Home extends React.Component {
 
 
           <Grid container item xs={12} lg={12}>
-            <Grid item xs={6} lg={6}>
+            <Grid item xs={5} lg={5} />
+            <Grid item xs={1} lg={1}>
               {this.props.fieldState.resume && (
               <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
               My resume
               </Button>
               )}
             </Grid>
-            <Grid item xs={6} lg={6}>
+            <Grid item xs={1} lg={1}>
               {this.props.fieldState.resume && (
               <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
               Contact Me
               </Button>
               )}
             </Grid>
+            <Grid item xs={5} lg={5} />
           </Grid>
           <Divider className={classes.divider} />
         </Grid>
