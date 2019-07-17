@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import FormatQuote from '@material-ui/icons/FormatQuote';
 import { connect } from 'react-redux';
-import { fetchBio, isResumeEnabled } from '../../redux/modules/reducerHandlers';
+import { fetchBio, isResumeEnabled, toggleContactForm } from '../../redux/modules/reducerHandlers';
 
 
 const styles = theme => ({
@@ -137,6 +137,10 @@ class Home extends React.Component {
     this.props.isResumeEnabled();
   }
 
+  handleDialogClickOpen = () => {
+    this.props.toggleContactForm(true);
+  };
+
   render() {
     const { classes, theme } = this.props;
     return (
@@ -158,22 +162,22 @@ class Home extends React.Component {
 
 
           <Grid container item xs={12} lg={12}>
-            <Grid item xs={5} lg={5} />
-            <Grid item xs={1} lg={1}>
+            <Grid item xs={3} lg={5} />
+            <Grid item xs={3} lg={1}>
               {this.props.fieldState.resume && (
               <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
               My resume
               </Button>
               )}
             </Grid>
-            <Grid item xs={1} lg={1}>
+            <Grid item xs={3} lg={1}>
               {this.props.fieldState.resume && (
-              <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
+              <Button onClick={this.handleDialogClickOpen} target="_blank" className={classes.downloadButton}>
               Contact Me
               </Button>
               )}
             </Grid>
-            <Grid item xs={5} lg={5} />
+            <Grid item xs={3} lg={5} />
           </Grid>
           <Divider className={classes.divider} />
         </Grid>
@@ -212,7 +216,7 @@ const mapStateToProps = (state, ownProps) => state;
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchBio: () => fetchBio(dispatch),
   isResumeEnabled: () => isResumeEnabled(dispatch),
-
+  toggleContactForm: dialogState => toggleContactForm(dispatch, dialogState),
 });
 
 export default connect(
