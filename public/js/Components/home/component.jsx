@@ -166,7 +166,7 @@ class Home extends React.Component {
             <Grid item xs={3} lg={1}>
               {this.props.fieldState.resume && (
               <Button href="resume_pdf.pdf" target="_blank" className={classes.downloadButton}>
-              My resume
+              Résumé
               </Button>
               )}
             </Grid>
