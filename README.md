@@ -27,7 +27,7 @@ This project was built progressively, to add mulitple features.
 
 ## UI Library 
 1. @material-ui/core   - ^4.0.1
-2. @material-ui/icons" - ^1.0.0
+2. @material-ui/icons  - ^1.0.0
 3. @material-ui/styles - ^4.1.1
 
 ## Projects 
