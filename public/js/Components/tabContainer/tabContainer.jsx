@@ -9,11 +9,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import { connect } from 'react-redux';
-import { toggleContactForm, toggleDrawerState } from '../../redux/modules/reducerHandlers';
 import _ from 'lodash';
 import * as types from '../../constants/actionTypes';
 import { Link } from "react-router-dom";
 import { auto } from 'async';
+import { toggleContactForm, toggleDrawerState } from '../../redux/modules/reducerHandlers';
 import ResponsiveDialog from '../responsiveDialog/component.jsx';
 import CustomDrawer from '../swipeableDrawer/component.jsx';
 
@@ -167,7 +167,6 @@ class FullWidthTabs extends React.Component {
             >
               <Tab value="mobile_home" label="home" icon={<MenuIcon className={classes.icon} />} className={classes.menuDrawer} onClick={this.toggleDrawer(true)} />
               <Tab component={Link} to="/" label="home" value="home" variant="outlined" className={classes.tabMenu} />
-              <Tab component={Link} to="/blog" value="blog" label="Blog" className={classes.tabMenu} />
               <Tab component={Link} to="/projects" value="projects" label="Projects" className={classes.tabMenu} />
               <Tab component={Link} to="/hobbies" value="hobbies" label="Hobbies" className={classes.tabMenu} />
               <Tab value="contact" label="Contact" onClick={this.handleDialogClickOpen} className={classes.tabMenu} />
@@ -197,8 +196,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       value: { activeTab: tabSelected },
     });
   },
-  toggleDrawerState: (drawerState) => toggleDrawerState(dispatch, drawerState),
-  toggleContactForm: (dialogState) => toggleContactForm(dispatch, dialogState),
+  toggleDrawerState: drawerState => toggleDrawerState(dispatch, drawerState),
+  toggleContactForm: dialogState => toggleContactForm(dispatch, dialogState),
 });
 
 export default (withStyles(styles, { withTheme: true }))(connect(
