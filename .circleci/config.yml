@@ -45,7 +45,7 @@ jobs:
       - run:
           name: "Deployment via SSH"
           command: |
-            ssh -o "StrictHostKeyChecking no" $SSH_UNAME@$SSH_HOST "cd $PROJECT_PATH; git pull; npm run build; pm2 stop 0; pm2 start 0"
+            ssh -o "StrictHostKeyChecking no" $SSH_UNAME@$SSH_HOST "cd $PROJECT_PATH; git pull; npm run build; pm2 stop 1; pm2 start 1"
 
 workflows:
   version: 2
