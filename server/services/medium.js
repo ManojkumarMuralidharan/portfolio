@@ -12,7 +12,8 @@ export function getMediumArticles() {
   return fetch('https://medium.com/@manoj.wolfpack/latest?format=json', {
     method: 'GET',
   }).then(res => res.text())
-  // .then(response => JSON.parse(response.substring(response.indexOf('>') + 1)))
+    .then(res => res)
+    .then(response => JSON.parse(response.substring(response.indexOf('>') + 1)))
     .then((response) => {
       cache.put('mediumArticles', response, 100000000, (key, value) => {
         console.log('Cache cleared');
