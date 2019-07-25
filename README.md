@@ -26,7 +26,9 @@ This project was built progressively, to add mulitple features.
 
 
 ## UI Library 
-UI Components MDL v1.x
+1. @material-ui/core   - ^4.0.1
+2. @material-ui/icons" - ^1.0.0
+3. @material-ui/styles - ^4.1.1
 
 ## Projects 
 Github Integration - Github's GraphQL
