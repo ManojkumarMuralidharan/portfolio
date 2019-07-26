@@ -39,5 +39,6 @@ app.use('/fetchBio', fetchBio);
 app.use('/resume', handleResumeEnabled);
 app.use('/verifyCaptcha', verifyCaptcha);
 app.get('/', cache(memCacheDuration), handleRender);
+app.get('*', handleRender);
 const port = process.env.appPort;
 app.listen(port);
