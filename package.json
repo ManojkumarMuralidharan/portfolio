@@ -50,7 +50,7 @@
     "lodash": "^4.17.11",
     "medium-sdk": "0.0.4",
     "memory-cache": "^0.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
